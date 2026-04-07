@@ -10,7 +10,7 @@ export default function BoardSection() {
   return (
     <section className="relative overflow-hidden">
       {/* Decorative strip (flipped) */}
-      <div className="relative w-full">
+      <div className="relative w-full bg-background">
         <Image
           src={decorativeStrip}
           alt=""

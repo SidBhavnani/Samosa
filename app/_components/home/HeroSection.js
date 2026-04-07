@@ -42,19 +42,19 @@ export default function HeroSection() {
             {/* LEFT */}
             <div className="lg:col-span-6 xl:col-span-5 text-primary-foreground">
               <AnimatedSection variant="fade-up">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bystander uppercase leading-[1.1] tracking-normal mb-5">
-                  <span className="text-samosa-cream text-[72px]">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bystander uppercase leading-[1.1] tracking-normal mb-3 md:mb-5">
+                  <span className="text-samosa-cream text-[60px] md:text-[72px]">
                     The Ultimate
                   </span>
                   <br />
-                  <span className="text-secondary text-[72px]">
+                  <span className="text-secondary text-[60px] md:text-[72px]">
                     Desi Party Game
                   </span>
                 </h1>
               </AnimatedSection>
 
               <AnimatedSection variant="fade-up" delay={200}>
-                <p className="text-secondary text-[18px] md:text-[20px] mb-8 font-sans font-semibold">
+                <p className="text-secondary text-[18px] md:text-[20px] mb-5 md:mb-8 font-sans font-semibold">
                   Absolute chaos included
                 </p>
               </AnimatedSection>
