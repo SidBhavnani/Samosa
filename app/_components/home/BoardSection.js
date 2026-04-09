@@ -10,7 +10,7 @@ export default function BoardSection() {
   return (
     <section className="relative overflow-hidden">
       {/* Decorative strip (flipped) */}
-      <div className="relative w-full bg-background">
+      {/* <div className="relative w-full bg-background">
         <Image
           src={decorativeStrip}
           alt=""
@@ -19,7 +19,7 @@ export default function BoardSection() {
           style={{ transform: "scaleY(-1)" }}
           priority
         />
-      </div>
+      </div> */}
 
       {/* Game board */}
       <AnimatedSection variant="zoom-in">

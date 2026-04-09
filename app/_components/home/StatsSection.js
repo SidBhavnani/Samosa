@@ -41,7 +41,7 @@ export default function StatsSection() {
       </section>
 
       {/* Decorative strip */}
-      <div className="w-full relative" style={{ zIndex: 8 }}>
+      {/* <div className="w-full relative" style={{ zIndex: 8 }}>
         <Image
           src={decorativeStrip}
           alt=""
@@ -50,7 +50,7 @@ export default function StatsSection() {
           className="w-full h-auto"
           priority
         />
-      </div>
+      </div> */}
     </>
   );
 }

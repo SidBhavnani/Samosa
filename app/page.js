@@ -10,6 +10,7 @@ import HowToPlay from "./_components/home/HowToPlay";
 import StatsSection from "./_components/home/StatsSection";
 import Testimonials from "./_components/home/Testimonials";
 import StickyCartButton from "./_components/home/StickyCartButton";
+import TryMeSection from "./_components/home/TryMeSection";
 
 export default function Home() {
   const [showStickyCart, setShowStickyCart] = useState(false);
@@ -41,6 +42,7 @@ export default function Home() {
         <AboutSection />
         <BoardSection />
         <HowToPlay />
+        <TryMeSection />
         <Testimonials />
         <GameNightGallery />
         <CTASection ctaSectionRef={ctaSectionRef} />
