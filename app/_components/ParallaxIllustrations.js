@@ -19,7 +19,7 @@ const illustrations = [
   {
     src: jalebi,
     alt: "Jalebi",
-    baseClassName: "w-[6.25rem] md:w-[8.75rem] lg:w-[11.25rem]",
+    baseClassName: "w-[9.5rem] md:w-[13.5rem] lg:w-[17rem]",
     speed: 0.35,
     rotationFactor: 0.02,
     initialTop: "65vh",
@@ -52,7 +52,7 @@ const illustrations = [
   {
     src: samosaIllust,
     alt: "Samosa",
-    baseClassName: "w-[12.5rem] md:w-[17.5rem] lg:w-[22.5rem]",
+    baseClassName: "w-[8.5rem] md:w-[12rem] lg:w-[16rem]",
     speed: 0.35,
     rotationFactor: 0.02,
     initialTop: "50vh",

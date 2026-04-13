@@ -5,6 +5,12 @@ import pinkStrip from "@/public/assets/pink-strip.png";
 import playSectionBg from "@/public/assets/play-section-bg.png";
 import tableCircle from "@/public/assets/table-circle.png";
 import samosaCard from "@/public/assets/samosa-card.png";
+import place from "@/public/assets/icons/place.png";
+import object from "@/public/assets/icons/object.png";
+import person from "@/public/assets/icons/person.png";
+import bolly from "@/public/assets/icons/bolly.png";
+import food from "@/public/assets/icons/random.png";
+import random from "@/public/assets/icons/random.png";
 import {
   Clock,
   CheckCircle2,
@@ -26,7 +32,8 @@ const cardCategories = [
   {
     id: "place",
     label: "PLACE",
-    icon: MapPin,
+    // icon: MapPin,
+    icon: place,
     clue: "HOME OF THE TAJ MAHAL",
     answer: "AGRA",
     color: "text-samosa-gold",
@@ -34,7 +41,8 @@ const cardCategories = [
   {
     id: "person",
     label: "PERSON",
-    icon: Users,
+    // icon: Users,
+    icon: person,
     clue: "INDIA'S FAMOUS WOMAN CHEF",
     answer: "TARLA DALAL",
     color: "text-samosa-orange",
@@ -42,7 +50,8 @@ const cardCategories = [
   {
     id: "object",
     label: "OBJECT",
-    icon: Package,
+    // icon: Package,
+    icon: object,
     clue: "STRINGED INSTRUMENT OF INDIA",
     answer: "SITAR",
     color: "text-secondary",
@@ -50,7 +59,8 @@ const cardCategories = [
   {
     id: "food",
     label: "FOOD",
-    icon: UtensilsCrossed,
+    // icon: UtensilsCrossed,
+    icon: food,
     clue: "SOUTH INDIAN DIP WITH COCONUT",
     answer: "COCONUT CHUTNEY",
     color: "text-primary",
@@ -58,7 +68,8 @@ const cardCategories = [
   {
     id: "bolly",
     label: "BOLLY",
-    icon: Clapperboard,
+    // icon: Clapperboard,
+    icon: bolly,
     clue: "SRK DISCO HIT FROM OM SHANTI OM",
     answer: "DARD-E-DISCO",
     color: "text-samosa-blue",
@@ -66,7 +77,8 @@ const cardCategories = [
   {
     id: "random",
     label: "RANDOM",
-    icon: CircleHelp,
+    // icon: CircleHelp,
+    icon: random,
     clue: "LARGEST LAND ANIMAL",
     answer: "ELEPHANT",
     color: "text-samosa-green",
@@ -231,7 +243,7 @@ export default function TryMeSection() {
                         const isSelected = selectedCategory?.id === cat.id;
                         const isRevealed = demoStep === 4;
                         const showAnswer = isSelected && isRevealed;
-                        const IconComp = cat.icon;
+                        // const IconComp = cat.icon;
 
                         return (
                           <button
@@ -241,17 +253,23 @@ export default function TryMeSection() {
                             }
                             disabled={demoStep !== 2}
                             className={cn(
-                              "flex items-center gap-3 w-full text-left transition-all duration-300",
+                              "flex items-center gap-2 w-full text-left transition-all duration-300",
                               demoStep === 2 &&
                                 "hover:scale-105 cursor-pointer",
                             )}
                           >
-                            <IconComp
+                            {/* <IconComp
                               className={cn("h-5 w-5 shrink-0", cat.color)}
+                            /> */}
+                            <Image
+                              src={cat.icon}
+                              alt={cat.label}
+                              height={20}
+                              className="shrink-0"
                             />
                             <span
                               className={cn(
-                                "font-black text-xs uppercase tracking-wide",
+                                "font-black text-sm font-bystander uppercase tracking-wide",
                                 cat.color,
                               )}
                             >
@@ -259,7 +277,7 @@ export default function TryMeSection() {
                             </span>
                             <span
                               className={cn(
-                                "font-black text-foreground text-base uppercase tracking-wide transition-all duration-500",
+                                "font-black font-bystander text-foreground text-sm uppercase tracking-wide transition-all duration-500 ml-2",
                                 !showAnswer && "blur-md select-none",
                               )}
                             >
@@ -317,24 +335,24 @@ export default function TryMeSection() {
                 {demoStep === 1 && (
                   <button
                     onClick={handleTryMe}
-                    className="animate-float group mt-4 relative z-30"
+                    className="animate-float cursor-pointer group mt-6 relative z-30"
                     style={{ transform: "rotate(8deg)" }}
                   >
                     <div className="relative bg-secondary text-secondary-foreground px-6 py-3 rounded-lg shadow-lg font-black italic text-lg uppercase tracking-wide group-hover:scale-110 group-hover:animate-wiggle transition-all duration-300">
                       Try Me! 👆
-                      <div className="absolute -bottom-2 left-6 w-4 h-4 bg-secondary rotate-45" />
+                      <div className="absolute -top-2 left-6 w-4 h-4 bg-secondary rotate-45" />
                     </div>
                   </button>
                 )}
 
                 {demoStep === 2 && (
                   <div
-                    className="animate-float group mt-4 relative z-30"
+                    className="animate-float group mt-6 relative z-30"
                     style={{ transform: "rotate(-5deg)" }}
                   >
                     <div className="relative bg-secondary text-secondary-foreground px-6 py-3 rounded-lg shadow-lg font-black italic text-lg uppercase tracking-wide">
                       Choose a Category! 👆
-                      <div className="absolute -bottom-2 left-8 w-4 h-4 bg-secondary rotate-45" />
+                      <div className="absolute -top-2 left-8 w-4 h-4 bg-secondary rotate-45" />
                     </div>
                   </div>
                 )}
