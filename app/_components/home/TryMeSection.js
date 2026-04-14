@@ -9,7 +9,7 @@ import place from "@/public/assets/icons/place.png";
 import object from "@/public/assets/icons/object.png";
 import person from "@/public/assets/icons/person.png";
 import bolly from "@/public/assets/icons/bolly.png";
-import food from "@/public/assets/icons/random.png";
+import food from "@/public/assets/icons/food.png";
 import random from "@/public/assets/icons/random.png";
 import {
   Clock,
