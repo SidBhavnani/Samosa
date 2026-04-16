@@ -28,7 +28,7 @@ import { cn } from "@/app/_hooks/utils";
 import { AnimatedSection } from "../AnimatedSection";
 import Image from "next/image";
 
-const cardCategories = [
+const cardCategories1 = [
   {
     id: "place",
     label: "PLACE",
@@ -85,6 +85,122 @@ const cardCategories = [
   },
 ];
 
+const cardCategories2 = [
+  {
+    id: "place",
+    label: "PLACE",
+    // icon: MapPin,
+    icon: place,
+    clue: "Maharashtra's favourite berry-filled weekend escape",
+    answer: "MAHABALESHWAR",
+    color: "text-samosa-gold",
+  },
+  {
+    id: "person",
+    label: "PERSON",
+    // icon: Users,
+    icon: person,
+    clue: "The younger, more lovable Malik brother",
+    answer: "ARMAAN MALIK",
+    color: "text-samosa-orange",
+  },
+  {
+    id: "object",
+    label: "OBJECT",
+    // icon: Package,
+    icon: object,
+    clue: "What lights up every doorstep on Diwali night",
+    answer: "DIYA",
+    color: "text-secondary",
+  },
+  {
+    id: "food",
+    label: "FOOD",
+    // icon: UtensilsCrossed,
+    icon: food,
+    clue: "The tall pink glass at every Irani café",
+    answer: "FALOODA",
+    color: "text-primary",
+  },
+  {
+    id: "bolly",
+    label: "BOLLY",
+    // icon: Clapperboard,
+    icon: bolly,
+    clue: "A mother's undying faith that her sons will return",
+    answer: "MERE KARAN ARJUN AAYENGE",
+    color: "text-samosa-blue",
+  },
+  {
+    id: "random",
+    label: "RANDOM",
+    // icon: CircleHelp,
+    icon: random,
+    clue: "The show that owned every Indian household's 8pm slot",
+    answer: "KYONKI SAAS BHI KABHI BAHU THI",
+    color: "text-samosa-green",
+  },
+];
+
+const cardCategories3 = [
+  {
+    id: "place",
+    label: "PLACE",
+    // icon: MapPin,
+    icon: place,
+    clue: "Old Delhi's most legendary breakfast lane",
+    answer: "PARANTHE WALI GALI",
+    color: "text-samosa-gold",
+  },
+  {
+    id: "person",
+    label: "PERSON",
+    // icon: Users,
+    icon: person,
+    clue: "The Indian who runs the world's most creative software empire",
+    answer: "SHANTANU NARAYEN",
+    color: "text-samosa-orange",
+  },
+  {
+    id: "object",
+    label: "OBJECT",
+    // icon: Package,
+    icon: object,
+    clue: "The sacred pot at every Hindu puja",
+    answer: "KALASH",
+    color: "text-secondary",
+  },
+  {
+    id: "food",
+    label: "FOOD",
+    // icon: UtensilsCrossed,
+    icon: food,
+    clue: "Delhi's most beloved crunchy street snack",
+    answer: "PAPRI CHAAT",
+    color: "text-primary",
+  },
+  {
+    id: "bolly",
+    label: "BOLLY",
+    // icon: Clapperboard,
+    icon: bolly,
+    clue: "Three friends, one epic European road trip",
+    answer: "ZINDAGI NA MILEGI DOBARA",
+    color: "text-samosa-blue",
+  },
+  {
+    id: "random",
+    label: "RANDOM",
+    // icon: CircleHelp,
+    icon: random,
+    clue: "When India's two biggest music apps became one",
+    answer: "JIOSAAVN",
+    color: "text-samosa-green",
+  },
+];
+
+const cards = [cardCategories1, cardCategories2, cardCategories3];
+
 const SAMOSA_PRODUCT = {
   id: "samosa-game-1",
   name: "SAMOSA - Desi Party Game",
@@ -94,9 +210,14 @@ const SAMOSA_PRODUCT = {
 
 export default function TryMeSection() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    return randomIndex;
+  });
   const [demoStep, setDemoStep] = useState(1);
   const [timerProgress, setTimerProgress] = useState(100);
   const [timerSeconds, setTimerSeconds] = useState(20);
+  const cardCategories = cards[selectedCard];
 
   const timerRef = useRef(null);
 
@@ -144,6 +265,11 @@ export default function TryMeSection() {
     setDemoStep(1);
     setTimerProgress(100);
     setTimerSeconds(20);
+    setTimeout(() => {
+      setSelectedCard((currentCard) =>
+        currentCard + 1 >= cards.length ? 0 : currentCard + 1,
+      );
+    }, 500);
 
     if (timerRef.current) clearInterval(timerRef.current);
   };
