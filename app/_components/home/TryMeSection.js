@@ -54,7 +54,7 @@ const cardCategories1 = [
     icon: object,
     clue: "STRINGED INSTRUMENT OF INDIA",
     answer: "SITAR",
-    color: "text-secondary",
+    color: "text-samosa-object",
   },
   {
     id: "food",
@@ -81,7 +81,7 @@ const cardCategories1 = [
     icon: random,
     clue: "LARGEST LAND ANIMAL",
     answer: "ELEPHANT",
-    color: "text-samosa-green",
+    color: "text-samosa-random",
   },
 ];
 
@@ -111,7 +111,7 @@ const cardCategories2 = [
     icon: object,
     clue: "What lights up every doorstep on Diwali night",
     answer: "DIYA",
-    color: "text-secondary",
+    color: "text-samosa-object",
   },
   {
     id: "food",
@@ -138,7 +138,7 @@ const cardCategories2 = [
     icon: random,
     clue: "The show that owned every Indian household's 8pm slot",
     answer: "KYONKI SAAS BHI KABHI BAHU THI",
-    color: "text-samosa-green",
+    color: "text-samosa-random",
   },
 ];
 
@@ -168,7 +168,7 @@ const cardCategories3 = [
     icon: object,
     clue: "The sacred pot at every Hindu puja",
     answer: "KALASH",
-    color: "text-secondary",
+    color: "text-samosa-object",
   },
   {
     id: "food",
@@ -195,7 +195,7 @@ const cardCategories3 = [
     icon: random,
     clue: "When India's two biggest music apps became one",
     answer: "JIOSAAVN",
-    color: "text-samosa-green",
+    color: "text-samosa-random",
   },
 ];
 

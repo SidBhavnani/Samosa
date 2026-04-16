@@ -77,6 +77,8 @@
   --color-samosa-blue: hsl(220 45% 42%);
   --color-samosa-blue-light: hsl(210 45% 55%);
   --color-samosa-yellow-green: hsl(59 65% 73%);
+  --color-samosa-object: #d64227;
+  --color-samosa-random: #c1d37e;
 
   /* Sidebar */
   --color-sidebar-background: hsl(0 0% 100%);
