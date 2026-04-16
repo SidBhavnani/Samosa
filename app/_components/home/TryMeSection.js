@@ -335,7 +335,7 @@ export default function TryMeSection() {
               <div className="relative z-10 flex w-full flex-col items-center pt-16 md:pt-20">
                 {/* Card flip container */}
                 <div
-                  className="relative w-full max-w-xs transition-transform duration-700"
+                  className="relative w-full max-w-sm transition-transform duration-700"
                   style={{
                     transformStyle: "preserve-3d",
                     transform:
@@ -364,7 +364,7 @@ export default function TryMeSection() {
                       transform: "rotateY(180deg)",
                     }}
                   >
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                       {cardCategories.map((cat) => {
                         const isSelected = selectedCategory?.id === cat.id;
                         const isRevealed = demoStep === 4;
@@ -379,7 +379,7 @@ export default function TryMeSection() {
                             }
                             disabled={demoStep !== 2}
                             className={cn(
-                              "flex items-center gap-2 w-full text-left transition-all duration-300",
+                              "flex items-center gap-3 w-full text-left transition-all duration-300",
                               demoStep === 2 &&
                                 "hover:scale-105 cursor-pointer",
                             )}
@@ -395,7 +395,7 @@ export default function TryMeSection() {
                             />
                             <span
                               className={cn(
-                                "font-black text-sm font-bystander uppercase tracking-wide",
+                                "font-black text-base/4 font-bystander uppercase tracking-wide",
                                 cat.color,
                               )}
                             >
@@ -403,7 +403,7 @@ export default function TryMeSection() {
                             </span>
                             <span
                               className={cn(
-                                "font-black font-bystander text-foreground text-sm uppercase tracking-wide transition-all duration-500 ml-2",
+                                "font-black font-bystander text-foreground text-base/4 uppercase tracking-wide transition-all duration-500 ml-2",
                                 !showAnswer && "blur-md select-none",
                               )}
                             >
