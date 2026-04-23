@@ -16,10 +16,9 @@ import samosaLogo from "@/public/assets/samosa-logo.png";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Shop", path: "/shop" },
-  { name: "Product", path: "/product" },
   { name: "How to Play", path: "/how-to-play" },
+  { name: "Our Story", path: "/founder" },
   { name: "FAQ", path: "/faq" },
-  { name: "Meet Founder", path: "/founder" },
   { name: "Contact", path: "/contact" },
 ];
 
