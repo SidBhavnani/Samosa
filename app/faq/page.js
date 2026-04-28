@@ -117,8 +117,9 @@ const faqCategories = [
       },
       {
         question: "When will I receive my order?",
-        answer:
-          "US orders typically arrive in 3-5 business days. International orders take 7-14 business days depending on your location.",
+        answer: `UK orders: 3-5 working days.<br>
+        US: 3-7 working days.<br>
+        International orders take 7-14 working days depending on your location`,
       },
       {
         question: "Can I track my order?",
@@ -129,7 +130,7 @@ const faqCategories = [
         question: "What's your return policy?",
         id: "returns",
         answer:
-          "We offer a 30-day hassle-free return policy. If you're not completely satisfied, contact us for a full refund. Items must be in original condition.",
+          "You may request a refund within 14 days of receiving your goods. See our full returns policy here",
       },
     ],
   },
@@ -181,7 +182,7 @@ export default function FAQPage() {
                 delay={categoryIndex * 80}
               >
                 <div id={category.id}>
-                  <p className="text-secondary font-bold tracking-[0.15em] uppercase text-xs mb-3">
+                  <p className="text-secondary font-bold tracking-[0.15em] uppercase mb-3">
                     {category.title}
                   </p>
 
@@ -197,7 +198,9 @@ export default function FAQPage() {
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground text-sm">
-                          {item.answer}
+                          <p
+                            dangerouslySetInnerHTML={{ __html: item.answer }}
+                          />
                         </AccordionContent>
                       </AccordionItem>
                     ))}
