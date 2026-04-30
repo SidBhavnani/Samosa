@@ -69,7 +69,7 @@
   --color-samosa-yellow-light: hsl(48 85% 75%);
   --color-samosa-accent: hsl(28 85% 48%);
   --color-samosa-accent-light: hsl(32 90% 58%);
-  --color-samosa-cream: hsl(48 77% 94%);
+  --color-samosa-cream: hsl(48 60% 96%);
   --color-samosa-dark: hsl(340 65% 22%);
   --color-samosa-purple: hsl(270 45% 45%);
   --color-samosa-green: hsl(100 40% 42%);
@@ -268,6 +268,15 @@ body {
   .bg-samosa-yellow-green {
     background-color: hsl(var(--samosa-yellow-green));
   }
+
+  /* Scrollbar hide utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Custom animations */
@@ -416,4 +425,25 @@ body {
 
 .animation-delay-500 {
   animation-delay: 500ms;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thumbnail fade-slide-in animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
