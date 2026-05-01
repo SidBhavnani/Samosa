@@ -17,6 +17,7 @@ const navLinks = [
   { name: "Home", path: "/" },
   { name: "Shop", path: "/shop" },
   { name: "How to Play", path: "/how-to-play" },
+  { name: "Host Game Night", path: "/host" },
   { name: "Our Story", path: "/founder" },
   { name: "FAQ", path: "/faq" },
   { name: "Contact", path: "/contact" },

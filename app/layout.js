@@ -5,6 +5,7 @@ import { CartProvider } from "./_contexts/CartContext";
 import { Header } from "./_components/layout/Header";
 import { Footer } from "./_components/layout/Footer";
 import { CartDrawer } from "./_components/layout/CartDrawer";
+import Providers from "./_components/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,14 +50,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${proximaNova.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <CartProvider>
+        <Providers country="GB">
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
-            <CartDrawer />
+            {/* <CartDrawer /> */}
           </div>
-        </CartProvider>
+        </Providers>
       </body>
     </html>
   );

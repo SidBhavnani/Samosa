@@ -38,3 +38,53 @@ export async function getProduct(handle, country = "GB") {
   // console.log("Raw response:", JSON.stringify(data, null, 2));
   return data.product;
 }
+
+import {
+  CREATE_CART_MUTATION,
+  ADD_TO_CART_MUTATION,
+  UPDATE_CART_MUTATION,
+  APPLY_DISCOUNT_MUTATION,
+} from "./queries/cart";
+
+/** Creates a new cart with one or more line items. */
+export async function createCart(lines, country = "GB") {
+  const client = getShopifyClient(country);
+  const data = await client.request(CREATE_CART_MUTATION, {
+    lines,
+    countryCode: country,
+  });
+  return data.cartCreate.cart;
+}
+
+/** Adds more lines to an existing cart. */
+export async function addToCart(cartId, lines, country = "GB") {
+  const client = getShopifyClient(country);
+  const data = await client.request(ADD_TO_CART_MUTATION, {
+    cartId,
+    lines,
+    countryCode: country,
+  });
+  return data.cartLinesAdd.cart;
+}
+
+/** Updates quantities on existing cart lines. */
+export async function updateCart(cartId, lines, country = "GB") {
+  const client = getShopifyClient(country);
+  const data = await client.request(UPDATE_CART_MUTATION, {
+    cartId,
+    lines,
+    countryCode: country,
+  });
+  return data.cartLinesUpdate.cart;
+}
+
+/** Applies a discount code to a cart. */
+export async function applyDiscount(cartId, discountCodes, country = "GB") {
+  const client = getShopifyClient(country);
+  const data = await client.request(APPLY_DISCOUNT_MUTATION, {
+    cartId,
+    discountCodes,
+    countryCode: country,
+  });
+  return data.cartDiscountCodesUpdate.cart;
+}

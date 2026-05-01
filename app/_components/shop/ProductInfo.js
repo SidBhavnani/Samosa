@@ -3,8 +3,15 @@
 import { Share2 } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
+import { useCart } from "@/app/_contexts/CartContext";
 
 export default function ProductInfo({ product }) {
+  const { cart, addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem(product.variants.edges[0].node.id, 1);
+  };
+
   const formatPrice = (price) =>
     new Intl.NumberFormat("en-GB", {
       style: "currency",
@@ -43,7 +50,7 @@ export default function ProductInfo({ product }) {
 
       {/* Add to Cart */}
       <Button
-        // onClick={handleAddToCart}
+        onClick={handleAddToCart}
         className="w-full py-7 text-base font-sans font-black uppercase tracking-[0.15em] rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg hover:shadow-xl transition-all text-lg"
       >
         ADD TO CART
@@ -77,3 +84,48 @@ export default function ProductInfo({ product }) {
     </div>
   );
 }
+
+// Cart
+// {
+//     "id": "gid://shopify/Cart/hWNBcfUj0DHkwZINmymLYjw6?key=c5b3605a3be13684cc02cc2e4048887b",
+//     "checkoutUrl": "https://www.playsamosa.com/cart/c/hWNBcfUj0DHkwZINmymLYjw6?key=c5b3605a3be13684cc02cc2e4048887b&_s=6ae5c907-8b9a-4dbd-97e0-563b874266d1&_y=50917ae8-f6a4-42ae-a3b6-f68c00429af8",
+//     "cost": {
+//         "totalAmount": {
+//             "amount": "27.99",
+//             "currencyCode": "GBP"
+//         },
+//         "subtotalAmount": {
+//             "amount": "27.99",
+//             "currencyCode": "GBP"
+//         }
+//     },
+//     "discountCodes": [],
+//     "lines": {
+//         "edges": [
+//             {
+//                 "node": {
+//                     "id": "gid://shopify/CartLine/587f2f15-2ac8-4324-91a6-94322bf27eaa?cart=hWNBcfUj0DHkwZINmymLYjw6",
+//                     "quantity": 1,
+//                     "cost": {
+//                         "totalAmount": {
+//                             "amount": "27.99",
+//                             "currencyCode": "GBP"
+//                         }
+//                     },
+//                     "merchandise": {
+//                         "id": "gid://shopify/ProductVariant/56686365376896",
+//                         "title": "Default Title",
+//                         "price": {
+//                             "amount": "27.99",
+//                             "currencyCode": "GBP"
+//                         },
+//                         "product": {
+//                             "title": "SAMOSA - The Ultimate Desi Party Game"
+//                         }
+//                     },
+//                     "discountAllocations": []
+//                 }
+//             }
+//         ]
+//     }
+// }

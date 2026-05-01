@@ -1,91 +1,59 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
+import {
+  createCart,
+  addToCart,
+  updateCart,
+  applyDiscount,
+} from "../_lib/shopify";
 
-const CartContext = createContext(undefined);
+const CartContext = createContext(null);
 
-export function CartProvider({ children }) {
-  const [items, setItems] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+export function CartProvider({ children, country = "GB" }) {
+  const [cart, setCart] = useState(null);
 
-  const addItem = useCallback((item, quantity = 1) => {
-    setItems((prevItems) => {
-      const existingItem = prevItems.find((i) => i.id === item.id);
-
-      if (existingItem) {
-        return prevItems.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i,
-        );
+  const addItem = useCallback(
+    async (variantId, quantity = 1) => {
+      const lines = [{ merchandiseId: variantId, quantity }];
+      if (!cart) {
+        const newCart = await createCart(lines, country);
+        setCart(newCart);
+      } else {
+        const updatedCart = await addToCart(cart.id, lines, country);
+        setCart(updatedCart);
       }
-
-      return [...prevItems, { ...item, quantity }];
-    });
-
-    setIsOpen(true);
-  }, []);
-
-  const removeItem = useCallback((id) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  }, []);
+    },
+    [cart, country],
+  );
 
   const updateQuantity = useCallback(
-    (id, quantity) => {
-      if (quantity < 1) {
-        removeItem(id);
-        return;
-      }
-
-      setItems((prevItems) =>
-        prevItems.map((item) =>
-          item.id === id ? { ...item, quantity } : item,
-        ),
+    async (lineId, quantity) => {
+      if (!cart) return;
+      const updatedCart = await updateCart(
+        cart.id,
+        [{ id: lineId, quantity }],
+        country,
       );
+      setCart(updatedCart);
     },
-    [removeItem],
+    [cart, country],
   );
 
-  const clearCart = useCallback(() => {
-    setItems([]);
-  }, []);
-
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
+  const applyCode = useCallback(
+    async (code) => {
+      if (!cart) return;
+      const updatedCart = await applyDiscount(cart.id, [code], country);
+      setCart(updatedCart);
+    },
+    [cart, country],
   );
-
-  const openCart = useCallback(() => setIsOpen(true), []);
-  const closeCart = useCallback(() => setIsOpen(false), []);
-  const toggleCart = useCallback(() => setIsOpen((prev) => !prev), []);
 
   return (
-    <CartContext.Provider
-      value={{
-        items,
-        addItem,
-        removeItem,
-        updateQuantity,
-        clearCart,
-        totalItems,
-        subtotal,
-        isOpen,
-        openCart,
-        closeCart,
-        toggleCart,
-      }}
-    >
+    <CartContext.Provider value={{ cart, addItem, updateQuantity, applyCode }}>
       {children}
     </CartContext.Provider>
   );
 }
 
-export function useCart() {
-  const context = useContext(CartContext);
-
-  if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
-  }
-
-  return context;
-}
+export const useCart = () => useContext(CartContext);
