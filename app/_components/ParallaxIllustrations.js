@@ -52,7 +52,7 @@ const illustrations = [
   {
     src: samosaIllust,
     alt: "Samosa",
-    baseClassName: "w-[8.5rem] md:w-[12rem] lg:w-[16rem]",
+    baseClassName: "w-[6rem] md:w-[8rem] lg:w-[12rem]",
     speed: 0.35,
     rotationFactor: 0.02,
     initialTop: "50vh",
