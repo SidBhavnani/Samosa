@@ -39,6 +39,14 @@ export const CART_FRAGMENT = gql`
               }
               product {
                 title
+                images(first: 10) {
+                  edges {
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
               }
             }
           }

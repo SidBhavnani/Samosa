@@ -12,6 +12,7 @@ const CartContext = createContext(null);
 
 export function CartProvider({ children, country = "GB" }) {
   const [cart, setCart] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const addItem = useCallback(
     async (variantId, quantity = 1) => {
@@ -23,6 +24,7 @@ export function CartProvider({ children, country = "GB" }) {
         const updatedCart = await addToCart(cart.id, lines, country);
         setCart(updatedCart);
       }
+      setIsOpen(true);
     },
     [cart, country],
   );
@@ -49,8 +51,30 @@ export function CartProvider({ children, country = "GB" }) {
     [cart, country],
   );
 
+  // const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = cart?.lines.edges.reduce(
+    (sum, item) => sum + item.node.quantity,
+    0,
+  );
+
+  const openCart = useCallback(() => setIsOpen(true), []);
+  const closeCart = useCallback(() => setIsOpen(false), []);
+  const toggleCart = useCallback(() => setIsOpen((prev) => !prev), []);
+
   return (
-    <CartContext.Provider value={{ cart, addItem, updateQuantity, applyCode }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addItem,
+        updateQuantity,
+        applyCode,
+        isOpen,
+        totalItems,
+        openCart,
+        closeCart,
+        toggleCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
