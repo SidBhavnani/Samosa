@@ -29,6 +29,7 @@ import {
 import TryMeSection from "@/app/_components/home/TryMeSection";
 import { Button } from "../ui/button";
 import YouTubeShort from "./YouTubeShort";
+import { useCart } from "@/app/_contexts/CartContext";
 
 // Game steps
 const steps = [
