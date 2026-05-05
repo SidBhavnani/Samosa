@@ -14,7 +14,7 @@ const SAMOSA_PRODUCT = {
 };
 
 export default function StickyCartButton({ showStickyCart }) {
-  const { addItem } = useCart();
+  const { addItem, adding } = useCart();
 
   const handleAddToCart = () => {
     addItem();
@@ -37,6 +37,7 @@ export default function StickyCartButton({ showStickyCart }) {
         <Button
           className="bg-primary hover:bg-primary/90 font-bold px-8 h-12 rounded-full shadow-lg"
           onClick={handleAddToCart}
+          disabled={adding}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
           Add to Cart

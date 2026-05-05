@@ -221,7 +221,7 @@ export default function TryMeSection() {
 
   const timerRef = useRef(null);
 
-  const { addItem } = useCart();
+  const { addItem, adding } = useCart();
 
   const handleAddToCart = () => {
     addItem();
@@ -499,6 +499,7 @@ export default function TryMeSection() {
               size="lg"
               className="bg-primary hover:bg-primary/90 h-12 px-8 font-bold rounded-full shadow-lg"
               onClick={handleAddToCart}
+              disabled={adding}
             >
               Add to Cart
               <ArrowRight className="ml-2 h-4 w-4" />

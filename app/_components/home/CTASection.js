@@ -16,7 +16,7 @@ const SAMOSA_PRODUCT = {
 };
 
 export default function CTASection({ ctaSectionRef }) {
-  const { addItem } = useCart();
+  const { addItem, adding } = useCart();
 
   const handleAddToCart = () => {
     addItem();
@@ -95,6 +95,7 @@ export default function CTASection({ ctaSectionRef }) {
                     size="lg"
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-14 text-lg font-bold shadow-xl hover:scale-[1.02] rounded-xl"
                     onClick={handleAddToCart}
+                    disabled={adding}
                   >
                     <ShoppingCart className="mr-2 h-5 w-5" />
                     Add to Cart

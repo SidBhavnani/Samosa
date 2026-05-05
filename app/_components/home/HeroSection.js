@@ -18,7 +18,7 @@ const SAMOSA_PRODUCT = {
 };
 
 export default function HeroSection() {
-  const { addItem } = useCart();
+  const { addItem, adding } = useCart();
 
   const handleAddToCart = () => {
     addItem();
@@ -65,6 +65,7 @@ export default function HeroSection() {
                     size="lg"
                     className="bg-secondary hover:bg-secondary/90 text-foreground h-12 px-8 text-base font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 rounded-full"
                     onClick={handleAddToCart}
+                    disabled={adding}
                   >
                     <ShoppingCart className="mr-2 h-5 w-5" />
                     Add to Cart

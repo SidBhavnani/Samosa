@@ -50,7 +50,7 @@ export function CartDrawer() {
           <>
             {/* Items */}
             <div className="flex-1 overflow-y-auto py-4 space-y-4">
-              {cart.lines.edges.map((item) => (
+              {cart?.lines.edges.map((item) => (
                 <div
                   key={item.node.id}
                   className="flex gap-4 p-4 bg-muted/50 rounded-lg animate-fade-in"
@@ -133,8 +133,8 @@ export function CartDrawer() {
                 <span className="text-muted-foreground">Subtotal</span>
                 <span className="text-xl font-bold">
                   {formatPrice(
-                    cart.cost.subtotalAmount.amount,
-                    cart.cost.subtotalAmount.currencyCode,
+                    cart?.cost.subtotalAmount.amount,
+                    cart?.cost.subtotalAmount.currencyCode,
                   )}
                 </span>
               </div>
