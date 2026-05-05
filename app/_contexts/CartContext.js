@@ -13,9 +13,17 @@ const CartContext = createContext(null);
 export function CartProvider({ children, country = "GB" }) {
   const [cart, setCart] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [adding, setAdding] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [applying, setApplying] = useState(false);
 
   const addItem = useCallback(
-    async (variantId, quantity = 1) => {
+    // async (variantId, quantity = 1) => {
+    async (
+      variantId = "gid://shopify/ProductVariant/56686365376896",
+      quantity = 1,
+    ) => {
+      setAdding(true);
       const lines = [{ merchandiseId: variantId, quantity }];
       if (!cart) {
         const newCart = await createCart(lines, country);
@@ -25,12 +33,14 @@ export function CartProvider({ children, country = "GB" }) {
         setCart(updatedCart);
       }
       setIsOpen(true);
+      setAdding(false);
     },
     [cart, country],
   );
 
   const updateQuantity = useCallback(
     async (lineId, quantity) => {
+      setUpdating(true);
       if (!cart) return;
       const updatedCart = await updateCart(
         cart.id,
@@ -38,6 +48,7 @@ export function CartProvider({ children, country = "GB" }) {
         country,
       );
       setCart(updatedCart);
+      setUpdating(false);
     },
     [cart, country],
   );
@@ -45,8 +56,13 @@ export function CartProvider({ children, country = "GB" }) {
   const applyCode = useCallback(
     async (code) => {
       if (!cart) return;
+
+      setApplying(true);
+
       const updatedCart = await applyDiscount(cart.id, [code], country);
       setCart(updatedCart);
+
+      setApplying(false);
     },
     [cart, country],
   );
@@ -66,8 +82,11 @@ export function CartProvider({ children, country = "GB" }) {
       value={{
         cart,
         addItem,
+        adding,
         updateQuantity,
+        updating,
         applyCode,
+        applying,
         isOpen,
         totalItems,
         openCart,

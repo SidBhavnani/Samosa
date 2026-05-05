@@ -19,7 +19,7 @@ export default function CTASection({ ctaSectionRef }) {
   const { addItem } = useCart();
 
   const handleAddToCart = () => {
-    addItem(SAMOSA_PRODUCT);
+    addItem();
   };
 
   return (

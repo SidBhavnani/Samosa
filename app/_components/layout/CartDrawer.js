@@ -15,7 +15,8 @@ import { useCart } from "@/app/_contexts/CartContext";
 import { cn } from "@/app/_hooks/utils";
 
 export function CartDrawer() {
-  const { cart, updateQuantity, totalItems, isOpen, closeCart } = useCart();
+  const { cart, updateQuantity, updating, totalItems, isOpen, closeCart } =
+    useCart();
 
   const formatPrice = (price, currencyCode = "GBP") => {
     return new Intl.NumberFormat("en-UK", {
@@ -89,6 +90,7 @@ export function CartDrawer() {
                         onClick={() =>
                           updateQuantity(item.node.id, item.node.quantity - 1)
                         }
+                        disabled={updating}
                       >
                         <Minus className="h-3 w-3" />
                       </Button>
@@ -104,6 +106,7 @@ export function CartDrawer() {
                         onClick={() =>
                           updateQuantity(item.node.id, item.node.quantity + 1)
                         }
+                        disabled={updating}
                       >
                         <Plus className="h-3 w-3" />
                       </Button>
@@ -116,6 +119,7 @@ export function CartDrawer() {
                     size="icon"
                     className="h-8 w-8 text-muted-foreground hover:text-destructive"
                     onClick={() => updateQuantity(item.node.id, 0)}
+                    disabled={updating}
                   >
                     <X className="h-4 w-4" />
                   </Button>

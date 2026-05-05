@@ -132,6 +132,12 @@ const variations = [
 export default function HowToPlayPage({ product }) {
   const heroImageParallax = useParallax(0.15);
 
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem(product.variants.edges[0].node.id, 1);
+  };
+
   const formatPrice = (price) =>
     new Intl.NumberFormat("en-GB", {
       style: "currency",
@@ -495,7 +501,7 @@ export default function HowToPlayPage({ product }) {
                     <Button
                       size="lg"
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-14 text-lg font-bold shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 rounded-xl"
-                      // onClick={handleAddToCart}
+                      onClick={handleAddToCart}
                     >
                       <ShoppingCart className="mr-2 h-5 w-5" />
                       Add to Cart

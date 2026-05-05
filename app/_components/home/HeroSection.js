@@ -21,7 +21,7 @@ export default function HeroSection() {
   const { addItem } = useCart();
 
   const handleAddToCart = () => {
-    addItem(SAMOSA_PRODUCT);
+    addItem();
   };
 
   return (

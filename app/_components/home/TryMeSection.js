@@ -224,7 +224,7 @@ export default function TryMeSection() {
   const { addItem } = useCart();
 
   const handleAddToCart = () => {
-    addItem(SAMOSA_PRODUCT);
+    addItem();
   };
 
   const handleTryMe = () => {

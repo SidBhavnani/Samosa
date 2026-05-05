@@ -17,7 +17,7 @@ export default function StickyCartButton({ showStickyCart }) {
   const { addItem } = useCart();
 
   const handleAddToCart = () => {
-    addItem(SAMOSA_PRODUCT);
+    addItem();
   };
 
   return (

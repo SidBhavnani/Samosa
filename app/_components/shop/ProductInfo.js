@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { useCart } from "@/app/_contexts/CartContext";
 
 export default function ProductInfo({ product }) {
-  const { cart, addItem } = useCart();
+  const { cart, addItem, adding } = useCart();
 
   const handleAddToCart = () => {
     addItem(product.variants.edges[0].node.id, 1);
@@ -51,6 +51,7 @@ export default function ProductInfo({ product }) {
       {/* Add to Cart */}
       <Button
         onClick={handleAddToCart}
+        disabled={adding}
         className="w-full py-7 text-base font-sans font-black uppercase tracking-[0.15em] rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg hover:shadow-xl transition-all text-lg"
       >
         ADD TO CART
