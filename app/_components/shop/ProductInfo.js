@@ -130,3 +130,94 @@ export default function ProductInfo({ product }) {
 //         ]
 //     }
 // }
+
+// Cart 2
+// {
+//     "id": "gid://shopify/Cart/hWNBoDH6vQum0dTZX4rU4UC6?key=4d505aa1a3216a7e58802458fcf89f32",
+//     "checkoutUrl": "https://www.playsamosa.com/cart/c/hWNBoDH6vQum0dTZX4rU4UC6?key=4d505aa1a3216a7e58802458fcf89f32&_s=38010445-f47b-4028-96ef-e10b1997c716&_y=95e147a8-9e86-4d5d-837e-0509587e070f",
+//     "cost": {
+//         "totalAmount": {
+//             "amount": "50.39",
+//             "currencyCode": "GBP"
+//         },
+//         "subtotalAmount": {
+//             "amount": "55.98",
+//             "currencyCode": "GBP"
+//         }
+//     },
+//     "discountCodes": [],
+//     "lines": {
+//         "edges": [
+//             {
+//                 "node": {
+//                     "id": "gid://shopify/CartLine/e1d4153b-03c9-4075-b69d-4f087892a077?cart=hWNBoDH6vQum0dTZX4rU4UC6",
+//                     "quantity": 2,
+//                     "cost": {
+//                         "totalAmount": {
+//                             "amount": "55.98",
+//                             "currencyCode": "GBP"
+//                         }
+//                     },
+//                     "merchandise": {
+//                         "id": "gid://shopify/ProductVariant/56686365376896",
+//                         "title": "Default Title",
+//                         "price": {
+//                             "amount": "27.99",
+//                             "currencyCode": "GBP"
+//                         },
+//                         "product": {
+//                             "title": "SAMOSA - The Ultimate Desi Party Game",
+//                             "images": {
+//                                 "edges": [
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/Box_Mockups_front.png?v=1761839665",
+//                                             "altText": null
+//                                         }
+//                                     },
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/IMG_9944-min_f4bf3ccd-25fc-4057-94c8-988196bfc5fa.jpg?v=1761840111",
+//                                             "altText": null
+//                                         }
+//                                     },
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/IMG_5500.jpg?v=1761843078",
+//                                             "altText": null
+//                                         }
+//                                     },
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/VID20250215160303.gif?v=1761843078",
+//                                             "altText": null
+//                                         }
+//                                     },
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/ezgif-1-2960f3ef30-2_a9170775-0345-49cb-9612-f1d939f1ff5a.gif?v=1761842295",
+//                                             "altText": null
+//                                         }
+//                                     },
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/unit_dimensions.png?v=1761842295",
+//                                             "altText": null
+//                                         }
+//                                     },
+//                                     {
+//                                         "node": {
+//                                             "url": "https://cdn.shopify.com/s/files/1/0949/0189/5552/files/IMG_5584.jpg?v=1761842295",
+//                                             "altText": null
+//                                         }
+//                                     }
+//                                 ]
+//                             }
+//                         }
+//                     },
+//                     "discountAllocations": []
+//                 }
+//             }
+//         ]
+//     }
+// }

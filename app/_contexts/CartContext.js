@@ -48,6 +48,7 @@ export function CartProvider({ children, country = "GB" }) {
         country,
       );
       setCart(updatedCart);
+      // console.log("Updated cart:", updatedCart);
       setUpdating(false);
     },
     [cart, country],

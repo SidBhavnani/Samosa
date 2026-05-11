@@ -254,7 +254,7 @@ export default function FounderPage() {
         </section>
 
         {/* Values - Horizontal layout on magenta */}
-        <section className="py-20 md:py-28 bg-primary">
+        {/* <section className="py-20 md:py-28 bg-primary">
           <div className="container mx-auto px-4 lg:px-8">
             <AnimatedSection variant="fade-up" className="mb-14 text-center">
               <h2 className="text-[53px] font-bystander uppercase leading-[1.1] tracking-normal">
@@ -284,7 +284,7 @@ export default function FounderPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Founder Portrait + Community CTA */}
         <section className="py-20 md:py-28 bg-samosa-yellow-green">

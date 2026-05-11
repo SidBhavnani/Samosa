@@ -130,13 +130,31 @@ export function CartDrawer() {
             {/* Footer */}
             <div className="border-t pt-4 space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Subtotal</span>
-                <span className="text-xl font-bold">
-                  {formatPrice(
-                    cart?.cost.subtotalAmount.amount,
-                    cart?.cost.subtotalAmount.currencyCode,
-                  )}
-                </span>
+                <span className="text-muted-foreground">Total</span>
+                {cart?.cost.totalAmount.amount ===
+                cart?.cost.subtotalAmount.amount ? (
+                  <span className="text-xl font-bold">
+                    {formatPrice(
+                      cart?.cost.totalAmount.amount,
+                      cart?.cost.totalAmount.currencyCode,
+                    )}
+                  </span>
+                ) : (
+                  <div className="flex gap-2 items-center">
+                    <span className="line-through text-muted-foreground">
+                      {formatPrice(
+                        cart?.cost.subtotalAmount.amount,
+                        cart?.cost.subtotalAmount.currencyCode,
+                      )}
+                    </span>
+                    <span className="text-xl font-bold">
+                      {formatPrice(
+                        cart?.cost.totalAmount.amount,
+                        cart?.cost.totalAmount.currencyCode,
+                      )}
+                    </span>
+                  </div>
+                )}
               </div>
 
               <p className="text-xs text-muted-foreground">

@@ -4,6 +4,7 @@ import { cn } from "@/app/_hooks/utils";
 import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
+import { useProduct } from "../ProductProvider";
 
 // Sample product data
 const SAMOSA_PRODUCT = {
@@ -15,9 +16,19 @@ const SAMOSA_PRODUCT = {
 
 export default function StickyCartButton({ showStickyCart }) {
   const { addItem, adding } = useCart();
+  const product = useProduct();
+
+  // console.log(product);
 
   const handleAddToCart = () => {
-    addItem();
+    addItem(product.variants.edges[0].node.id, 1);
+  };
+
+  const formatPrice = (price, currencyCode = "GBP") => {
+    return new Intl.NumberFormat("en-UK", {
+      style: "currency",
+      currency: currencyCode,
+    }).format(price);
   };
 
   return (
@@ -29,9 +40,12 @@ export default function StickyCartButton({ showStickyCart }) {
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div>
-          <p className="font-bold text-lg">{SAMOSA_PRODUCT.name}</p>
+          <p className="font-bold text-lg">{product?.title}</p>
           <p className="text-primary font-bold text-xl">
-            ${SAMOSA_PRODUCT.price}
+            {formatPrice(
+              product?.variants.edges[0].node.price.amount,
+              product?.variants.edges[0].node.price.currencyCode,
+            )}
           </p>
         </div>
         <Button
