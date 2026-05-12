@@ -5,7 +5,7 @@ export default function RefundPolicy() {
         Refund Policy
       </h1>
 
-      <div className="max-w-[470px]">
+      <div className="max-w-[470px] mx-4">
         <h2 className="text-3xl font-bystander uppercase leading-[1] tracking-normal mb-5">
           🔁 Returns Policy
         </h2>
