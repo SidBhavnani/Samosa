@@ -21,6 +21,8 @@ import { Textarea } from "@/app/_components/ui/textarea";
 import { Label } from "@/app/_components/ui/label";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
 import contactHero from "@/public/assets/photos/contact-hero.jpg";
+import instagram from "@/public/assets/icons/instagram.png";
+import tiktok from "@/public/assets/icons/tik-tok.png";
 
 const supportCategories = [
   {
@@ -52,11 +54,12 @@ const supportCategories = [
 const socialLinks = [
   {
     name: "Instagram",
-    icon: Instagram,
+    icon: instagram,
     url: "https://instagram.com/samosagame",
   },
-  { name: "Twitter", icon: Twitter, url: "https://twitter.com/samosagame" },
-  { name: "Facebook", icon: Facebook, url: "https://facebook.com/samosagame" },
+  // { name: "Twitter", icon: Twitter, url: "https://twitter.com/samosagame" },
+  // { name: "Facebook", icon: Facebook, url: "https://facebook.com/samosagame" },
+  { name: "TikTok", icon: tiktok, url: "https://tiktok.com/@samosagame" },
 ];
 
 export default function ContactPage() {
@@ -111,9 +114,9 @@ export default function ContactPage() {
             </h1>
 
             <p className="text-samosa-cream/80 max-w-xl text-lg font-semibold">
-              Have questions, feedback, or just want to say hi?
+              Questions, feedback, or wholesale enquiries?
               <br />
-              We&apos;d love to hear from you!
+              We&apos;d love to hear from you! We reply within 5 working days 📨
             </p>
           </AnimatedSection>
         </div>
@@ -241,14 +244,14 @@ export default function ContactPage() {
                     <div>
                       <p className="font-semibold text-foreground">Email</p>
                       <a
-                        href="mailto:hello@samosagame.com"
+                        href="mailto:hello@playsamosa.com"
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
-                        hello@samosagame.com
+                        hello@playsamosa.com
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-4 bg-muted rounded-xl">
+                  {/* <div className="flex items-start gap-4 p-4 bg-muted rounded-xl">
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                       <Clock className="h-5 w-5 text-primary" />
                     </div>
@@ -260,7 +263,7 @@ export default function ContactPage() {
                         Mon - Fri: 9am - 6pm IST
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Social Links */}
@@ -278,7 +281,12 @@ export default function ContactPage() {
                         className="w-12 h-12 bg-primary/10 hover:bg-primary hover:text-primary-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                         aria-label={social.name}
                       >
-                        <social.icon className="h-5 w-5" />
+                        {/* <social.icon className="h-5 w-5" /> */}
+                        <Image
+                          src={social.icon}
+                          alt={social.name}
+                          className="h-5 w-5"
+                        />
                       </a>
                     ))}
                   </div>
@@ -303,7 +311,7 @@ export default function ContactPage() {
       </section>
 
       {/* Support Categories */}
-      <section className="py-20 md:py-28 bg-samosa-yellow-green">
+      {/* <section className="py-20 md:py-28 bg-samosa-yellow-green">
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up" className="text-center mb-14">
             <h2 className="text-[50px] font-bystander uppercase leading-[1.1] tracking-normal">
@@ -338,7 +346,7 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
