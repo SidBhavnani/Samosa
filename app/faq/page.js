@@ -129,7 +129,7 @@ const faqCategories = [
       {
         question: "What's your return policy?",
         id: "returns",
-        answer: `You may request a refund within 14 days of receiving your goods. See our full returns policy <a class="underline" href="/refund-policy">here</a>`,
+        answer: `You may request a refund within 14 days of receiving your goods. See our full returns policy <a class="underline" href="/policies/refund-policy">here</a>`,
       },
     ],
   },

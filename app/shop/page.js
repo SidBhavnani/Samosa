@@ -32,7 +32,7 @@ export default async function Shop() {
       {/* Main Product Section */}
       <section className="bg-samosa-cream min-h-screen pt-28 pb-16 lg:pt-44 lg:pb-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8">
+          <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
             <Gallery images={product.images.edges} />
             <ProductInfo product={product} />
           </div>

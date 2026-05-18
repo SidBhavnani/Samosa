@@ -4,12 +4,13 @@ import { Share2 } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { useCart } from "@/app/_contexts/CartContext";
+import BundlePricing from "./BundlePricing";
 
 export default function ProductInfo({ product }) {
   const { cart, addItem, adding } = useCart();
 
-  const handleAddToCart = () => {
-    addItem(product.variants.edges[0].node.id, 1);
+  const handleAddToCart = (quantity = 1) => {
+    addItem(product.variants.edges[0].node.id, quantity);
   };
 
   const formatPrice = (price) =>
@@ -33,7 +34,7 @@ export default function ProductInfo({ product }) {
       </p>
 
       {/* Bundle Pricing */}
-      <div className="rounded-xl px-4 py-3 space-y-1">
+      {/* <div className="rounded-xl px-4 py-3 space-y-1">
         <p className="text-primary font-sans font-bold text-xs uppercase tracking-[0.1em] mb-1">
           🎉 Bundle & Save
         </p>
@@ -46,19 +47,19 @@ export default function ProductInfo({ product }) {
         <p className="text-primary/80 font-sans font-semibold text-sm">
           Buy 4+ for £XX each
         </p>
-      </div>
+      </div> */}
 
       {/* Add to Cart */}
-      <Button
+      {/* <Button
         onClick={handleAddToCart}
         disabled={adding}
         className="w-full py-7 text-base font-sans font-black uppercase tracking-[0.15em] rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg hover:shadow-xl transition-all text-lg"
       >
         ADD TO CART
-      </Button>
+      </Button> */}
 
       {/* Buy Now */}
-      <Button
+      {/* <Button
         asChild
         className="w-full py-6 text-base font-sans font-bold uppercase tracking-[0.1em] rounded-full bg-primary/10 text-primary border-2 border-primary/30 hover:bg-primary/20 transition-all"
       >
@@ -69,7 +70,9 @@ export default function ProductInfo({ product }) {
         >
           Buy Now
         </a>
-      </Button>
+      </Button> */}
+
+      <BundlePricing handleAddToCart={handleAddToCart} adding={adding} />
 
       {/* Description */}
       <div

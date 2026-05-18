@@ -15,14 +15,14 @@ const footerLinks = {
   support: [
     { name: "FAQ", path: "/faq" },
     { name: "Contact Us", path: "/contact" },
-    { name: "Shipping Info", path: "/faq#shipping" },
-    { name: "Returns", path: "/faq#returns" },
+    { name: "Shipping Info", path: "/policies/shipping-policy" },
+    { name: "Returns", path: "/policies/refund-policy" },
   ],
   company: [
     { name: "About", path: "/founder" },
     { name: "Meet Founder", path: "/founder" },
-    { name: "Privacy Policy", path: "/privacy" },
-    { name: "Terms of Service", path: "/terms" },
+    { name: "Privacy Policy", path: "/policies/privacy-policy" },
+    { name: "Terms of Service", path: "/policies/terms-of-service" },
   ],
 };
 
