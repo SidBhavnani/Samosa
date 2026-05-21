@@ -76,7 +76,7 @@ export default function HeroSection() {
                     className="bg-samosa-cream hover:bg-samosa-cream/90 text-primary h-12 px-8 text-base font-semibold transition-all duration-300 rounded-full"
                     asChild
                   >
-                    <Link href="/how-to-play">
+                    <Link href="/how-to-play#how-to-play-video">
                       <Play className="mr-2 h-5 w-5" />
                       How to play
                     </Link>

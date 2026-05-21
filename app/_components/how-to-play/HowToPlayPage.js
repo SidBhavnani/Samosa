@@ -148,7 +148,7 @@ export default function HowToPlayPage({ product }) {
   return (
     <div className="min-h-screen">
       {/* HERO - Full-width background image with overlaid text */}
-      <section className="relative h-[520px] flex items-center overflow-hidden bg-samosa-yellow-green">
+      <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-samosa-yellow-green">
         <div className="absolute inset-0 w-full h-full">
           <Image
             src={howToPlayHeroBg}
@@ -173,17 +173,20 @@ export default function HowToPlayPage({ product }) {
               and let the chaos unfold.
             </p>
           </AnimatedSection>
-          <AnimatedSection variant="fade-up" delay={300}>
+          {/* <AnimatedSection variant="fade-up" delay={300}>
             <button className="flex items-center gap-2 px-8 h-12 bg-samosa-cream hover:bg-samosa-cream/90 text-primary font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-base">
               <Play className="w-5 h-5" />
               Watch reel
             </button>
-          </AnimatedSection>
+          </AnimatedSection> */}
         </div>
       </section>
 
       {/* SEE IT IN ACTION */}
-      <section className="pt-10 pb-16 md:pt-16 md:pb-28 bg-background">
+      <section
+        className="pt-10 pb-16 md:pt-16 md:pb-28 bg-background"
+        id="how-to-play-video"
+      >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-10">
             <AnimatedSection variant="fade-up">

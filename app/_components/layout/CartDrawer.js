@@ -162,7 +162,7 @@ export function CartDrawer() {
               </p>
 
               <Button
-                className="w-full bg-gradient-primary text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
+                className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
                 onClick={() => {
                   alert(
                     "Checkout functionality coming soon! For now, contact us to place an order.",

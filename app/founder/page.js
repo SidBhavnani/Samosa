@@ -119,7 +119,7 @@ export default function FounderPage() {
       <section className="relative bg-primary pt-32 md:pt-40 pb-16 md:pb-24 h-[480px] overflow-hidden flex items-center justify-center">
         {/* Floating chai images */}
         <div
-          className="absolute -left-6 md:-left-4 top-[35%] w-[127px] md:w-[177px] lg:w-[215px]"
+          className="hidden md:block absolute -left-6 md:-left-4 top-[35%] w-[127px] md:w-[177px] lg:w-[215px]"
           style={{
             zIndex: 5,
             transform: `translateY(${leftSamosa.y}px) rotate(${25 + leftSamosa.rotation}deg)`,
@@ -129,7 +129,7 @@ export default function FounderPage() {
         </div>
 
         <div
-          className="absolute -right-6 md:-right-4 bottom-[5%] w-[152px] md:w-[215px] lg:w-[253px]"
+          className="hidden md:block absolute -right-6 md:-right-4 bottom-[5%] w-[152px] md:w-[215px] lg:w-[253px]"
           style={{
             zIndex: 5,
             transform: `translateY(${rightSamosa.y}px) rotate(${-20 + rightSamosa.rotation}deg)`,
@@ -167,7 +167,7 @@ export default function FounderPage() {
             <AnimatedSection variant="fade-up">
               <div className="flex items-center justify-center gap-6 md:gap-10">
                 <Quote className="h-8 w-8 md:h-10 md:w-10 text-secondary-foreground/30 flex-shrink-0 rotate-180" />
-                <p className="text-xl md:text-2xl lg:text-3xl font-bystander uppercase leading-[1.2] tracking-normal text-secondary-foreground text-center max-w-3xl">
+                <p className="text-lg md:text-2xl lg:text-3xl font-bystander uppercase leading-[1.2] tracking-normal text-secondary-foreground text-center max-w-3xl">
                   I wanted to create a game where being Desi isn&apos;t just
                   acknowledged —{" "}
                   <span className="text-primary">

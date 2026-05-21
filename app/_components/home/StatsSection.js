@@ -24,13 +24,13 @@ export default function StatsSection() {
               {stats.map((stat, index) => (
                 <div key={index} className="text-center px-5 md:px-10 lg:px-14">
                   <p
-                    className="text-[11px] md:text-[13px] lg:text-[16px] font-sans font-bold uppercase tracking-[0.15em] leading-none mb-1"
+                    className="text-[9px] md:text-[13px] lg:text-[16px] font-sans font-bold uppercase tracking-[0.15em] leading-none mb-1"
                     style={{ color: "#DA1963" }}
                   >
                     {stat.subtitle}
                   </p>
 
-                  <p className="text-[40px] font-bystander text-primary leading-none uppercase tracking-normal">
+                  <p className="text-[32px] md:text-[40px] font-bystander text-primary leading-none uppercase tracking-normal">
                     {stat.number}
                   </p>
                 </div>

@@ -188,7 +188,7 @@ function ParallaxElement({ illust, index }) {
       ref={ref}
       aria-hidden="true"
       className={`
-        absolute object-contain drop-shadow-xl pointer-events-none
+        hidden md:block absolute object-contain drop-shadow-xl pointer-events-none
         ${illust.baseClassName}
         ${illust.idleAnimation}
       `}

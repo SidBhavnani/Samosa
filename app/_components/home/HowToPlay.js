@@ -104,7 +104,7 @@ export default function HowToPlay() {
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground h-12 px-8 font-bold rounded-full shadow-lg"
                 asChild
               >
-                <Link href="/how-to-play">
+                <Link href="/how-to-play#how-to-play-video">
                   <Play className="mr-2 h-4 w-4" />
                   Watch The Full Video
                 </Link>
