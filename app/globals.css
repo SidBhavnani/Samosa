@@ -447,3 +447,7 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+
+.policy-span {
+  font-size: 14px;
+}
