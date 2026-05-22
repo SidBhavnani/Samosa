@@ -1,14 +1,13 @@
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-primary pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden flex flex-col items-center justify-center">
-      <h1 className="text-5xl font-bystander uppercase leading-[1] tracking-normal text-center text-samosa-cream mb-8">
-        Privacy Policy
-      </h1>
+    <div className="min-h-screen bg-background pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden flex flex-col items-center justify-center">
+      <div className="max-w-3xl mx-4">
+        <h1 className="text-[38px] text-primary md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-8">
+          Privacy Policy
+        </h1>
 
-      <div className="max-w-[470px] mx-4">
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
-          Last updated: November 19, 2025
-          <br />
+        <p className="leading-relaxed text-muted-foreground mb-8">
+          <span className="text-sm">Last updated: November 19, 2025</span>
           <br />
           SAMOSA operates this store and website, including all related
           information, content, features, tools, products and services, in order
@@ -29,10 +28,10 @@ export default function PrivacyPolicy() {
           information as described in this Privacy Policy.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           Personal Information We Collect or Process
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           When we use the term "personal information," we are referring to
           information that identifies or can reasonably be linked to you or
           another person. Personal information does not include information that
@@ -43,128 +42,128 @@ export default function PrivacyPolicy() {
           interact with the Services, where you live, and as permitted or
           required by applicable law:
           <li className="ml-6 mt-2">
-            Contact details including your name, address, billing address,
-            shipping address, phone number, and email address.
+            <strong>Contact details</strong> including your name, address,
+            billing address, shipping address, phone number, and email address.
           </li>
           <li className="ml-6 mb-2">
-            Financial information including credit card, debit card, and
-            financial account numbers, payment card information, financial
-            account information, transaction details, form of payment, payment
-            confirmation and other payment details.
+            <strong>Financial information</strong> including credit card, debit
+            card, and financial account numbers, payment card information,
+            financial account information, transaction details, form of payment,
+            payment confirmation and other payment details.
           </li>
           <li className="ml-6 mb-2">
-            Account information including your username, password, security
-            questions, preferences and settings.
+            <strong>Account information</strong> including your username,
+            password, security questions, preferences and settings.
           </li>
           <li className="ml-6 mb-2">
-            Transaction information including the items you view, put in your
-            cart, add to your wishlist, or purchase, return, exchange or cancel
-            and your past transactions.
+            <strong>Transaction information</strong> including the items you
+            view, put in your cart, add to your wishlist, or purchase, return,
+            exchange or cancel and your past transactions.
           </li>
           <li className="ml-6 mb-2">
-            Communications with us including the information you include in
-            communications with us, for example, when sending a customer support
-            inquiry.
+            <strong>Communications with us</strong> including the information
+            you include in communications with us, for example, when sending a
+            customer support inquiry.
           </li>
           <li className="ml-6 mb-2">
-            Device information including information about your device, browser,
-            or network connection, your IP address, and other unique
-            identifiers.
+            <strong>Device information</strong> including information about your
+            device, browser, or network connection, your IP address, and other
+            unique identifiers.
           </li>
           <li className="ml-6 mb-2">
-            Usage information including information regarding your interaction
-            with the Services, including how and when you interact with or
-            navigate the Services.
+            <strong>Usage information</strong> including information regarding
+            your interaction with the Services, including how and when you
+            interact with or navigate the Services.
           </li>
           Given appropriate proof is provided, we’ll sort it out ASAP with a
           replacement or refund.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           Personal Information Sources
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           We may collect personal information from the following sources:
           <li className="ml-6 mt-2">
-            Directly from you including when you create an account, visit or use
-            the Services, communicate with us, or otherwise provide us with your
-            personal information;
+            <strong>Directly from you</strong> including when you create an
+            account, visit or use the Services, communicate with us, or
+            otherwise provide us with your personal information;
           </li>
           <li className="ml-6">
-            Automatically through the Services including from your device when
-            you use our products or services or visit our websites, and through
-            the use of cookies and similar technologies;
+            <strong>Automatically through the Services</strong> including from
+            your device when you use our products or services or visit our
+            websites, and through the use of cookies and similar technologies;
           </li>
           <li className="ml-6">
-            From our service providers including when we engage them to enable
-            certain technology and when they collect or process your personal
-            information on our behalf;
+            <strong>From our service providers</strong> including when we engage
+            them to enable certain technology and when they collect or process
+            your personal information on our behalf;
           </li>
           <li className="ml-6 mb-2">
-            From our partners or other third parties.
+            <strong>From our partners or other third parties.</strong>
           </li>
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           How We Use Your Personal Information
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           Depending on how you interact with us or which of the Services you
           use, we may use personal information for the following purposes:
           <li className="ml-6 mb-2">
-            Provide, Tailor, and Improve the Services. We use your personal
-            information to provide you with the Services, including to perform
-            our contract with you, to process your payments, to fulfill your
-            orders, to remember your preferences and items you are interested
-            in, to send notifications to you related to your account, to process
-            purchases, returns, exchanges or other transactions, to create,
-            maintain and otherwise manage your account, to arrange for shipping,
-            to facilitate any returns and exchanges, to enable you to post
-            reviews, and to create a customized shopping experience for you,
-            such as recommending products related to your purchases. This may
-            include using your personal information to better tailor and improve
-            the Services.
+            <strong>Provide, Tailor, and Improve the Services.</strong> We use
+            your personal information to provide you with the Services,
+            including to perform our contract with you, to process your
+            payments, to fulfill your orders, to remember your preferences and
+            items you are interested in, to send notifications to you related to
+            your account, to process purchases, returns, exchanges or other
+            transactions, to create, maintain and otherwise manage your account,
+            to arrange for shipping, to facilitate any returns and exchanges, to
+            enable you to post reviews, and to create a customized shopping
+            experience for you, such as recommending products related to your
+            purchases. This may include using your personal information to
+            better tailor and improve the Services.
           </li>
           <li className="ml-6 mb-2">
-            Marketing and Advertising. We use your personal information for
-            marketing and promotional purposes, such as to send marketing,
-            advertising and promotional communications by email, text message or
-            postal mail, and to show you online advertisements for products or
-            services on the Services or other websites, including based on items
-            you previously have purchased or added to your cart and other
-            activity on the Services.
+            <strong>Marketing and Advertising.</strong> We use your personal
+            information for marketing and promotional purposes, such as to send
+            marketing, advertising and promotional communications by email, text
+            message or postal mail, and to show you online advertisements for
+            products or services on the Services or other websites, including
+            based on items you previously have purchased or added to your cart
+            and other activity on the Services.
           </li>
           <li className="ml-6 mb-2">
-            Security and Fraud Prevention. We use your personal information to
-            authenticate your account, to provide a secure payment and shopping
-            experience, detect, investigate or take action regarding possible
-            fraudulent, illegal, unsafe, or malicious activity, protect public
-            safety, and to secure our services. If you choose to use the
-            Services and register an account, you are responsible for keeping
-            your account credentials safe. We highly recommend that you do not
-            share your username, password or other access details with anyone
-            else.
+            <strong>Security and Fraud Prevention.</strong> We use your personal
+            information to authenticate your account, to provide a secure
+            payment and shopping experience, detect, investigate or take action
+            regarding possible fraudulent, illegal, unsafe, or malicious
+            activity, protect public safety, and to secure our services. If you
+            choose to use the Services and register an account, you are
+            responsible for keeping your account credentials safe. We highly
+            recommend that you do not share your username, password or other
+            access details with anyone else.
           </li>
           <li className="ml-6 mb-2">
-            Communicating with You. We use your personal information to provide
-            you with customer support, to be responsive to you, to provide
-            effective services to you and to maintain our business relationship
-            with you.
+            <strong>Communicating with You.</strong> We use your personal
+            information to provide you with customer support, to be responsive
+            to you, to provide effective services to you and to maintain our
+            business relationship with you.
           </li>
           <li className="ml-6 mb-2">
-            Legal Reasons. We use your personal information to comply with
-            applicable law or respond to valid legal process, including requests
-            from law enforcement or government agencies, to investigate or
-            participate in civil discovery, potential or actual litigation, or
-            other adversarial legal proceedings, and to enforce or investigate
-            potential violations of our terms or policies.
+            <strong>Legal Reasons.</strong> We use your personal information to
+            comply with applicable law or respond to valid legal process,
+            including requests from law enforcement or government agencies, to
+            investigate or participate in civil discovery, potential or actual
+            litigation, or other adversarial legal proceedings, and to enforce
+            or investigate potential violations of our terms or policies.
           </li>
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           How We Disclose Personal Information
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           In certain circumstances, we may disclose your personal information to
           third parties for legitimate purposes subject to this Privacy Policy.
           Such circumstances may include:
@@ -205,10 +204,8 @@ export default function PrivacyPolicy() {
           </li>
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
-          Relationship with Shopify
-        </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <h3 className="text-2xl font-bold mb-3">Relationship with Shopify</h3>
+        <p className="leading-relaxed text-muted-foreground mb-8">
           The Services are hosted by Shopify, which collects and processes
           personal information about your access to and use of the Services in
           order to provide and improve the Services for you. Information you
@@ -241,10 +238,10 @@ export default function PrivacyPolicy() {
           .
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           Third Party Websites and Links
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           The Services may provide links to websites or other online platforms
           operated by third parties. If you follow links to sites not affiliated
           or controlled by us, you should review their privacy and security
@@ -260,10 +257,8 @@ export default function PrivacyPolicy() {
           their owners or operators, except as disclosed on the Services.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
-          Children&apos;s Data
-        </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <h3 className="text-2xl font-bold mb-3">Children&apos;s Data</h3>
+        <p className="leading-relaxed text-muted-foreground mb-8">
           The Services are not intended to be used by children, and we do not
           knowingly collect any personal information about children under the
           age of majority in your jurisdiction. If you are the parent or
@@ -275,10 +270,10 @@ export default function PrivacyPolicy() {
           information of individuals under 16 years of age.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           Security and Retention of Your Information
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           Please be aware that no security measures are perfect or impenetrable,
           and we cannot guarantee "perfect security." In addition, any
           information you send to us may not be secure while in transit. We
@@ -292,34 +287,35 @@ export default function PrivacyPolicy() {
           resolve disputes or enforce other applicable contracts and policies.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
-          Your Rights and Choices
-        </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <h3 className="text-2xl font-bold mb-3">Your Rights and Choices</h3>
+        <p className="leading-relaxed text-muted-foreground mb-8">
           Depending on where you live, you may have some or all of the rights
           listed below in relation to your personal information. However, these
           rights are not absolute, may apply only in certain circumstances and,
           in certain cases, we may decline your request as permitted by law.
           <li className="ml-6 mb-2">
-            Right to Access / Know. You may have a right to request access to
-            personal information that we hold about you.
+            <strong>Right to Access / Know.</strong> You may have a right to
+            request access to personal information that we hold about you.
           </li>
           <li className="ml-6 mb-2">
-            Right to Delete. You may have a right to request that we delete
-            personal information we maintain about you.
+            <strong>Right to Delete.</strong> You may have a right to request
+            that we delete personal information we maintain about you.
           </li>
           <li className="ml-6 mb-2">
-            Right to Correct. You may have a right to request that we correct
-            inaccurate personal information we maintain about you.
+            <strong>Right to Correct.</strong> You may have a right to request
+            that we correct inaccurate personal information we maintain about
+            you.
           </li>
           <li className="ml-6 mb-2">
-            Right of Portability. You may have a right to receive a copy of the
-            personal information we hold about you and to request that we
-            transfer it to a third party, in certain circumstances and with
-            certain exceptions.
+            <strong>Right of Portability.</strong> You may have a right to
+            receive a copy of the personal information we hold about you and to
+            request that we transfer it to a third party, in certain
+            circumstances and with certain exceptions.
           </li>
           <li className="ml-6 mb-2">
-            Right to Opt out of Sale or Sharing for Targeted Advertising.
+            <strong>
+              Right to Opt out of Sale or Sharing for Targeted Advertising.
+            </strong>{" "}
             Depending on where you reside, you may have a right to opt out of
             the "sale" or "share" of your personal information or to opt out of
             the processing of your personal information for purposes considered
@@ -343,11 +339,11 @@ export default function PrivacyPolicy() {
             be sent from your web browser or device.
           </li>
           <li className="ml-6 mb-2">
-            Managing Communication Preferences. We may send you promotional
-            emails, and you may opt out of receiving these at any time by using
-            the unsubscribe option displayed in our emails to you. If you opt
-            out, we may still send you non-promotional emails, such as those
-            about your account or orders that you have made.
+            <strong>Managing Communication Preferences.</strong> We may send you
+            promotional emails, and you may opt out of receiving these at any
+            time by using the unsubscribe option displayed in our emails to you.
+            If you opt out, we may still send you non-promotional emails, such
+            as those about your account or orders that you have made.
           </li>
           If you reside in the UK or European Economic Area, and subject to
           exceptions and limitations provided by local law, you may exercise the
@@ -381,10 +377,8 @@ export default function PrivacyPolicy() {
           in a timely manner as required under applicable law.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
-          Complaints
-        </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <h3 className="text-2xl font-bold mb-3">Complaints</h3>
+        <p className="leading-relaxed text-muted-foreground mb-8">
           If you have complaints about how we process your personal information,
           please contact us using the contact details provided below. Depending
           on where you live, you may have the right to appeal our decision by
@@ -394,10 +388,8 @@ export default function PrivacyPolicy() {
           authorities here.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
-          International Transfers
-        </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <h3 className="text-2xl font-bold mb-3">International Transfers</h3>
+        <p className="leading-relaxed text-muted-foreground mb-8">
           Please note that we may transfer, store and process your personal
           information outside the country you live in.
           <br />
@@ -411,10 +403,10 @@ export default function PrivacyPolicy() {
           protection.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
+        <h3 className="text-2xl font-bold mb-3">
           Changes to This Privacy Policy
         </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <p className="leading-relaxed text-muted-foreground mb-8">
           We may update this Privacy Policy from time to time, including to
           reflect changes to our practices or for other operational, legal, or
           regulatory reasons. We will post the revised Privacy Policy on this
@@ -422,10 +414,8 @@ export default function PrivacyPolicy() {
           by applicable law.
         </p>
 
-        <h3 className="text-xl font-bystander uppercase leading-[1] tracking-normal mb-5">
-          Contact
-        </h3>
-        <p className="uppercase font-bystander leading-relaxed text-samosa-cream mb-8">
+        <h3 className="text-2xl font-bold mb-3">Contact</h3>
+        <p className="leading-relaxed text-muted-foreground mb-8">
           Should you have any questions about our privacy practices or this
           Privacy Policy, or if you would like to exercise any of the rights
           available to you, please call or email us at playsamosa@gmail.com or
