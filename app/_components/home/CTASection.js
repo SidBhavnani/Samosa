@@ -7,6 +7,8 @@ import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
 
 import gameBox from "@/public/assets/game-box.png";
+import { useEffect, useState } from "react";
+import { getProduct } from "@/app/_lib/shopify";
 
 const SAMOSA_PRODUCT = {
   id: "samosa-game-1",
@@ -17,10 +19,28 @@ const SAMOSA_PRODUCT = {
 
 export default function CTASection({ ctaSectionRef }) {
   const { addItem, adding } = useCart();
+  const [product, setProduct] = useState(null);
 
   const handleAddToCart = () => {
-    addItem();
+    addItem(product.variants.edges[0].node.id, 1);
   };
+
+  const formatPrice = (price) =>
+    new Intl.NumberFormat("en-GB", {
+      style: "currency",
+      currency: "GBP",
+    }).format(price);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const p = await getProduct("samosa", "GB");
+      setProduct(p);
+    };
+
+    fetchProduct();
+  }, []);
+
+  if (!product) return null;
 
   return (
     <section
@@ -79,14 +99,16 @@ export default function CTASection({ ctaSectionRef }) {
                     <div>
                       <p className="text-sm text-muted-foreground">Price</p>
                       <p className="text-3xl font-bold">
-                        ${SAMOSA_PRODUCT.price}
+                        {formatPrice(
+                          product.variants.edges[0].node.price.amount,
+                        )}
                       </p>
                     </div>
 
                     <div className="text-right">
                       <p className="text-sm text-muted-foreground">Shipping</p>
                       <p className="text-sm font-bold text-accent">
-                        FREE over $50
+                        FREE over {formatPrice(50)}
                       </p>
                     </div>
                   </div>
