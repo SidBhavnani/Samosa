@@ -42,7 +42,7 @@ export function Header() {
   const isActive = (path) => pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary">
+    <header className="fixed top-0 left-0 right-0 max-w-screen z-50 bg-primary">
       {/* Marquee */}
       <div className="bg-secondary/80 overflow-hidden py-1">
         <div className="animate-marquee whitespace-nowrap flex">
