@@ -20,7 +20,7 @@ const footerLinks = {
   ],
   company: [
     { name: "About", path: "/founder" },
-    { name: "Meet Founder", path: "/founder" },
+    { name: "Our Story", path: "/founder" },
     { name: "Privacy Policy", path: "/policies/privacy-policy" },
     { name: "Terms of Service", path: "/policies/terms-of-service" },
   ],
@@ -54,8 +54,7 @@ export function Footer() {
             </Link>
 
             <p className="text-primary-foreground/80 text-sm mb-6 mt-4">
-              Your Desi Game Night Starts Here. Act, Sing, Dance, Describe –
-              chaos guaranteed!
+              Your Desi Game Night Starts Here. Chaos guaranteed!
             </p>
 
             <div className="flex gap-4">

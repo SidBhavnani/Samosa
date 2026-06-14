@@ -7,7 +7,7 @@ import { cn } from "@/app/_hooks/utils";
 export default function HowToPlay() {
   return (
     <section
-      className="py-20 md:py-28 overflow-hidden"
+      className="py-6 md:py-28 overflow-hidden"
       style={{ backgroundColor: "#3D63A6" }}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -91,14 +91,14 @@ export default function HowToPlay() {
           <AnimatedSection
             variant="fade-up"
             delay={500}
-            className="text-center mt-12"
+            className="text-center mt-6"
           >
             <p className="text-lg md:text-xl text-white/80 mb-2 font-sans font-semibold">
               <span className="text-white font-semibold">Land on a SAMOSA</span>{" "}
               and everyone plays at once for the same point
               <br />- watch the SAMOSA chaos unfold 🔥
             </p>
-            <div className="mt-6">
+            <div className="mt-4">
               <Button
                 size="lg"
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground h-12 px-8 font-bold rounded-full shadow-lg"

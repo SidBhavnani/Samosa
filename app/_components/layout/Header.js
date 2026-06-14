@@ -106,10 +106,10 @@ export function Header() {
               className="relative text-primary-foreground hover:bg-primary-foreground/10 ml-1 h-8 w-8 p-0"
               onClick={openCart}
             >
-              <ShoppingCart className="h-4 w-4" />
+              <ShoppingCart className="h-6 w-6" />
 
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-bounce-in">
+                <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs font-bold rounded-full h-7 w-7 flex items-center justify-center animate-bounce-in">
                   {totalItems}
                 </span>
               )}
@@ -124,7 +124,7 @@ export function Header() {
                     size="icon"
                     className="text-primary-foreground hover:bg-primary-foreground/10"
                   >
-                    <Menu className="h-6 w-6" />
+                    <Menu className="h-8 w-8" />
                   </Button>
                 </SheetTrigger>
 

@@ -254,10 +254,14 @@ export default function TryMeSection() {
     }, 50);
   }, []);
 
+  const handleDemoReveal = () => {
+    setDemoStep(4);
+  };
+
   const handleCategorySelect = (cat) => {
     setSelectedCategory(cat);
     setDemoStep(3);
-    startTimer();
+    // startTimer();
   };
 
   const handleDemoReset = () => {
@@ -321,9 +325,9 @@ export default function TryMeSection() {
           </div>
           <AnimatedSection variant="fade-up" delay={150}>
             <h2 className="relative z-10 mb-6 md:mb-8 text-[36px] md:text-[42px] lg:text-[50px] font-bystander uppercase leading-[1.1] tracking-normal whitespace-nowrap -translate-y-3 md:-translate-y-4">
-              <span className="text-primary">Play a Round of Samosa</span>
+              <span className="text-primary">Get a taste</span>
               <br />
-              <span className="text-accent">in 20 Seconds</span>
+              <span className="text-accent">of playing Samosa</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection variant="zoom-in" delay={200}>
@@ -419,22 +423,22 @@ export default function TryMeSection() {
                 {/* Timer bar */}
                 {demoStep === 3 && (
                   <div className="mt-6 animate-fade-in">
-                    <span className="bg-secondary text-secondary-foreground px-6 py-2 rounded">
-                      {selectedCategory?.clue}
-                    </span>
+                    <div className="bg-secondary flex items-center gap-2 text-left text-sm text-secondary-foreground px-6 py-2 rounded">
+                      <Clock className="h-full aspect-square" />
+                      <span>
+                        Your friend's description: <br />
+                        {selectedCategory?.clue}
+                      </span>
+                    </div>
                     <div className="pt-4">
-                      <div className="flex items-center justify-center mb-2 w-full">
+                      <button
+                        onClick={handleDemoReveal}
+                        className="flex items-center cursor-pointer justify-center mb-2 w-full bg-muted px-6 py-2 rounded hover:scale-110 hover:animate-wiggle transition-all duration-300"
+                      >
                         <div className="flex items-center gap-1 text-sm font-bold text-muted-foreground">
-                          <Clock className="h-4 w-4" />
-                          <span>{timerSeconds}s</span>
+                          <span>Tap to reveal answer!</span>
                         </div>
-                      </div>
-                      <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-secondary rounded-full transition-all duration-100"
-                          style={{ width: `${timerProgress}%` }}
-                        />
-                      </div>
+                      </button>
                     </div>
                   </div>
                 )}
