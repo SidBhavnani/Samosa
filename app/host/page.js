@@ -128,7 +128,7 @@ export default function HostGameNightPage() {
     <div className="min-h-screen">
       {/* Hero */}
       {/* Hero — split editorial layout: bold copy block + photo collage with floating chips */}
-      <section className="relative h-[520px] overflow-hidden bg-primary pt-28 md:pt-32">
+      <section className="relative h-[480px] md:h-[520px] overflow-hidden bg-primary pt-28 md:pt-32">
         {/* Subtle radial accent */}
         <div
           className="absolute inset-0 pointer-events-none opacity-60"
@@ -245,14 +245,18 @@ export default function HostGameNightPage() {
             {playlists.map((p, i) => (
               <AnimatedSection key={p.title} variant="fade-up" delay={i * 100}>
                 <div className="bg-white rounded-2xl p-6 md:p-8 h-full flex flex-col border-2 border-primary/10 hover:border-primary transition-colors">
-                  <div className="text-4xl mb-4">{p.emoji}</div>
-                  <h3 className="text-2xl font-bystander uppercase text-primary leading-[1.1] mb-2">
-                    {p.title}
-                  </h3>
-                  <p className="text-secondary font-sans font-bold text-xs uppercase tracking-wider mb-4">
-                    {p.vibe}
-                  </p>
-                  <p className="text-sm text-foreground/70 font-sans mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="text-4xl mb-4">{p.emoji}</div>
+                    <div>
+                      <h3 className="text-2xl font-bystander uppercase text-primary leading-[1.1] mb-2">
+                        {p.title}
+                      </h3>
+                      <p className="text-secondary font-sans font-bold text-xs uppercase tracking-wider mb-4">
+                        {p.vibe}
+                      </p>
+                    </div>
+                  </div>
+                  {/* <p className="text-sm text-foreground/70 font-sans mb-2">
                     <span className="font-bold text-foreground">
                       Perfect for:
                     </span>{" "}
@@ -261,7 +265,7 @@ export default function HostGameNightPage() {
                   <p className="text-sm text-foreground/70 font-sans mb-6 flex-1">
                     <span className="font-bold text-foreground">Vibe:</span>{" "}
                     {p.description}
-                  </p>
+                  </p> */}
                   <Button
                     asChild
                     variant="outline"
@@ -310,7 +314,7 @@ export default function HostGameNightPage() {
       </AnimatedSection>
 
       {/* STEP 2 - Feed Your People */}
-      <section className="py-16 md:py-24 bg-samosa-blue text-samosa-cream">
+      <section className="py-12 md:py-16 bg-samosa-blue text-samosa-cream">
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
             <div className="mb-10">
@@ -437,7 +441,7 @@ export default function HostGameNightPage() {
           </div>
 
           <AnimatedSection variant="fade-up">
-            <div className="bg-samosa-cream/10 border-l-4 border-secondary rounded-r-lg p-5 md:p-6 mb-12">
+            <div className="bg-samosa-cream/10 border-l-4 border-secondary rounded-r-lg p-5 md:p-6">
               <p className="text-sm md:text-base font-sans text-samosa-cream">
                 <span className="font-black text-secondary uppercase">
                   Pro tip:
@@ -449,7 +453,7 @@ export default function HostGameNightPage() {
           </AnimatedSection>
 
           {/* Drinks */}
-          <AnimatedSection variant="fade-up">
+          {/* <AnimatedSection variant="fade-up">
             <div className="text-left mb-8">
               <p className="text-secondary font-sans font-black text-sm uppercase tracking-[0.2em] mb-2">
                 Bonus
@@ -497,9 +501,36 @@ export default function HostGameNightPage() {
                 </ul>
               </div>
             </AnimatedSection>
-          </div>
+          </div> */}
         </div>
       </section>
+
+      {/* "Remove SAMOSA LEADERBOARD and ACHIEVEMENT BADGES in Step 3 BRING THE COMPETITION 🏆
+
+
+
+Change Step 3 text to: 
+
+
+""A little friendly rivalry goes a long way.
+
+Choose your game night stakes:
+
+☕️ Chai Stakes
+
+Loser makes the next round of chai.
+
+🍨 Dessert Stakes
+
+Winner gets first pick of dessert.
+
+📱 Bragging Rights Stakes
+
+Winner gets to update the group chat name until the next game night.
+
+🎤 Speech Stakes
+
+Last place must give a 30-second acceptance speech explaining what went wrong.""" */}
 
       {/* STEP 3 - Bring the Competition */}
       <section className="py-16 md:py-24 bg-samosa-cream">
@@ -516,8 +547,8 @@ export default function HostGameNightPage() {
                 Bring the Competition 🏆
               </h2>
               <p className="text-base md:text-lg text-foreground/80 font-sans max-w-2xl">
-                Real game nights need real stakes. Download our free printables
-                to make it official.
+                A little friendly rivalry goes a long way. Choose your game
+                night stakes:
               </p>
             </div>
           </AnimatedSection>
@@ -526,72 +557,44 @@ export default function HostGameNightPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
             <AnimatedSection variant="fade-up">
               <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-4">
-                  <Trophy className="h-8 w-8 text-secondary" />
-                  <span className="font-sans font-black uppercase tracking-wider text-xs text-secondary">
-                    Free Download
-                  </span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-3">
-                  SAMOSA Leaderboard
+                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
+                  ☕️ Chai Stakes
                 </h3>
-                <p className="text-sm md:text-base font-sans text-foreground/75 mb-4">
-                  Track wins across multiple game nights. Perfect for:
+                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
+                  Loser makes the next round of chai.
                 </p>
-                <ul className="space-y-2 mb-6 flex-1">
-                  <li className="text-sm font-sans text-foreground/85 flex gap-2">
-                    <span className="text-secondary">▸</span>Family tournaments
-                    over Diwali
-                  </li>
-                  <li className="text-sm font-sans text-foreground/85 flex gap-2">
-                    <span className="text-secondary">▸</span>Friend group
-                    championships
-                  </li>
-                  <li className="text-sm font-sans text-foreground/85 flex gap-2">
-                    <span className="text-secondary">▸</span>Monthly game night
-                    leagues
-                  </li>
-                </ul>
-                <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-sans font-bold">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download PDF
-                </Button>
               </div>
             </AnimatedSection>
-
-            {/* Badges */}
-            <AnimatedSection variant="fade-up" delay={100}>
+            <AnimatedSection variant="fade-up">
               <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl text-secondary">🎖️</span>
-                  <span className="font-sans font-black uppercase tracking-wider text-xs text-secondary">
-                    Free Download
-                  </span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-3">
-                  Achievement Badges
+                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
+                  🍨 Dessert Stakes
                 </h3>
-                <p className="text-sm md:text-base font-sans text-foreground/75 mb-4">
-                  Print and award these to your players:
+                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
+                  Winner gets first pick of dessert.
                 </p>
-                <ul className="space-y-2 mb-6 flex-1">
-                  {badges.map((b) => (
-                    <li
-                      key={b.name}
-                      className="text-sm font-sans text-foreground/85 flex gap-2"
-                    >
-                      <span className="text-lg leading-none">{b.emoji}</span>
-                      <span>
-                        <span className="font-bold text-primary">{b.name}</span>{" "}
-                        <span className="text-foreground/70">— {b.desc}</span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-sans font-bold">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download All Badges PDF
-                </Button>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection variant="fade-up">
+              <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
+                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
+                  📱 Bragging Rights Stakes
+                </h3>
+                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
+                  Winner gets to update the group chat name until the next game
+                  night.
+                </p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection variant="fade-up">
+              <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
+                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
+                  🎤 Speech Stakes
+                </h3>
+                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
+                  Last place must give a 30-second acceptance speech explaining
+                  what went wrong.
+                </p>
               </div>
             </AnimatedSection>
           </div>

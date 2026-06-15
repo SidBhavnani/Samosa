@@ -116,7 +116,7 @@ export default function FounderPage() {
   return (
     <div className="min-h-screen">
       {/* HERO */}
-      <section className="relative bg-primary pt-32 md:pt-40 pb-16 md:pb-24 h-[480px] overflow-hidden flex items-center justify-center">
+      <section className="relative bg-primary pt-32 md:pt-40 pb-16 md:pb-24 h-[400px] md:h-[480px] overflow-hidden flex items-center justify-center">
         {/* Floating chai images */}
         <div
           className="hidden md:block absolute -left-6 md:-left-4 top-[35%] w-[127px] md:w-[177px] lg:w-[215px]"

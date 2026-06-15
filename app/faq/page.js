@@ -139,7 +139,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen">
       {/* HERO */}
-      <section className="relative h-[480px] overflow-hidden pt-32 md:pt-40 pb-16 md:pb-24">
+      <section className="relative h-[360px] md:h-[480px] overflow-hidden pt-32 md:pt-40 pb-16 md:pb-24">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image

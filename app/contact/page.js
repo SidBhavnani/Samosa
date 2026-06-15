@@ -91,7 +91,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* HERO */}
-      <section className="relative h-[480px] flex items-center overflow-hidden">
+      <section className="relative h-[400px] md:h-[480px] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-samosa-blue" />
 
         {/* Image */}

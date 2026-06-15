@@ -35,7 +35,7 @@ export function CartDrawer() {
           </SheetTitle>
         </SheetHeader>
 
-        {cart?.lines.edges.length === 0 ? (
+        {!cart || cart?.lines.edges.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
             <ShoppingBag className="h-16 w-16 text-muted-foreground/50 mb-4" />
             <h3 className="text-lg font-semibold mb-2">Your cart is empty</h3>

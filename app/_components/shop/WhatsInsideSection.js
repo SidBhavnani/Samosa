@@ -3,9 +3,9 @@
 import { AnimatedSection } from "../AnimatedSection";
 
 const specs = [
-  { label: "200", value: "Double-sided cards" },
-  { label: "1800+", value: "Unique challenges" },
-  { label: "4", value: "Ways to play" },
+  { label: "300", value: "Cards" },
+  { label: "1800+", value: "Desi references" },
+  { label: "45-90", value: "Mins of play (atleast)" },
 ];
 
 export default function WhatsInsideSection() {

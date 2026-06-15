@@ -148,7 +148,7 @@ export default function HowToPlayPage({ product }) {
   return (
     <div className="min-h-screen">
       {/* HERO - Full-width background image with overlaid text */}
-      <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-samosa-yellow-green">
+      <section className="relative h-[320px] pt-8 md:pt-0 md:h-[520px] flex items-center overflow-hidden bg-samosa-yellow-green">
         <div className="absolute inset-0 w-full h-full">
           <Image
             src={howToPlayHeroBg}
@@ -317,10 +317,9 @@ export default function HowToPlayPage({ product }) {
       </div>
 
       {/* MAKE IT YOUR OWN - Lime-yellow */}
-      <section className="py-28 md:py-36 bg-samosa-yellow-green">
+      {/* <section className="py-28 md:py-36 bg-samosa-yellow-green">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16 lg:gap-24 items-start">
-            {/* Left - Typography + GIF */}
             <div className="flex flex-col h-full">
               <AnimatedSection variant="fade-right">
                 <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-4">
@@ -353,7 +352,6 @@ export default function HowToPlayPage({ product }) {
               </AnimatedSection>
             </div>
 
-            {/* Right - Variation cards with white bg and warm shadow */}
             <div className="space-y-5">
               {variations.map((variation, index) => (
                 <AnimatedSection
@@ -379,10 +377,10 @@ export default function HowToPlayPage({ product }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* SAMOSA VIBES - Warm gradient background */}
-      <section className="py-16 md:py-20 bg-samosa-cream overflow-hidden">
+      {/* <section className="py-16 md:py-20 bg-samosa-cream overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <AnimatedSection variant="fade-up" className="text-center mb-16">
@@ -400,7 +398,6 @@ export default function HowToPlayPage({ product }) {
                 className="relative rounded-3xl p-10 md:p-14"
                 style={{ backgroundColor: "#F5F0E8" }}
               >
-                {/* Decorative music notes */}
                 <div className="absolute top-6 right-8 text-4xl opacity-20 rotate-12">
                   🎵
                 </div>
@@ -409,7 +406,6 @@ export default function HowToPlayPage({ product }) {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 items-center">
-                  {/* QR Code */}
                   <div className="text-center">
                     <div className="w-44 h-44 bg-samosa-cream rounded-2xl mx-auto flex items-center justify-center shadow-md border border-primary/10">
                       <span className="text-muted-foreground font-sans">
@@ -421,7 +417,6 @@ export default function HowToPlayPage({ product }) {
                     </p>
                   </div>
 
-                  {/* Spotify Embed Placeholder */}
                   <div className="bg-samosa-cream rounded-2xl p-8 h-56 flex items-center justify-center shadow-md border border-primary/10">
                     <div className="text-center space-y-3">
                       <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
@@ -440,7 +435,7 @@ export default function HowToPlayPage({ product }) {
             </AnimatedSection>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CLOSING CTA - Split layout like homepage */}
       <section className="py-20 md:py-28 bg-samosa-cream relative overflow-hidden">
@@ -494,12 +489,10 @@ export default function HowToPlayPage({ product }) {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm text-muted-foreground">
-                          Shipping
+                        <p className="text-sm font-bold text-muted-foreground">
+                          Free UK & US
                         </p>
-                        <p className="text-sm font-bold text-accent">
-                          FREE over £50
-                        </p>
+                        <p className="text-sm text-accent">Shipping</p>
                       </div>
                     </div>
                     <Button
@@ -520,7 +513,7 @@ export default function HowToPlayPage({ product }) {
                     </span>
                     <span className="flex items-center gap-1.5">
                       <span className="text-base">📦</span>
-                      Ships in 24h
+                      Ships in 48h
                     </span>
                     <span className="flex items-center gap-1.5">
                       <span className="text-base">🔒</span>
