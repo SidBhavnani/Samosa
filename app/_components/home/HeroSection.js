@@ -42,7 +42,7 @@ export default function HeroSection() {
             {/* LEFT */}
             <div className="lg:col-span-6 xl:col-span-5 text-primary-foreground">
               <AnimatedSection variant="fade-up">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bystander uppercase leading-[1.1] tracking-normal mb-3 md:mb-5">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bystander uppercase leading-[1.1] tracking-normal drop-shadow-md drop-shadow-foreground mb-3 md:mb-5">
                   <span className="text-samosa-cream text-[60px] md:text-[72px]">
                     The Ultimate
                   </span>

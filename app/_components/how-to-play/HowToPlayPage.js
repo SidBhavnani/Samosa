@@ -492,7 +492,9 @@ export default function HowToPlayPage({ product }) {
                         <p className="text-sm font-bold text-muted-foreground">
                           Free UK & US
                         </p>
-                        <p className="text-sm text-accent">Shipping</p>
+                        <p className="text-sm font-bold text-muted-foreground">
+                          Shipping
+                        </p>
                       </div>
                     </div>
                     <Button

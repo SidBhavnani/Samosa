@@ -142,7 +142,7 @@ export default function HostGameNightPage() {
             {/* LEFT — copy + scrolling step ticker */}
             <div className="lg:col-span-7 flex flex-col items-start">
               <AnimatedSection variant="fade-up" delay={100}>
-                <h1 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-normal mb-5">
+                <h1 className="text-[38px] w-3/4 md:w-auto md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-normal mb-5">
                   <span className="text-secondary">Host the </span>
                   <span className="text-samosa-cream">Perfect </span>
                   <span className="text-secondary">Game Night.</span>
@@ -157,22 +157,26 @@ export default function HostGameNightPage() {
               <AnimatedSection variant="fade-up" delay={300}>
                 <div className="flex flex-wrap items-center gap-2 md:gap-3">
                   {[
-                    { n: "01", label: "Vibe", emoji: "🎵" },
-                    { n: "02", label: "Feed", emoji: "🍽️" },
-                    { n: "03", label: "Compete", emoji: "🏆" },
+                    { n: "01", label: "Vibe", emoji: "🎵", link: "/host#vibe" },
+                    { n: "02", label: "Feed", emoji: "🍽️", link: "/host#feed" },
+                    {
+                      n: "03",
+                      label: "Compete",
+                      emoji: "🏆",
+                      link: "/host#compete",
+                    },
                   ].map((s) => (
-                    <div
-                      key={s.n}
-                      className="flex items-center gap-2 bg-samosa-cream/10 border border-samosa-cream/25 backdrop-blur-sm rounded-full pl-2 pr-4 py-1.5"
-                    >
-                      <span className="bg-secondary text-secondary-foreground font-sans font-black text-[10px] tracking-wider rounded-full h-6 w-6 flex items-center justify-center">
-                        {s.n}
-                      </span>
-                      <span className="text-samosa-cream font-sans font-bold text-sm uppercase tracking-wider">
-                        {s.label}
-                      </span>
-                      <span className="text-base">{s.emoji}</span>
-                    </div>
+                    <Link key={s.n} href={s.link}>
+                      <div className="flex items-center gap-2 bg-samosa-cream/10 border border-samosa-cream/25 backdrop-blur-sm rounded-full pl-2 pr-4 py-1.5 hover:bg-samosa-cream/20 hover:border-samosa-cream/30 transition-colors duration-300">
+                        <span className="bg-secondary text-secondary-foreground font-sans font-black text-[10px] tracking-wider rounded-full h-6 w-6 flex items-center justify-center">
+                          {s.n}
+                        </span>
+                        <span className="text-samosa-cream font-sans font-bold text-sm uppercase tracking-wider">
+                          {s.label}
+                        </span>
+                        <span className="text-base">{s.emoji}</span>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               </AnimatedSection>
@@ -222,7 +226,7 @@ export default function HostGameNightPage() {
       </section>
 
       {/* STEP 1 - Set the Vibe */}
-      <section className="py-16 md:py-24 bg-samosa-cream">
+      <section id="vibe" className="py-16 md:py-24 bg-samosa-cream">
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
             <div className="mb-10">
@@ -314,7 +318,10 @@ export default function HostGameNightPage() {
       </AnimatedSection>
 
       {/* STEP 2 - Feed Your People */}
-      <section className="py-12 md:py-16 bg-samosa-blue text-samosa-cream">
+      <section
+        id="feed"
+        className="py-12 md:py-16 bg-samosa-blue text-samosa-cream"
+      >
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
             <div className="mb-10">
@@ -533,7 +540,7 @@ Winner gets to update the group chat name until the next game night.
 Last place must give a 30-second acceptance speech explaining what went wrong.""" */}
 
       {/* STEP 3 - Bring the Competition */}
-      <section className="py-16 md:py-24 bg-samosa-cream">
+      <section id="compete" className="py-16 md:py-24 bg-samosa-cream">
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
             <div className="mb-10">

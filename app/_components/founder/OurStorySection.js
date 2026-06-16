@@ -16,10 +16,18 @@ export function OurStorySection() {
             {/* Left - Text */}
             <div>
               <AnimatedSection variant="fade-right">
-                <h3 className="text-[53px] font-bystander uppercase leading-[1.1] tracking-normal text-primary mb-8">
+                <h3 className="hidden md:block text-[53px] font-bystander uppercase leading-[1.1] tracking-normal text-primary mb-8">
                   It started with a
                   <br />
                   <span className="text-secondary">game of Articulate.</span>
+                </h3>
+                <h3 className="md:hidden text-[53px] font-bystander uppercase leading-[1.1] tracking-normal text-primary mb-8">
+                  It started
+                  <br /> with a{" "}
+                  <span className="text-secondary">
+                    game
+                    <br /> of Articulate.
+                  </span>
                 </h3>
               </AnimatedSection>
 

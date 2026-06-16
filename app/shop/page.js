@@ -5,6 +5,7 @@ import ProductInfo from "../_components/shop/ProductInfo";
 import WhatsInsideSection from "../_components/shop/WhatsInsideSection";
 import ReviewsCarousel from "../_components/shop/ReviewsCarousel";
 import ConnectWithUs from "../_components/shop/ConnectWithUs";
+import ReviewForm from "../_components/shop/ReviewForm";
 
 export default async function Shop() {
   //   console.log("Domain:", process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN);
@@ -41,6 +42,7 @@ export default async function Shop() {
 
       <WhatsInsideSection />
       <ReviewsCarousel />
+      <ReviewForm />
       <ConnectWithUs />
     </div>
   );
