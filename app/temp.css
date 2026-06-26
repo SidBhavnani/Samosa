@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Bystander Serif Font */
 @font-face {
@@ -9,128 +11,144 @@
   font-display: swap;
 }
 
-:root {
-  --samosa-magenta: 340 70% 37%;
-  --samosa-orange: 19 88% 54%;
-  --samosa-yellow: 48 100% 60%;
-  --samosa-accent: 28 85% 48%;
-  --samosa-yellow-green: 59 65% 73%;
-}
+/* SAMOSA Design System - Bold & Vibrant */
+/* All colors in HSL format */
 
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-  --font-bystander: "Bystander Serif", serif;
-
-  /* Core Brand Colors */
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(340 65% 15%);
-
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(340 65% 15%);
-
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(340 65% 15%);
-
-  /* Primary */
-  --color-primary: hsl(340 70% 37%);
-  --color-primary-foreground: hsl(0 0% 100%);
-
-  /* Secondary */
-  --color-secondary: hsl(19 88% 54%);
-  --color-secondary-foreground: hsl(0 0% 100%);
-
-  /* Muted */
-  --color-muted: hsl(45 40% 96%);
-  --color-muted-foreground: hsl(340 40% 35%);
-
-  /* Accent */
-  --color-accent: hsl(28 85% 48%);
-  --color-accent-foreground: hsl(0 0% 100%);
-
-  /* Destructive */
-  --color-destructive: hsl(0 84% 60%);
-  --color-destructive-foreground: hsl(0 0% 100%);
-
-  /* UI */
-  --color-border: hsl(0 0% 90%);
-  --color-input: hsl(0 0% 90%);
-  --color-ring: hsl(340 70% 37%);
-
-  --radius: 0.75rem;
-
-  /* Extended Palette */
-  --color-samosa-magenta: hsl(340 70% 37%);
-  --color-samosa-magenta-light: hsl(340 60% 50%);
-  --color-samosa-orange: hsl(19 88% 54%);
-  --color-samosa-orange-light: hsl(19 90% 65%);
-  --color-samosa-yellow: hsl(48 100% 60%);
-  --color-samosa-yellow-light: hsl(48 85% 75%);
-  --color-samosa-accent: hsl(28 85% 48%);
-  --color-samosa-accent-light: hsl(32 90% 58%);
-  --color-samosa-cream: hsl(48 60% 96%);
-  --color-samosa-dark: hsl(340 65% 22%);
-  --color-samosa-purple: hsl(270 45% 45%);
-  --color-samosa-green: hsl(100 40% 42%);
-  --color-samosa-gold: hsl(45 85% 55%);
-  --color-samosa-blue: hsl(220 45% 42%);
-  --color-samosa-blue-light: hsl(210 45% 55%);
-  --color-samosa-yellow-green: hsl(59 65% 73%);
-  --color-samosa-object: #d64227;
-  --color-samosa-random: #c1d37e;
-
-  /* Sidebar */
-  --color-sidebar-background: hsl(0 0% 100%);
-  --color-sidebar-foreground: hsl(340 65% 15%);
-  --color-sidebar-primary: hsl(340 70% 37%);
-  --color-sidebar-primary-foreground: hsl(0 0% 100%);
-  --color-sidebar-accent: hsl(45 40% 96%);
-  --color-sidebar-accent-foreground: hsl(340 65% 15%);
-  --color-sidebar-border: hsl(0 0% 90%);
-  --color-sidebar-ring: hsl(340 70% 37%);
-
-  /* Gradients */
-  --gradient-primary: linear-gradient(
-    135deg,
-    hsl(340 70% 37%),
-    hsl(19 88% 54%)
-  );
-  --gradient-secondary: linear-gradient(
-    135deg,
-    hsl(19 88% 54%),
-    hsl(340 70% 37%)
-  );
-  --gradient-accent: linear-gradient(135deg, hsl(28 85% 48%), hsl(340 70% 37%));
-  --gradient-hero: linear-gradient(
-    180deg,
-    hsla(340, 65%, 22%, 0.7),
-    hsla(340, 65%, 22%, 0.5)
-  );
-
-  /* Shadows */
-  --shadow-sm: 0 2px 8px hsla(340, 70%, 37%, 0.1);
-  --shadow-md: 0 4px 20px hsla(340, 70%, 37%, 0.15);
-  --shadow-lg: 0 8px 40px hsla(340, 70%, 37%, 0.2);
-  --shadow-glow: 0 0 30px hsla(340, 70%, 37%, 0.4);
-}
-
-/* @media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Core Brand Colors */
+    --background: 48 60% 96%;
+    --foreground: 340 65% 15%;
+
+    --card: 48 60% 96%;
+    --card-foreground: 340 65% 15%;
+
+    --popover: 48 60% 96%;
+    --popover-foreground: 340 65% 15%;
+
+    /* Primary - Magenta/Maroon #A01D50 */
+    --primary: 340 70% 37%;
+    --primary-foreground: 48 60% 96%;
+
+    /* Secondary - Orange #F16822 */
+    --secondary: 19 88% 54%;
+    --secondary-foreground: 48 60% 96%;
+
+    /* Muted - Light cream for alternating sections */
+    --muted: 45 40% 96%;
+    --muted-foreground: 340 40% 35%;
+
+    /* Accent - Warm Orange variant */
+    --accent: 28 85% 48%;
+    --accent-foreground: 48 60% 96%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 48 60% 96%;
+
+    /* UI Elements */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 340 70% 37%;
+
+    --radius: 0.75rem;
+
+    /* Extended Brand Palette */
+    --samosa-magenta: 340 70% 37%;
+    --samosa-magenta-light: 340 60% 50%;
+    --samosa-orange: 19 88% 54%;
+    --samosa-orange-light: 19 90% 65%;
+    --samosa-yellow: 48 100% 60%;
+    --samosa-yellow-light: 48 85% 75%;
+    --samosa-accent: 28 85% 48%;
+    --samosa-accent-light: 32 90% 58%;
+    --samosa-cream: 48 60% 96%;
+    --samosa-dark: 340 65% 22%;
+    --samosa-purple: 270 45% 45%;
+    --samosa-green: 100 40% 42%;
+    --samosa-gold: 45 85% 55%;
+    --samosa-blue: 220 45% 42%;
+    --samosa-blue-light: 210 45% 55%;
+    --samosa-yellow-green: 59 65% 73%;
+    --samosa-ice-blue: 170 20% 88%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(340, 70%, 37%),
+      hsl(19, 88%, 54%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(19, 88%, 54%),
+      hsl(340, 70%, 37%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(28, 85%, 48%),
+      hsl(340, 70%, 37%)
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsla(340, 65%, 22%, 0.7),
+      hsla(340, 65%, 22%, 0.5)
+    );
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsla(340, 70%, 37%, 0.1);
+    --shadow-md: 0 4px 20px hsla(340, 70%, 37%, 0.15);
+    --shadow-lg: 0 8px 40px hsla(340, 70%, 37%, 0.2);
+    --shadow-glow: 0 0 30px hsla(340, 70%, 37%, 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 48 60% 96%;
+    --sidebar-foreground: 340 65% 15%;
+    --sidebar-primary: 340 70% 37%;
+    --sidebar-primary-foreground: 48 60% 96%;
+    --sidebar-accent: 45 40% 96%;
+    --sidebar-accent-foreground: 340 65% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 340 70% 37%;
   }
-} */
 
-body {
-  /* background: var(--background);
-  color: var(--foreground); */
-  font-family: Arial, Helvetica, sans-serif;
-}
+  .dark {
+    --background: 340 30% 8%;
+    --foreground: 48 60% 95%;
 
-html,
-body {
-  overflow-x: clip;
+    --card: 340 25% 12%;
+    --card-foreground: 48 60% 95%;
+
+    --popover: 340 25% 12%;
+    --popover-foreground: 48 60% 95%;
+
+    --primary: 340 65% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 19 85% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 340 20% 18%;
+    --muted-foreground: 48 40% 65%;
+
+    --accent: 28 80% 52%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 20% 22%;
+    --input: 340 20% 22%;
+    --ring: 340 65% 45%;
+
+    --sidebar-background: 340 25% 10%;
+    --sidebar-foreground: 48 60% 95%;
+    --sidebar-primary: 340 65% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 340 20% 18%;
+    --sidebar-accent-foreground: 48 60% 95%;
+    --sidebar-border: 340 20% 22%;
+    --sidebar-ring: 340 65% 45%;
+  }
 }
 
 @layer base {
@@ -157,6 +175,14 @@ body {
   .font-bystander {
     font-weight: 400 !important;
     font-style: normal !important;
+  }
+
+  .emoji {
+    font-family:
+      "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji",
+      "Twemoji Mozilla", "EmojiOne Color", "Android Emoji", sans-serif;
+    font-style: normal;
+    font-weight: 400;
   }
 }
 
@@ -273,15 +299,6 @@ body {
   .bg-samosa-yellow-green {
     background-color: hsl(var(--samosa-yellow-green));
   }
-
-  /* Scrollbar hide utility */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 /* Custom animations */
@@ -372,6 +389,36 @@ body {
   }
 }
 
+/* Hero floating elements — each instance sets --bob-rot for base rotation */
+@keyframes hero-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--bob-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(calc(var(--bob-rot, 0deg) + 3deg));
+  }
+}
+
+.animate-hero-bob {
+  animation: hero-bob 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-bob,
+  .animate-float,
+  .animate-sticker-float,
+  .animate-marquee,
+  .animate-pulse-glow,
+  .animate-shimmer,
+  .animate-bounce-in,
+  .animate-slide-up,
+  .animate-wiggle {
+    animation: none !important;
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -453,48 +500,28 @@ body {
   }
 }
 
-.policy-span {
-  font-size: 14px;
-}
-
-/* Hero floating elements — each instance sets --bob-rot for base rotation */
-@keyframes hero-bob {
-  0%,
-  100% {
-    transform: translateY(0) rotate(var(--bob-rot, 0deg));
-  }
-  50% {
-    transform: translateY(-4px) rotate(calc(var(--bob-rot, 0deg) + 2deg));
-  }
-}
-
-.animate-hero-bob {
-  animation: hero-bob 5s ease-in-out infinite;
-  will-change: transform;
-}
-
 /* Magenta hero/section glow — warm orange radial highlight on primary bg */
 .bg-magenta-glow {
-  background-color: hsl(340 70% 37%);
+  background-color: hsl(var(--primary));
   background-image: radial-gradient(
     ellipse 75% 60% at 50% 72%,
-    hsl(19 88% 54% / 0.8) 0%,
-    hsl(19 88% 54% / 0.55) 25%,
-    hsl(19 88% 54% / 0.25) 50%,
-    hsl(19 88% 54% / 0.05) 70%,
+    hsl(var(--secondary) / 0.8) 0%,
+    hsl(var(--secondary) / 0.55) 25%,
+    hsl(var(--secondary) / 0.25) 50%,
+    hsl(var(--secondary) / 0.05) 70%,
     transparent 85%
   );
 }
 
 /* Softer variant — glow positioned lower and dimmer for in-page magenta sections */
 .bg-magenta-glow-soft {
-  background-color: hsl(340 70% 37%);
+  background-color: hsl(var(--primary));
   background-image: radial-gradient(
     ellipse 75% 55% at 50% 75%,
-    hsl(19 88% 54% / 0.5) 0%,
-    hsl(19 88% 54% / 0.32) 25%,
-    hsl(19 88% 54% / 0.14) 50%,
-    hsl(19 88% 54% / 0.03) 70%,
+    hsl(var(--secondary) / 0.5) 0%,
+    hsl(var(--secondary) / 0.32) 25%,
+    hsl(var(--secondary) / 0.14) 50%,
+    hsl(var(--secondary) / 0.03) 70%,
     transparent 85%
   );
 }

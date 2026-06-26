@@ -39,7 +39,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-magenta-glow-soft text-primary-foreground">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 items-start">
           {/* Brand */}
@@ -112,7 +112,7 @@ export function Footer() {
             <h4 className="font-display font-semibold text-lg mb-4">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
-                <li key={link.path}>
+                <li key={link.name}>
                   <Link
                     href={link.path}
                     className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"

@@ -91,7 +91,7 @@ export function GameNightGallery() {
   return (
     <section
       ref={sectionRef}
-      className="pt-16 md:pt-24 pb-4 bg-primary overflow-hidden flex flex-col"
+      className="pt-16 md:pt-24 pb-4 bg-magenta-glow-soft overflow-hidden flex flex-col"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <AnimatedSection variant="fade-up" className="text-center mb-12">

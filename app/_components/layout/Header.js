@@ -44,12 +44,12 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 max-w-screen z-50 bg-primary">
       {/* Marquee */}
-      <div className="bg-secondary/80 overflow-hidden py-1">
+      <div className="bg-secondary/80 overflow-hidden py-2 md:py-2.5">
         <div className="animate-marquee whitespace-nowrap flex">
-          {[...Array(4)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <span
               key={i}
-              className="text-secondary-foreground/90 text-[10px] font-medium mx-8"
+              className="text-secondary-foreground/90 text-xs md:text-sm font-bold uppercase mx-1"
             >
               🎉 Game Night Bundle – Save 15% When You Buy 2+ Games • Free
               Shipping On $30+ 🎉
@@ -88,7 +88,7 @@ export function Header() {
                   key={link.path}
                   href={link.path}
                   className={cn(
-                    "px-3 py-1.5 rounded-md text-xs font-medium transition-colors",
+                    "px-4 py-2 rounded-md text-sm font-medium transition-colors",
                     isActive(link.path)
                       ? "text-primary-foreground bg-primary-foreground/10"
                       : "text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10",
