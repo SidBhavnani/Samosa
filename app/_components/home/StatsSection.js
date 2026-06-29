@@ -24,8 +24,8 @@ export default function StatsSection() {
               {stats.map((stat, index) => (
                 <div key={index} className="text-center px-5 md:px-10 lg:px-14">
                   <p
-                    className="text-[9px] md:text-[13px] lg:text-[16px] font-sans font-bold uppercase tracking-[0.15em] leading-none mb-1"
-                    style={{ color: "#DA1963" }}
+                    className="text-[9px] md:text-[13px] lg:text-[16px] font-sans text-secondary font-bold uppercase tracking-[0.15em] leading-none mb-1"
+                    // style={{ color: "#DA1963" }}
                   >
                     {stat.subtitle}
                   </p>

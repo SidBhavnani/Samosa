@@ -94,20 +94,21 @@ export default function HeroSection() {
               <span className="block">Included</span>
             </div>
             {/* Speech bubble tail */}
-            <div
+            <div className="absolute -bottom-1.5 right-10 w-3 h-3 md:-bottom-2 md:right-12 md:w-4 md:h-4 bg-samosa-blue rotate-45" />
+            {/* <div
               className="absolute"
               style={{
-                right: "14%",
-                bottom: "clamp(-14px, -1.4vw, -10px)",
+                right: "17%",
+                bottom: "clamp(-8px, -1vw, -6px)",
                 width: 0,
                 height: 0,
-                borderLeft: "clamp(8px, 0.9vw, 14px) solid transparent",
-                borderRight: "clamp(8px, 0.9vw, 14px) solid transparent",
+                borderLeft: "clamp(6px, 0.75vw, 11px) solid transparent",
+                borderRight: "clamp(6px, 0.75vw, 11px) solid transparent",
                 borderTop:
-                  "clamp(14px, 1.6vw, 22px) solid hsl(var(--samosa-blue))",
+                  "clamp(11px, 1.3vw, 18px) solid hsl(var(--samosa-blue))",
               }}
               aria-hidden="true"
-            />
+            /> */}
           </div>
         </div>
 
@@ -129,7 +130,7 @@ export default function HeroSection() {
             const section = document.getElementById("try-cards");
             section?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="absolute right-[4%] md:right-[26%] top-[20%] md:top-[36%] z-40 animate-hero-bob group"
+          className="absolute right-[4%] md:right-[26%] xl:right-[28%] 2xl:right-[30%] top-[20%] md:top-[36%] z-40 animate-hero-bob group"
           style={{ ["--bob-rot"]: "0deg", animationDuration: "4s" }}
           aria-label="Try me"
         >
@@ -148,7 +149,8 @@ export default function HeroSection() {
               </span>
             </div>
             {/* Speech bubble tail */}
-            <div
+            <div className="absolute -bottom-1.5 left-8 w-3 h-3 md:-bottom-2 md:left-12 md:w-4 md:h-4 bg-secondary rotate-45" />
+            {/* <div
               className="absolute"
               style={{
                 left: "28%",
@@ -161,13 +163,13 @@ export default function HeroSection() {
                   "clamp(14px, 1.6vw, 22px) solid hsl(var(--secondary))",
               }}
               aria-hidden="true"
-            />
+            /> */}
           </div>
         </button>
 
         {/* Stacked SAMOSA cards — bottom right, overlapping box corner */}
         <div
-          className="absolute right-[8%] md:right-[18%] bottom-[-6%] md:bottom-[-8%] w-[28%] md:w-[18%] max-w-[260px] drop-shadow-2xl animate-hero-bob pointer-events-none z-40"
+          className="absolute right-[8%] md:right-[20%] xl:right-[22%] 2xl:right-[26%] bottom-[-6%] md:bottom-[-8%] w-[28%] md:w-[18%] max-w-[260px] drop-shadow-2xl animate-hero-bob pointer-events-none z-40"
           style={{ ["--bob-rot"]: "0deg", animationDuration: "6s" }}
         >
           <Image
