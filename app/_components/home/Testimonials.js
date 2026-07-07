@@ -1,5 +1,7 @@
 import { Star } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
+import placeholder from "@/public/assets/placeholder.webp";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -8,6 +10,7 @@ const testimonials = [
     name: "Vidhi",
     location: "New York, US",
     highlight: "tore my entire house apart",
+    image: placeholder,
   },
   {
     quote:
@@ -15,6 +18,7 @@ const testimonials = [
     name: "Haroon",
     location: "London, UK",
     highlight: "accessible and inclusive",
+    image: placeholder,
   },
   {
     quote:
@@ -22,6 +26,7 @@ const testimonials = [
     name: "Rupa",
     location: "Wolverhampton, UK",
     highlight: "easy game to pick up",
+    image: placeholder,
   },
 ];
 
@@ -53,8 +58,14 @@ export default function Testimonials() {
                   {testimonial.quote}
                 </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-                    {testimonial.name.charAt(0)}
+                  <div className="w-10 h-10 relative overflow-hidden rounded-full flex items-center justify-center text-primary-foreground font-bold text-sm">
+                    {/* {testimonial.name.charAt(0)} */}
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <p className="font-semibold text-sm">{testimonial.name}</p>

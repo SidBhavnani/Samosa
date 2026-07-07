@@ -226,7 +226,10 @@ export default function HostGameNightPage() {
       </section>
 
       {/* STEP 1 - Set the Vibe */}
-      <section id="vibe" className="py-16 md:py-24 bg-samosa-cream">
+      <section
+        id="vibe"
+        className="py-16 md:py-24 bg-samosa-cream scroll-mt-25.75 md:scroll-mt-28"
+      >
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
             <div className="mb-10">
@@ -320,7 +323,7 @@ export default function HostGameNightPage() {
       {/* STEP 2 - Feed Your People */}
       <section
         id="feed"
-        className="py-12 md:py-16 bg-samosa-blue text-samosa-cream"
+        className="py-12 md:py-16 bg-samosa-blue text-samosa-cream scroll-mt-25.75 md:scroll-mt-28"
       >
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
@@ -540,7 +543,10 @@ Winner gets to update the group chat name until the next game night.
 Last place must give a 30-second acceptance speech explaining what went wrong.""" */}
 
       {/* STEP 3 - Bring the Competition */}
-      <section id="compete" className="py-16 md:py-24 bg-samosa-cream">
+      <section
+        id="compete"
+        className="py-16 md:py-24 bg-samosa-cream scroll-mt-25.75 md:scroll-mt-28"
+      >
         <div className="container mx-auto px-4 lg:px-8">
           <AnimatedSection variant="fade-up">
             <div className="mb-10">
