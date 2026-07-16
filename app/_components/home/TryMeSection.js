@@ -27,6 +27,7 @@ import { useCart } from "@/app/_contexts/CartContext";
 import { cn } from "@/app/_hooks/utils";
 import { AnimatedSection } from "../AnimatedSection";
 import Image from "next/image";
+import stopwatch from "@/public/assets/stopwatch.png";
 
 const cardCategories1 = [
   {
@@ -424,7 +425,14 @@ export default function TryMeSection() {
                 {demoStep === 3 && (
                   <div className="mt-6 animate-fade-in">
                     <div className="bg-secondary flex items-center gap-2 text-left text-sm text-secondary-foreground px-6 py-2 rounded">
-                      <Clock className="h-full aspect-square" />
+                      {/* <Clock className="h-full aspect-square" /> */}
+                      <Image
+                        src={stopwatch}
+                        alt="Stopwatch"
+                        height={36}
+                        width={36}
+                        className="shrink-0"
+                      />
                       <span>
                         Your friend's description: <br />
                         {selectedCategory?.clue}

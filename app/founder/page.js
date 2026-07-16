@@ -147,7 +147,7 @@ export default function FounderPage() {
             </h1>
           </AnimatedSection>
           <AnimatedSection variant="fade-up" delay={300}>
-            <div className="flex max-w-[340px] md:max-w-3xl mx-auto mt-6 h-32 sm:h-28 items-start md:items-center gap-3 md:gap-6">
+            <div className="flex max-w-[340px] md:max-w-3xl mx-auto mt-6 h-32 sm:h-28 items-center gap-3 md:gap-6">
               <div className="relative aspect-[4/5] h-full">
                 <Image
                   src={foundersPhoto}
@@ -156,7 +156,7 @@ export default function FounderPage() {
                   className="object-cover w-full h-full rounded-xl"
                 />
               </div>
-              <p className="text-samosa-cream/80 font-sans font-semibold text-sm md:text-base lg:text-lg text-left leading-relaxed italic">
+              <p className="text-samosa-cream/80 font-sans font-semibold text-sm md:text-base lg:text-lg text-left italic">
                 &quot;I made SAMOSA so South Asians can feel seen and finally
                 play a game that bridges generations and reflects the world we
                 actually grew up in.&quot;

@@ -3,6 +3,10 @@
 import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
 import partyVibesGif from "@/public/assets/photos/party-vibes.gif";
+import culturallyRich from "@/public/assets/about-icons/Culturally rich.png";
+import easyToLearn from "@/public/assets/about-icons/Easy to learn.png";
+import interactiveGameplay from "@/public/assets/about-icons/Interactive gameplay.png";
+import multiGenerational from "@/public/assets/about-icons/Multi-generational.png";
 
 export default function AboutSection() {
   return (
@@ -58,7 +62,14 @@ export default function AboutSection() {
             <AnimatedSection variant="fade-left" delay={300} className="mt-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="border-l-2 border-secondary pl-4">
-                  <span className="text-2xl mb-2 block">🏠</span>
+                  {/* <span className="text-2xl mb-2 block">🏠</span> */}
+                  <Image
+                    src={culturallyRich}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className="mb-2"
+                  />
                   <p className="font-bold text-primary text-base mb-1">
                     Culturally rich
                   </p>
@@ -69,7 +80,14 @@ export default function AboutSection() {
                 </div>
 
                 <div className="border-l-2 border-secondary pl-4">
-                  <span className="text-2xl mb-2 block">🧐</span>
+                  {/* <span className="text-2xl mb-2 block">🧐</span> */}
+                  <Image
+                    src={easyToLearn}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className="mb-2"
+                  />
                   <p className="font-bold text-primary text-base mb-1">
                     Easy to learn
                   </p>
@@ -80,7 +98,14 @@ export default function AboutSection() {
                 </div>
 
                 <div className="border-l-2 border-secondary pl-4">
-                  <span className="text-2xl mb-2 block">🙌🏽</span>
+                  {/* <span className="text-2xl mb-2 block">🙌🏽</span> */}
+                  <Image
+                    src={interactiveGameplay}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className="mb-2"
+                  />
                   <p className="font-bold text-primary text-base mb-1">
                     Interactive gameplay
                   </p>
@@ -91,7 +116,14 @@ export default function AboutSection() {
                 </div>
 
                 <div className="border-l-2 border-secondary pl-4">
-                  <span className="text-2xl mb-2 block">👴🧑‍🦱👧👶</span>
+                  {/* <span className="text-2xl mb-2 block">👴🧑‍🦱👧👶</span> */}
+                  <Image
+                    src={multiGenerational}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className="mb-2"
+                  />
                   <p className="font-bold text-primary text-base mb-1">
                     Multi-generational
                   </p>

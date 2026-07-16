@@ -58,14 +58,14 @@ export default function Testimonials() {
                   {testimonial.quote}
                 </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 relative overflow-hidden rounded-full flex items-center justify-center text-primary-foreground font-bold text-sm">
-                    {/* {testimonial.name.charAt(0)} */}
-                    <Image
+                  <div className="w-10 h-10 relative overflow-hidden rounded-full flex items-center justify-center bg-primary font-bold text-sm">
+                    {testimonial.name.charAt(0)}
+                    {/* <Image
                       src={testimonial.image}
                       alt={testimonial.name}
                       fill
                       className="object-cover"
-                    />
+                    /> */}
                   </div>
                   <div>
                     <p className="font-semibold text-sm">{testimonial.name}</p>
