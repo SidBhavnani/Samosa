@@ -22,6 +22,7 @@ import swirlIllust from "@/public/assets/illustrations/swirl-illust.png";
 import jalebi from "@/public/assets/illustrations/jalebi.png";
 import cardStack from "@/public/assets/illustrations/card-stack.png";
 import founderPhoto from "@/public/assets/photos/board-setup.jpg";
+import foundersPhoto from "@/public/assets/founder-photo.jpg";
 import { OurStorySection } from "@/app/_components/founder/OurStorySection";
 import desiIconsRow from "@/public/assets/illustrations/desi-icons-row.png";
 
@@ -146,14 +147,24 @@ export default function FounderPage() {
             </h1>
           </AnimatedSection>
           <AnimatedSection variant="fade-up" delay={300}>
-            <p className="text-samosa-cream/80 font-sans font-semibold text-sm md:text-base lg:text-lg text-center max-w-3xl mx-auto mt-6 leading-relaxed italic">
-              &quot;I made SAMOSA so South Asians can feel seen and finally play
-              a game that bridges generations and reflects the world we actually
-              grew up in.&quot;
-              <span className="block mt-2 not-italic text-secondary text-xs md:text-sm font-semibold tracking-wide uppercase">
-                — Aanchal Khandelwal, Founder
-              </span>
-            </p>
+            <div className="flex max-w-3xl mx-auto mt-6 h-32 sm:h-28 items-center gap-2 sm:gap-4">
+              <div className="relative aspect-[4/5] h-full">
+                <Image
+                  src={foundersPhoto}
+                  alt="Aanchal Khandelwal, Founder"
+                  fill
+                  className="object-cover w-full h-full rounded-xl"
+                />
+              </div>
+              <p className="text-samosa-cream/80 font-sans font-semibold text-sm md:text-base lg:text-lg text-left leading-relaxed italic">
+                &quot;I made SAMOSA so South Asians can feel seen and finally
+                play a game that bridges generations and reflects the world we
+                actually grew up in.&quot;
+                <span className="block mt-2 not-italic text-secondary text-xs md:text-sm font-semibold tracking-wide uppercase">
+                  — Aanchal Khandelwal, Founder
+                </span>
+              </p>
+            </div>
           </AnimatedSection>
         </div>
       </section>
