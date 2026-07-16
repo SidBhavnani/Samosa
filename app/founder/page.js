@@ -147,7 +147,7 @@ export default function FounderPage() {
             </h1>
           </AnimatedSection>
           <AnimatedSection variant="fade-up" delay={300}>
-            <div className="flex max-w-3xl mx-auto mt-6 h-32 sm:h-28 items-center gap-2 sm:gap-4">
+            <div className="flex max-w-[340px] md:max-w-3xl mx-auto mt-6 h-32 sm:h-28 items-start md:items-center gap-3 md:gap-6">
               <div className="relative aspect-[4/5] h-full">
                 <Image
                   src={foundersPhoto}
