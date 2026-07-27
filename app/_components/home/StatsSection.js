@@ -1,8 +1,4 @@
-"use client";
-
-import Image from "next/image";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
-import decorativeStrip from "@/public/assets/decorative-strip.png";
 
 const stats = [
   { subtitle: "Party Word Game for", number: "4-20+ Players" },
@@ -10,7 +6,7 @@ const stats = [
   { subtitle: "Every Game Lasts", number: "45-90 Mins" },
 ];
 
-export default function StatsSection() {
+export default function StatsSection({ data }) {
   return (
     <>
       {/* Stats Bar */}
@@ -21,7 +17,7 @@ export default function StatsSection() {
         <div className="container mx-auto px-4">
           <AnimatedSection variant="fade-up">
             <div className="flex justify-center items-center divide-x-2 divide-secondary/50">
-              {stats.map((stat, index) => (
+              {data.stats.map((stat, index) => (
                 <div key={index} className="text-center px-5 md:px-10 lg:px-14">
                   <p
                     className="text-[9px] md:text-[13px] lg:text-[16px] font-sans text-secondary font-bold uppercase tracking-[0.15em] leading-none mb-1"

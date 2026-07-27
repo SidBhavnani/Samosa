@@ -8,7 +8,7 @@ const specs = [
   { label: "45-90", value: "Mins of play (atleast)" },
 ];
 
-export default function WhatsInsideSection() {
+export default function WhatsInsideSection({ data }) {
   return (
     <>
       <div className="bg-secondary overflow-hidden py-3">
@@ -18,18 +18,9 @@ export default function WhatsInsideSection() {
               key={i}
               className="text-primary-foreground font-bystander text-lg uppercase tracking-wider mx-2 flex items-center gap-2"
             >
-              {[
-                "🎬 Bollywood",
-                "🍛 Desi Vibes",
-                "💃 Dance Round",
-                "🏏 Cricket Talk",
-                "🎲 Game Night",
-                "😂 Pure Chaos",
-                "🎵 Music Round",
-                "🔥 Spicy Cards",
-              ].map((text, j) => (
+              {data.ticker.map((text, j) => (
                 <span key={j} className="flex items-center gap-2">
-                  <span>{text}</span>
+                  <span>{text.text}</span>
                   <span>✦</span>
                 </span>
               ))}
@@ -49,7 +40,7 @@ export default function WhatsInsideSection() {
           </AnimatedSection>
           <AnimatedSection variant="fade-up" delay={200}>
             <div className="flex justify-center items-center divide-x-2 divide-white/30 max-w-3xl mx-auto">
-              {specs.map((item, index) => (
+              {data.whats_inside_specs.map((item, index) => (
                 <div
                   key={index}
                   className="text-center px-4 md:px-8 lg:px-16 flex-1"

@@ -7,19 +7,14 @@ import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
 
 import gameBox from "@/public/assets/game-box.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getProduct } from "@/app/_lib/shopify";
 
-const SAMOSA_PRODUCT = {
-  id: "samosa-game-1",
-  name: "SAMOSA - Desi Party Game",
-  price: 29.99,
-  image: "/assets/game-box.png", // important: use public path for cart
-};
-
-export default function CTASection({ ctaSectionRef }) {
+export default function CTASection({ data }) {
   const { addItem, adding } = useCart();
   const [product, setProduct] = useState(null);
+
+  const ctaSectionRef = useRef(null);
 
   const handleAddToCart = () => {
     addItem(product.variants.edges[0].node.id, 1);
@@ -55,15 +50,15 @@ export default function CTASection({ ctaSectionRef }) {
               <div className="relative flex justify-center">
                 {/* Floating badges */}
                 <div className="absolute -top-4 -left-4 md:left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-float z-10">
-                  🔥 Bestseller
+                  {data.cta_badge_1}
                 </div>
 
                 <div className="absolute -bottom-2 -right-4 md:right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-float animation-delay-300 z-10">
-                  ⭐ 4.9 Rating
+                  {data.cta_badge_2}
                 </div>
 
                 <div className="absolute top-1/2 -right-8 md:-right-4 bg-background text-foreground px-3 py-2 rounded-full font-bold text-xs shadow-lg animate-float animation-delay-500 z-10 hidden md:block">
-                  1800+ Words
+                  {data.cta_badge_3}
                 </div>
 
                 {/* Glow */}
@@ -72,7 +67,7 @@ export default function CTASection({ ctaSectionRef }) {
                 {/* Image */}
                 <div className="relative w-full max-w-xs md:max-w-sm aspect-square">
                   <Image
-                    src={gameBox}
+                    src={product.images.edges[0].node.url}
                     alt="SAMOSA Game Box"
                     fill
                     className="object-contain drop-shadow-2xl hover:rotate-[-3deg] hover:scale-105 transition-all duration-500"
@@ -86,11 +81,11 @@ export default function CTASection({ ctaSectionRef }) {
             <AnimatedSection variant="fade-left" delay={200}>
               <div className="text-center lg:text-left">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bystander uppercase mb-4">
-                  <span className="text-primary">Ready to Play?</span>
+                  <span className="text-primary">{data.cta_title}</span>
                 </h2>
 
                 <p className="text-lg text-secondary font-semibold mb-8 max-w-md mx-auto lg:mx-0">
-                  It's simple - add to cart.
+                  {data.cta_subtitle}
                 </p>
 
                 {/* Price box */}
@@ -106,10 +101,25 @@ export default function CTASection({ ctaSectionRef }) {
                     </div>
 
                     <div className="text-right">
-                      <p className="text-sm text-muted-foreground">Shipping</p>
-                      <p className="text-sm font-bold text-accent">
-                        FREE over {formatPrice(50)}
-                      </p>
+                      {data.minimum_shipping > 0 ? (
+                        <>
+                          <p className="text-sm text-muted-foreground">
+                            Shipping
+                          </p>
+                          <p className="text-sm font-bold text-accent">
+                            FREE over {formatPrice(data.minimum_shipping)}
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-sm font-bold text-muted-foreground">
+                            Free UK & US
+                          </p>
+                          <p className="text-sm font-bold text-muted-foreground">
+                            Shipping
+                          </p>
+                        </>
+                      )}
                     </div>
                   </div>
 

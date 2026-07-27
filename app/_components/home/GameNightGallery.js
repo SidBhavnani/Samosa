@@ -5,63 +5,9 @@ import Image from "next/image";
 
 import { cn } from "@/app/_hooks/utils";
 import { AnimatedSection } from "../AnimatedSection";
+import { PrismicNextImage } from "@prismicio/next";
 
-import boxFlatlay from "@/public/assets/photos/box-flatlay.jpg";
-import founderBox from "@/public/assets/photos/founder-box.jpg";
-import playingCards from "@/public/assets/photos/playing-cards.jpg";
-import gameNightGroup from "@/public/assets/photos/game-night-group.jpg";
-import boardSetup from "@/public/assets/photos/board-setup.jpg";
-import friendsPlaying from "@/public/assets/photos/friends-playing.jpg";
-import gameplayAction from "@/public/assets/photos/gameplay-action.gif";
-import partyVibes from "@/public/assets/photos/party-vibes.gif";
-
-const galleryItems = [
-  {
-    src: gameNightGroup,
-    alt: "Game night with friends",
-    label: "Game Night Vibes 🎉",
-    isGif: false,
-  },
-  {
-    src: gameplayAction,
-    alt: "Gameplay in action",
-    label: "Live Action 🔥",
-    isGif: true,
-  },
-  {
-    src: boardSetup,
-    alt: "SAMOSA board setup",
-    label: "The Setup ✨",
-    isGif: false,
-  },
-  {
-    src: playingCards,
-    alt: "Drawing a card",
-    label: "Draw a Card 🎴",
-    isGif: false,
-  },
-  { src: partyVibes, alt: "Party energy", label: "Party Mode 💃", isGif: true },
-  {
-    src: founderBox,
-    alt: "Founder with SAMOSA",
-    label: "Meet the Founder 👋",
-    isGif: false,
-  },
-  {
-    src: boxFlatlay,
-    alt: "SAMOSA box flatlay",
-    label: "Unbox the Fun 📦",
-    isGif: false,
-  },
-  {
-    src: friendsPlaying,
-    alt: "Friends playing SAMOSA",
-    label: "Squad Goals 🤩",
-    isGif: false,
-  },
-];
-
-export function GameNightGallery() {
+export function GameNightGallery({ data }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [visibleCount, setVisibleCount] = useState(0);
 
@@ -74,7 +20,7 @@ export function GameNightGallery() {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
 
-          galleryItems.forEach((_, i) => {
+          data.image_gallery.forEach((_, i) => {
             setTimeout(() => {
               setVisibleCount((prev) => prev + 1);
             }, i * 120);
@@ -86,7 +32,7 @@ export function GameNightGallery() {
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [data.image_gallery]);
 
   return (
     <section
@@ -105,7 +51,7 @@ export function GameNightGallery() {
 
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-6xl mx-auto">
-          {galleryItems.map((item, index) => (
+          {data.image_gallery.map((item, index) => (
             <div
               key={index}
               className={cn(
@@ -119,9 +65,8 @@ export function GameNightGallery() {
             >
               {/* Image */}
               <div className="relative w-full h-full">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
+                <PrismicNextImage
+                  field={item.image}
                   fill
                   className={cn(
                     "object-cover transition-transform duration-700",
@@ -129,12 +74,12 @@ export function GameNightGallery() {
                   )}
                   sizes="(max-width: 768px) 50vw, 25vw"
                   loading="lazy"
-                  unoptimized={item.isGif}
+                  unoptimized={item.gif}
                 />
               </div>
 
               {/* GIF badge */}
-              {item.isGif && (
+              {item.gif && (
                 <div className="absolute top-3 right-3 z-20">
                   <div className="relative">
                     <span className="absolute inset-0 bg-secondary rounded-full animate-ping opacity-40" />
@@ -169,21 +114,12 @@ export function GameNightGallery() {
         <div className="flex whitespace-nowrap animate-marquee">
           {[...Array(3)].map((_, setIndex) => (
             <div key={setIndex} className="flex items-center gap-6 mr-6">
-              {[
-                "🎲 Game Night",
-                "🎬 Bollywood",
-                "🍛 Desi Vibes",
-                "💃 Dance Round",
-                "🏏 Cricket Talk",
-                "😂 Pure Chaos",
-                "🎵 Music Round",
-                "🔥 Spicy Cards",
-              ].map((text, i) => (
+              {data.gallery_ticker.map((text, i) => (
                 <span
                   key={i}
                   className="text-background/70 font-display font-bold text-2xl md:text-3xl uppercase px-4"
                 >
-                  {text}
+                  {text.label}
                 </span>
               ))}
             </div>

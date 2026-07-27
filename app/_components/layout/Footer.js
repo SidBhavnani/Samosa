@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import { Instagram, Facebook, Twitter, Youtube } from "lucide-react";
 
-import samosaLogo from "@/public/assets/samosa-logo.png";
+import { PrismicNextImage } from "@prismicio/next";
+import { DynamicIcon } from "lucide-react/dynamic";
 
 const footerLinks = {
   shop: [
@@ -26,18 +26,7 @@ const footerLinks = {
   ],
 };
 
-const socialLinks = [
-  {
-    name: "Instagram",
-    icon: Instagram,
-    url: "https://instagram.com/samosagame",
-  },
-  { name: "Facebook", icon: Facebook, url: "https://facebook.com/samosagame" },
-  { name: "Twitter", icon: Twitter, url: "https://twitter.com/samosagame" },
-  { name: "YouTube", icon: Youtube, url: "https://youtube.com/@samosagame" },
-];
-
-export function Footer() {
+export function Footer({ data }) {
   return (
     <footer className="bg-magenta-glow-soft text-primary-foreground">
       <div className="container mx-auto px-4 py-12 md:py-16">
@@ -45,20 +34,19 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-4">
-              <Image
-                src={samosaLogo}
-                alt="SAMOSA"
+              <PrismicNextImage
+                field={data.footer_logo}
                 className="h-12 w-auto"
-                priority
+                preload
               />
             </Link>
 
             <p className="text-primary-foreground/80 text-sm mb-6 mt-4">
-              Your Desi Game Night Starts Here. Chaos guaranteed!
+              {data.footer_text}
             </p>
 
             <div className="flex gap-4">
-              {socialLinks.map((social) => (
+              {data.social_links.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
@@ -67,7 +55,7 @@ export function Footer() {
                   className="text-primary-foreground/70 hover:text-secondary transition-colors"
                   aria-label={social.name}
                 >
-                  <social.icon className="h-5 w-5" />
+                  <DynamicIcon name={social.icon} className="h-5 w-5" />
                 </a>
               ))}
             </div>

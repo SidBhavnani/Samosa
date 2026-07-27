@@ -29,179 +29,6 @@ import { AnimatedSection } from "../AnimatedSection";
 import Image from "next/image";
 import stopwatch from "@/public/assets/stopwatch.png";
 
-const cardCategories1 = [
-  {
-    id: "place",
-    label: "PLACE",
-    // icon: MapPin,
-    icon: place,
-    clue: "HOME OF THE TAJ MAHAL",
-    answer: "AGRA",
-    color: "text-samosa-gold",
-  },
-  {
-    id: "person",
-    label: "PERSON",
-    // icon: Users,
-    icon: person,
-    clue: "INDIA'S FAMOUS WOMAN CHEF",
-    answer: "TARLA DALAL",
-    color: "text-samosa-orange",
-  },
-  {
-    id: "object",
-    label: "OBJECT",
-    // icon: Package,
-    icon: object,
-    clue: "STRINGED INSTRUMENT OF INDIA",
-    answer: "SITAR",
-    color: "text-samosa-object",
-  },
-  {
-    id: "food",
-    label: "FOOD",
-    // icon: UtensilsCrossed,
-    icon: food,
-    clue: "SOUTH INDIAN DIP WITH COCONUT",
-    answer: "COCONUT CHUTNEY",
-    color: "text-primary",
-  },
-  {
-    id: "bolly",
-    label: "BOLLY",
-    // icon: Clapperboard,
-    icon: bolly,
-    clue: "SRK DISCO HIT FROM OM SHANTI OM",
-    answer: "DARD-E-DISCO",
-    color: "text-samosa-blue",
-  },
-  {
-    id: "random",
-    label: "RANDOM",
-    // icon: CircleHelp,
-    icon: random,
-    clue: "LARGEST LAND ANIMAL",
-    answer: "ELEPHANT",
-    color: "text-samosa-random",
-  },
-];
-
-const cardCategories2 = [
-  {
-    id: "place",
-    label: "PLACE",
-    // icon: MapPin,
-    icon: place,
-    clue: "Maharashtra's favourite berry-filled weekend escape",
-    answer: "MAHABALESHWAR",
-    color: "text-samosa-gold",
-  },
-  {
-    id: "person",
-    label: "PERSON",
-    // icon: Users,
-    icon: person,
-    clue: "The younger, more lovable Malik brother",
-    answer: "ARMAAN MALIK",
-    color: "text-samosa-orange",
-  },
-  {
-    id: "object",
-    label: "OBJECT",
-    // icon: Package,
-    icon: object,
-    clue: "What lights up every doorstep on Diwali night",
-    answer: "DIYA",
-    color: "text-samosa-object",
-  },
-  {
-    id: "food",
-    label: "FOOD",
-    // icon: UtensilsCrossed,
-    icon: food,
-    clue: "The tall pink glass at every Irani café",
-    answer: "FALOODA",
-    color: "text-primary",
-  },
-  {
-    id: "bolly",
-    label: "BOLLY",
-    // icon: Clapperboard,
-    icon: bolly,
-    clue: "A mother's undying faith that her sons will return",
-    answer: "MERE KARAN ARJUN AAYENGE",
-    color: "text-samosa-blue",
-  },
-  {
-    id: "random",
-    label: "RANDOM",
-    // icon: CircleHelp,
-    icon: random,
-    clue: "The show that owned every Indian household's 8pm slot",
-    answer: "KYONKI SAAS BHI KABHI BAHU THI",
-    color: "text-samosa-random",
-  },
-];
-
-const cardCategories3 = [
-  {
-    id: "place",
-    label: "PLACE",
-    // icon: MapPin,
-    icon: place,
-    clue: "Old Delhi's most legendary breakfast lane",
-    answer: "PARANTHE WALI GALI",
-    color: "text-samosa-gold",
-  },
-  {
-    id: "person",
-    label: "PERSON",
-    // icon: Users,
-    icon: person,
-    clue: "The Indian who runs the world's most creative software empire",
-    answer: "SHANTANU NARAYEN",
-    color: "text-samosa-orange",
-  },
-  {
-    id: "object",
-    label: "OBJECT",
-    // icon: Package,
-    icon: object,
-    clue: "The sacred pot at every Hindu puja",
-    answer: "KALASH",
-    color: "text-samosa-object",
-  },
-  {
-    id: "food",
-    label: "FOOD",
-    // icon: UtensilsCrossed,
-    icon: food,
-    clue: "Delhi's most beloved crunchy street snack",
-    answer: "PAPRI CHAAT",
-    color: "text-primary",
-  },
-  {
-    id: "bolly",
-    label: "BOLLY",
-    // icon: Clapperboard,
-    icon: bolly,
-    clue: "Three friends, one epic European road trip",
-    answer: "ZINDAGI NA MILEGI DOBARA",
-    color: "text-samosa-blue",
-  },
-  {
-    id: "random",
-    label: "RANDOM",
-    // icon: CircleHelp,
-    icon: random,
-    clue: "When India's two biggest music apps became one",
-    answer: "JIOSAAVN",
-    color: "text-samosa-random",
-  },
-];
-
-const cards = [cardCategories1, cardCategories2, cardCategories3];
-
 const SAMOSA_PRODUCT = {
   id: "samosa-game-1",
   name: "SAMOSA - Desi Party Game",
@@ -209,7 +36,64 @@ const SAMOSA_PRODUCT = {
   image: "/assets/game-box.png",
 };
 
-export default function TryMeSection() {
+export default function TryMeSection({ data }) {
+  const cards = data.trial_cards.map((card) => [
+    {
+      id: "place",
+      label: "PLACE",
+      // icon: MapPin,
+      icon: place,
+      clue: card.place_clue,
+      answer: card.place_answer,
+      color: "text-samosa-gold",
+    },
+    {
+      id: "person",
+      label: "PERSON",
+      // icon: Users,
+      icon: person,
+      clue: card.person_clue,
+      answer: card.person_answer,
+      color: "text-samosa-orange",
+    },
+    {
+      id: "object",
+      label: "OBJECT",
+      // icon: Package,
+      icon: object,
+      clue: card.object_clue,
+      answer: card.object_answer,
+      color: "text-samosa-object",
+    },
+    {
+      id: "food",
+      label: "FOOD",
+      // icon: UtensilsCrossed,
+      icon: food,
+      clue: card.food_clue,
+      answer: card.food_answer,
+      color: "text-primary",
+    },
+    {
+      id: "bolly",
+      label: "BOLLY",
+      // icon: Clapperboard,
+      icon: bolly,
+      clue: card.bolly_clue,
+      answer: card.bolly_answer,
+      color: "text-samosa-blue",
+    },
+    {
+      id: "random",
+      label: "RANDOM",
+      // icon: CircleHelp,
+      icon: random,
+      clue: card.random_clue,
+      answer: card.random_answer,
+      color: "text-samosa-random",
+    },
+  ]);
+
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCard, setSelectedCard] = useState(() => {
     const randomIndex = Math.floor(Math.random() * cards.length);

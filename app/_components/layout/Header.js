@@ -12,6 +12,7 @@ import { useCart } from "@/app/_contexts/CartContext";
 import { cn } from "@/app/_hooks/utils";
 
 import samosaLogo from "@/public/assets/samosa-logo.png";
+import { PrismicNextImage } from "@prismicio/next";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -23,7 +24,7 @@ const navLinks = [
   { name: "Contact", path: "/contact" },
 ];
 
-export function Header() {
+export function Header({ data }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -51,8 +52,7 @@ export function Header() {
               key={i}
               className="text-secondary-foreground/90 text-xs md:text-sm font-bold uppercase mx-1"
             >
-              🎉 Game Night Bundle – Save 15% When You Buy 2+ Games • Free
-              Shipping On $30+ 🎉
+              {data.header_text}
             </span>
           ))}
         </div>
@@ -68,14 +68,13 @@ export function Header() {
         <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image
-              src={samosaLogo}
-              alt="SAMOSA"
+            <PrismicNextImage
+              field={data.header_logo}
               className={cn(
                 "w-auto transition-all duration-300",
                 isScrolled ? "h-10 md:h-12" : "h-12 md:h-16",
               )}
-              priority
+              preload
             />
           </Link>
 

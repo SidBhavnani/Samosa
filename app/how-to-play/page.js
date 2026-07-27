@@ -1,9 +1,14 @@
 import Link from "next/link";
 import HowToPlayPage from "../_components/how-to-play/HowToPlayPage";
 import { getProduct } from "../_lib/shopify";
+import { createClient } from "@/prismicio";
 
 export default async function HowToPlay() {
   const product = await getProduct("samosa", "GB");
+  const client = createClient();
+  const page = await client.getSingle("how_to_play");
+  const homepage = await client.getSingle("homepage");
+
   if (!product) {
     return (
       <div className="min-h-screen pt-40 text-center">
@@ -17,5 +22,11 @@ export default async function HowToPlay() {
     );
   }
 
-  return <HowToPlayPage product={product} />;
+  return (
+    <HowToPlayPage
+      product={product}
+      data={page.data}
+      homepage={homepage.data}
+    />
+  );
 }

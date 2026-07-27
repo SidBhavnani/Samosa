@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,15 +13,9 @@ import gameBox from "@/public/assets/game-box.png";
 import samosaIllust from "@/public/assets/illustrations/samosa-illust.png";
 import heroCardsStack from "@/public/assets/hero-cards-stack.png";
 import { useCart } from "@/app/_contexts/CartContext";
+import { PrismicNextImage } from "@prismicio/next";
 
-const SAMOSA_PRODUCT = {
-  id: "samosa-game-1",
-  name: "SAMOSA - Desi Party Game",
-  price: 29.99,
-  image: "/assets/game-box.png", // important: use public path for cart
-};
-
-export default function HeroSection() {
+export default function HeroSection({ data }) {
   const { addItem, adding } = useCart();
 
   const handleAddToCart = () => {
@@ -38,7 +34,7 @@ export default function HeroSection() {
               textShadow: "0 4px 18px rgba(0,0,0,0.22)",
             }}
           >
-            The&nbsp;Ultimate&nbsp;Desi
+            {data.hero_title_line_1}
           </span>
           <span
             className="block text-samosa-yellow-light"
@@ -48,7 +44,7 @@ export default function HeroSection() {
               textShadow: "0 4px 18px rgba(0,0,0,0.22)",
             }}
           >
-            Party&nbsp;Game
+            {data.hero_title_line_2}
           </span>
         </h1>
       </div>
@@ -61,11 +57,10 @@ export default function HeroSection() {
             className="w-[48%] md:w-[40%] lg:w-[36%] max-w-[480px] drop-shadow-2xl animate-hero-bob"
             style={{ ["--bob-rot"]: "0deg", animationDuration: "5s" }}
           >
-            <Image
-              src={gameBox}
-              alt="SAMOSA Game Box — The Ultimate Desi Party Game"
+            <PrismicNextImage
+              field={data.hero_game_box_image}
               className="w-full h-full object-contain"
-              priority
+              preload
             />
           </div>
         </div>
@@ -95,20 +90,6 @@ export default function HeroSection() {
             </div>
             {/* Speech bubble tail */}
             <div className="absolute -bottom-1.5 right-10 w-3 h-3 md:-bottom-2 md:right-12 md:w-4 md:h-4 bg-samosa-blue rotate-45" />
-            {/* <div
-              className="absolute"
-              style={{
-                right: "17%",
-                bottom: "clamp(-8px, -1vw, -6px)",
-                width: 0,
-                height: 0,
-                borderLeft: "clamp(6px, 0.75vw, 11px) solid transparent",
-                borderRight: "clamp(6px, 0.75vw, 11px) solid transparent",
-                borderTop:
-                  "clamp(11px, 1.3vw, 18px) solid hsl(var(--samosa-blue))",
-              }}
-              aria-hidden="true"
-            /> */}
           </div>
         </div>
 
@@ -150,20 +131,6 @@ export default function HeroSection() {
             </div>
             {/* Speech bubble tail */}
             <div className="absolute -bottom-1.5 left-8 w-3 h-3 md:-bottom-2 md:left-12 md:w-4 md:h-4 bg-secondary rotate-45" />
-            {/* <div
-              className="absolute"
-              style={{
-                left: "28%",
-                bottom: "clamp(-14px, -1.4vw, -10px)",
-                width: 0,
-                height: 0,
-                borderLeft: "clamp(8px, 0.9vw, 14px) solid transparent",
-                borderRight: "clamp(8px, 0.9vw, 14px) solid transparent",
-                borderTop:
-                  "clamp(14px, 1.6vw, 22px) solid hsl(var(--secondary))",
-              }}
-              aria-hidden="true"
-            /> */}
           </div>
         </button>
 
@@ -186,6 +153,7 @@ export default function HeroSection() {
           size="lg"
           className="bg-secondary hover:bg-secondary/90 text-secondary-foreground h-11 md:h-12 px-6 md:px-8 text-sm md:text-base font-sans font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 rounded-full"
           onClick={handleAddToCart}
+          disabled={adding}
         >
           <ShoppingCart className="mr-2 h-4 w-4 md:h-5 md:w-5" />
           Add to Cart

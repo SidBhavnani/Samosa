@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,77 +13,14 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/app/_components/ui/button";
-import { Input } from "@/app/_components/ui/input";
-import { Textarea } from "@/app/_components/ui/textarea";
-import { Label } from "@/app/_components/ui/label";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
-import contactHero from "@/public/assets/photos/contact-hero.jpg";
-import instagram from "@/public/assets/icons/instagram.png";
-import tiktok from "@/public/assets/icons/tik-tok.png";
+import ContactForm from "../_components/ContactForm";
+import { createClient } from "@/prismicio";
+import { PrismicNextImage } from "@prismicio/next";
 
-const supportCategories = [
-  {
-    title: "Order Support",
-    description: "Track your order, returns, and delivery issues",
-    icon: Package,
-    link: "mailto:orders@samosagame.com",
-    linkText: "orders@samosagame.com",
-    emoji: "📦",
-  },
-  {
-    title: "Wholesale Inquiries",
-    description: "Bulk orders, retail partnerships, and events",
-    icon: Users,
-    link: "mailto:wholesale@samosagame.com",
-    linkText: "wholesale@samosagame.com",
-    emoji: "🤝",
-  },
-  {
-    title: "Press & Media",
-    description: "Press kits, interviews, and media requests",
-    icon: FileText,
-    link: "mailto:press@samosagame.com",
-    linkText: "press@samosagame.com",
-    emoji: "📰",
-  },
-];
-
-const socialLinks = [
-  {
-    name: "Instagram",
-    icon: instagram,
-    url: "https://instagram.com/samosagame",
-  },
-  // { name: "Twitter", icon: Twitter, url: "https://twitter.com/samosagame" },
-  // { name: "Facebook", icon: Facebook, url: "https://facebook.com/samosagame" },
-  { name: "TikTok", icon: tiktok, url: "https://tiktok.com/@samosagame" },
-];
-
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-  };
+export default async function ContactPage() {
+  const client = createClient();
+  const page = await client.getSingle("contact");
 
   return (
     <div className="min-h-screen">
@@ -96,12 +30,11 @@ export default function ContactPage() {
 
         {/* Image */}
         <div className="hidden lg:block absolute right-0 top-0 w-1/2 h-full overflow-hidden">
-          <Image
-            src={contactHero}
-            alt="SAMOSA board game setup"
-            fill
+          <PrismicNextImage
+            field={page.data.hero_image}
             className="object-cover scale-125"
-            priority
+            fill
+            preload
           />
         </div>
 
@@ -114,9 +47,9 @@ export default function ContactPage() {
             </h1>
 
             <p className="text-samosa-cream/80 max-w-xl text-lg font-semibold">
-              Questions, feedback, or wholesale enquiries?
+              {page.data.hero_text_line_1}
               <br />
-              We&apos;d love to hear from you! We reply within 5 working days 📨
+              {page.data.hero_text_line_2}
             </p>
           </AnimatedSection>
         </div>
@@ -126,104 +59,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             {/* Left - Contact Form */}
-            <div>
-              <AnimatedSection variant="fade-right">
-                <h2 className="text-[50px] font-bystander uppercase leading-[1.1] tracking-normal mb-8">
-                  <span className="text-primary">Send us a </span>
-                  <span className="text-secondary">Message.</span>
-                </h2>
-              </AnimatedSection>
-
-              <AnimatedSection variant="fade-up" delay={200}>
-                {isSubmitted ? (
-                  <div className="bg-muted rounded-2xl p-8 text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Send className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
-                    <p className="text-muted-foreground mb-6">
-                      Thanks for reaching out. We&apos;ll get back to you within
-                      24 hours.
-                    </p>
-                    <Button
-                      onClick={() => setIsSubmitted(false)}
-                      variant="outline"
-                      className="rounded-full"
-                    >
-                      Send Another Message
-                    </Button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Name *</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          placeholder="Your name"
-                          className="rounded-lg"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          placeholder="you@example.com"
-                          className="rounded-lg"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="subject">Subject</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        placeholder="What's this about?"
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        placeholder="Tell us what's on your mind..."
-                        rows={5}
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 font-semibold rounded-full shadow-lg"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          <Send className="mr-2 h-4 w-4" />
-                          Send Message
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                )}
-              </AnimatedSection>
-            </div>
+            <ContactForm />
 
             {/* Right - Contact Info */}
             <div>
@@ -244,10 +80,10 @@ export default function ContactPage() {
                     <div>
                       <p className="font-semibold text-foreground">Email</p>
                       <a
-                        href="mailto:hello@playsamosa.com"
+                        href={`mailto:${page.data.email}`}
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
-                        hello@playsamosa.com
+                        {page.data.email}
                       </a>
                     </div>
                   </div>
@@ -272,7 +108,7 @@ export default function ContactPage() {
                     Follow Us
                   </h3>
                   <div className="flex gap-3">
-                    {socialLinks.map((social) => (
+                    {page.data.social_links.map((social) => (
                       <a
                         key={social.name}
                         href={social.url}
@@ -282,9 +118,8 @@ export default function ContactPage() {
                         aria-label={social.name}
                       >
                         {/* <social.icon className="h-5 w-5" /> */}
-                        <Image
-                          src={social.icon}
-                          alt={social.name}
+                        <PrismicNextImage
+                          field={social.icon}
                           className="h-5 w-5"
                         />
                       </a>

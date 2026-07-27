@@ -8,6 +8,7 @@ import { CartDrawer } from "./_components/layout/CartDrawer";
 import Providers from "./_components/Providers";
 import { getProduct } from "./_lib/shopify";
 import ProductProvider from "./_components/ProductProvider";
+import { createClient } from "@/prismicio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,8 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const product = await getProduct("samosa", "GB");
+  const client = createClient();
+  const page = await client.getSingle("global_nav");
   // console.log(product);
 
   return (
@@ -58,9 +61,9 @@ export default async function RootLayout({ children }) {
         <Providers country="GB">
           <ProductProvider product={product}>
             <div className="min-h-screen flex flex-col">
-              <Header />
+              <Header data={page.data} />
               <main className="flex-1">{children}</main>
-              <Footer />
+              <Footer data={page.data} />
               <CartDrawer />
             </div>
           </ProductProvider>

@@ -5,39 +5,49 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
 
-const plans = [
-  {
-    id: 1,
-    title: "1 game",
-    price: "£27.99",
-    subtitle: "per game",
-    discount: null,
-    total: "£27.99 total",
-    save: null,
-  },
-  {
-    id: 2,
-    title: "2 games",
-    price: "£25.19",
-    subtitle: "per game",
-    discount: "10% off",
-    total: "£50.39 total",
-    save: "Save £5.60",
-    popular: true,
-  },
-  {
-    id: 5,
-    title: "5+ games",
-    price: "£23.79",
-    subtitle: "per game",
-    discount: "15% off",
-    total: "£118.95 total",
-    save: "Save £21",
-  },
-];
+// const plans = [
+//   {
+//     id: 1,
+//     title: "1 game",
+//     price: "£27.99",
+//     subtitle: "per game",
+//     discount: null,
+//     total: "£27.99 total",
+//     save: null,
+//   },
+//   {
+//     id: 2,
+//     title: "2 games",
+//     price: "£25.19",
+//     subtitle: "per game",
+//     discount: "10% off",
+//     total: "£50.39 total",
+//     save: "Save £5.60",
+//     popular: true,
+//   },
+//   {
+//     id: 5,
+//     title: "5+ games",
+//     price: "£23.79",
+//     subtitle: "per game",
+//     discount: "15% off",
+//     total: "£118.95 total",
+//     save: "Save £21",
+//   },
+// ];
 
-export default function BundlePricing({ handleAddToCart, adding }) {
-  const [selected, setSelected] = useState(plans[1]);
+export default function BundlePricing({ handleAddToCart, adding, data }) {
+  const plans = data.bundle_plans.map((plan) => ({
+    id: plan.quantity,
+    title: `${plan.quantity} game${plan.quantity > 1 ? "s" : ""}`,
+    price: plan.price,
+    subtitle: "per game",
+    discount: plan.discount || null,
+    total: plan.total,
+    save: plan.save,
+    popular: plan.most_popular,
+  }));
+  const [selected, setSelected] = useState(plans.find((plan) => plan.popular));
 
   return (
     <section className="w-full max-w-lg text-foreground">

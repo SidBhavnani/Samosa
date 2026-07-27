@@ -42,7 +42,7 @@ const reviews = [
   },
 ];
 
-export default function ReviewsCarousel() {
+export default function ReviewsCarousel({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(
     typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3,
@@ -65,6 +65,8 @@ export default function ReviewsCarousel() {
     [],
   );
 
+  // console.log(data.reviews_carousel[0]);
+
   return (
     <section className="py-16 md:py-20 bg-primary overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
@@ -79,8 +81,7 @@ export default function ReviewsCarousel() {
               ))}
             </div>
             <blockquote className="text-[24px] md:text-[32px] lg:text-[38px] font-bystander text-primary-foreground leading-[1.2] max-w-3xl mx-auto mb-4">
-              &quot;The best party game for desi game nights — pure chaos and
-              belly laughs!&quot;
+              {data.featured_review_text}
             </blockquote>
             <p className="text-primary-foreground/60 font-sans font-semibold text-sm">
               — Featured Review
@@ -97,7 +98,7 @@ export default function ReviewsCarousel() {
                   transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
                 }}
               >
-                {reviews.map((review, index) => (
+                {data?.reviews_carousel?.map((review, index) => (
                   <div
                     key={index}
                     className="bg-primary-foreground/10 rounded-2xl p-6 backdrop-blur-sm border border-primary-foreground/10 shrink-0"
@@ -107,14 +108,17 @@ export default function ReviewsCarousel() {
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center text-primary-foreground font-sans font-bold text-sm">
-                        {review.initial}
+                        {review.review.data.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
                         <p className="text-primary-foreground font-sans font-bold text-sm">
-                          {review.name} ({review.location})
+                          {review.review.data.name} (
+                          {review.review.data.location})
                         </p>
                         <div className="flex gap-0.5">
-                          {Array.from({ length: review.rating }).map((_, i) => (
+                          {Array.from({
+                            length: review.review.data.rating,
+                          }).map((_, i) => (
                             <Star
                               key={i}
                               className="h-3 w-3 fill-samosa-gold text-samosa-gold"
@@ -124,7 +128,7 @@ export default function ReviewsCarousel() {
                       </div>
                     </div>
                     <p className="text-primary-foreground/80 font-sans text-sm leading-relaxed">
-                      {review.text}
+                      {review.review.data.review}
                     </p>
                   </div>
                 ))}

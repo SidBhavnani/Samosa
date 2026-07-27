@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
 import { useProduct } from "../ProductProvider";
+import { useEffect, useState } from "react";
 
 // Sample product data
 const SAMOSA_PRODUCT = {
@@ -14,9 +15,27 @@ const SAMOSA_PRODUCT = {
   image: "/assets/game-box.png",
 };
 
-export default function StickyCartButton({ showStickyCart }) {
+export default function StickyCartButton() {
+  const [showStickyCart, setShowStickyCart] = useState(false);
   const { addItem, adding } = useCart();
   const product = useProduct();
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setShowStickyCart(window.scrollY > 600);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // console.log(product);
 

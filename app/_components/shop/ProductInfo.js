@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { useCart } from "@/app/_contexts/CartContext";
 import BundlePricing from "./BundlePricing";
 
-export default function ProductInfo({ product }) {
+export default function ProductInfo({ product, data }) {
   const { cart, addItem, adding } = useCart();
 
   const handleAddToCart = (quantity = 1) => {
@@ -72,7 +72,11 @@ export default function ProductInfo({ product }) {
         </a>
       </Button> */}
 
-      <BundlePricing handleAddToCart={handleAddToCart} adding={adding} />
+      <BundlePricing
+        handleAddToCart={handleAddToCart}
+        adding={adding}
+        data={data}
+      />
 
       {/* Description */}
       <div

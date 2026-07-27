@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 
 import { Button } from "@/app/_components/ui/button";
@@ -13,141 +10,45 @@ import {
 } from "@/app/_components/ui/accordion";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
 
-import boardCloseup from "@/public/assets/photos/board-closeup.jpg";
-import faqHelpBg from "@/public/assets/faq-help-bg.jpg";
+import { createClient } from "@/prismicio";
+import { PrismicNextImage } from "@prismicio/next";
 
-// FAQ Data (unchanged)
-const faqCategories = [
-  {
-    title: "About the Game",
-    questions: [
-      {
-        question: "What is SAMOSA board game?",
-        answer:
-          "SAMOSA is a party board game designed for South Asian groups. It's built around cultural references, inside jokes, and chaotic storytelling — turning everyday brown experiences into hilarious game night moments. It's perfect for dinner parties, birthdays, family gatherings, and pre-drinks.",
-      },
-      {
-        question: "How many players can play SAMOSA?",
-        answer: "SAMOSA is designed to be played with 4 to 20 people or more.",
-      },
-      {
-        question: "What age is SAMOSA suitable for?",
-        answer:
-          "SAMOSA is recommended for ages 12 and above. The game includes cultural humour and references that adult players tend to understand and enjoy more. That said, younger players (around 8+) can still enjoy the game and have fun — especially when playing with family or in mixed-age groups.",
-      },
-      {
-        question: "How long does a game take?",
-        answer:
-          "A game of SAMOSA lasts around 45–90 minutes — but most groups end up playing multiple rounds.",
-      },
-      {
-        question: "Who is this game for?",
-        answer:
-          "SAMOSA is made for South Asian groups and families who love celebrating shared cultural moments. If you've grown up around brown culture, experienced family chaos, or enjoy inside jokes that only South Asians get, this game will feel instantly familiar.",
-      },
-    ],
-  },
-  {
-    title: "Gameplay & Comparisons",
-    questions: [
-      {
-        question: "What makes SAMOSA different from other board games?",
-        answer:
-          'SAMOSA isn\'t just a board game — it\'s a cultural experience. Unlike generic party games, SAMOSA is designed specifically for the South Asian community. Think "Fevicol", "Virat Kohli", "gulab jamun", and "Tussi ja rahe ho?" all wrapped into one competitive, playful, and hilarious night in with your friends and family. It\'s the game that turns shared cultural moments — from wedding drama to WhatsApp chaos — into hilarious, memorable nights with loved ones.',
-      },
-      {
-        question: "Is SAMOSA like Articulate?",
-        answer:
-          "Yes — think of SAMOSA as the South Asian (Desi) version of Articulate. It takes the same word-guessing mechanics that make Articulate so fun and applies South Asian cultural references across the 300 cards in the game. This makes SAMOSA perfect for family and friends, including different generations — from parents and grandparents to cousins — so everyone can join in on the laughs.",
-      },
-      {
-        question: "Is SAMOSA like Taboo?",
-        answer:
-          "Yes — SAMOSA is like a South Asian (Desi) version of Taboo. It takes the same word-guessing and wordplay mechanics that make Taboo so fun and applies South Asian cultural references across the 1,800 words in the game. One key difference is that SAMOSA includes a board and different categories, allowing players' knowledge in certain areas to really shine, adding extra strategy and variety to the game.",
-      },
-      {
-        question: "Is SAMOSA suitable for non-South Asians?",
-        answer:
-          "SAMOSA is designed specifically for South Asian groups, so its humour and references resonate most with people who share that cultural background. That said, non-South Asians can play and enjoy it — especially with friends or family who understand or are curious about South Asian culture — but the references will land best for those who understand the context.",
-      },
-    ],
-  },
-  {
-    title: "Social & Gifting",
-    questions: [
-      {
-        question: "Is this good for parties?",
-        answer:
-          "Yes — that's exactly what it's designed for. SAMOSA works best in groups of friends where people are relaxed, loud, and ready to laugh. It's especially good for dinner parties, pre-drinks, and celebrations.",
-      },
-      {
-        question: "Will it actually be funny?",
-        answer:
-          "If you and your friends share South Asian cultural references, it usually gets funny very quickly. The humour comes from recognising situations, not forcing jokes — which is why it tends to land harder than generic party games.",
-      },
-      {
-        question: "Is it awkward to play?",
-        answer:
-          "Not at all — the game is designed to make things easy and flow naturally. After a couple of rounds, people usually get louder and more competitive without even trying.",
-      },
-      {
-        question: "Is this a good gift?",
-        answer:
-          "Yes — especially for South Asians. It's a great gift for birthdays, housewarmings, or anyone who loves hosting. It's something people actually use, not just something that sits on a shelf.",
-      },
-      {
-        question: "Why does this game exist?",
-        answer:
-          "Because most party games aren't made for South Asians. SAMOSA was created to bring cultural humour, shared experiences, and inside jokes into one place — so game nights actually feel personal.",
-      },
-    ],
-  },
-  {
-    title: "Orders & Shipping",
-    id: "shipping",
-    questions: [
-      {
-        question: "Where can I buy SAMOSA?",
-        answer: "You can buy SAMOSA on playsamosa.com, and on TikTok Shop.",
-      },
-      {
-        question: "Does SAMOSA ship internationally?",
-        answer:
-          "Yes, SAMOSA ships internationally. Find international shipping options at the checkout.",
-      },
-      {
-        question: "When will I receive my order?",
-        answer: `UK orders: 3-5 working days.<br>
-        US: 3-7 working days.<br>
-        International orders take 7-14 working days depending on your location`,
-      },
-      {
-        question: "Can I track my order?",
-        answer:
-          "Yes! Once your order ships, you'll receive an email with tracking information so you can follow your package's journey.",
-      },
-      {
-        question: "What's your return policy?",
-        id: "returns",
-        answer: `You may request a refund within 14 days of receiving your goods. See our full returns policy <a class="underline" href="/policies/refund-policy">here</a>`,
-      },
-    ],
-  },
-];
+export default async function FAQPage() {
+  const client = createClient();
+  const page = await client.getSingle("faq");
 
-export default function FAQPage() {
+  // FAQ Data (unchanged)
+  const faqCategories = [
+    {
+      title: "About the Game",
+      questions: page.data.about_the_game,
+    },
+    {
+      title: "Gameplay & Comparisons",
+      questions: page.data.gameplay_comparisons,
+    },
+    {
+      title: "Social & Gifting",
+      questions: page.data.social_gifting,
+    },
+    {
+      title: "Orders & Shipping",
+      id: "shipping",
+      questions: page.data.orders_shipping,
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* HERO */}
-      <section className="relative h-[360px] md:h-[480px] overflow-hidden pt-32 md:pt-40 pb-16 md:pb-24">
+      <section className="relative h-[360px] md:h-[480px] overflow-hidden pt-32 md:pt-48 pb-16 md:pb-24">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
-            src={boardCloseup}
-            alt="Friends playing SAMOSA at a game night party"
-            fill
-            priority
+          <PrismicNextImage
+            field={page.data.hero_banner_image}
             className="object-cover"
+            fill
+            preload
           />
           <div className="absolute inset-0 bg-foreground/50" />
         </div>
@@ -215,7 +116,11 @@ export default function FAQPage() {
       <section className="relative py-20 md:py-28 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <Image src={faqHelpBg} alt="" fill className="object-cover" />
+          <PrismicNextImage
+            field={page.data.cta_image}
+            className="object-cover"
+            fill
+          />
           <div className="absolute inset-0 bg-black/60" />
         </div>
 

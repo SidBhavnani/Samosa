@@ -30,34 +30,7 @@ import TryMeSection from "@/app/_components/home/TryMeSection";
 import { Button } from "../ui/button";
 import YouTubeShort from "./YouTubeShort";
 import { useCart } from "@/app/_contexts/CartContext";
-
-// Game steps
-const steps = [
-  {
-    number: "01",
-    title: "Split into teams",
-    description: "Divide the group into teams of 2 or more",
-    emoji: "👥",
-  },
-  {
-    number: "02",
-    title: "Grab a stack of cards",
-    description: "Grab a stack of cards",
-    emoji: "🃏",
-  },
-  {
-    number: "03",
-    title: "Describe, act, sing or dance",
-    description: "...clues about the words without saying the words themselves",
-    emoji: "🎭",
-  },
-  {
-    number: "04",
-    title: "Guess",
-    description: "...as many words as possible correctly",
-    emoji: "🏆",
-  },
-];
+import { PrismicNextImage } from "@prismicio/next";
 
 // Card categories with answers for the interactive demo (same as homepage)
 const cardCategories = [
@@ -130,7 +103,7 @@ const variations = [
   },
 ];
 
-export default function HowToPlayPage({ product }) {
+export default function HowToPlayPage({ product, data, homepage }) {
   const heroImageParallax = useParallax(0.15);
 
   const { addItem, adding } = useCart();
@@ -150,9 +123,8 @@ export default function HowToPlayPage({ product }) {
       {/* HERO - Full-width background image with overlaid text */}
       <section className="relative h-[320px] pt-8 md:pt-0 md:h-[520px] flex items-center overflow-hidden bg-samosa-yellow-green">
         <div className="absolute inset-0 w-full h-full">
-          <Image
-            src={howToPlayHeroBg}
-            alt="How to Play hero background"
+          <PrismicNextImage
+            field={data.hero_banner}
             className="w-full h-full object-cover"
             fill
           />
@@ -160,18 +132,17 @@ export default function HowToPlayPage({ product }) {
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-left flex flex-col items-start pt-16">
           <AnimatedSection variant="fade-up">
             <h1 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-normal mb-5">
-              <span className="text-primary">Learn in </span>
-              <span className="text-secondary">Minutes.</span>
+              <span className="text-primary">{data.hero_title} </span>
+              <span className="text-secondary">
+                {data.hero_title_highlight}
+              </span>
             </h1>
           </AnimatedSection>
           <AnimatedSection variant="fade-up" delay={200}>
-            <p className="text-base md:text-lg text-primary font-sans font-semibold mb-8">
-              No rulebook needed.
-              <br />
-              Just pick up, play,
-              <br />
-              and let the chaos unfold.
-            </p>
+            <p
+              className="text-base md:text-lg text-primary font-sans font-semibold mb-8"
+              dangerouslySetInnerHTML={{ __html: data.hero_text }}
+            />
           </AnimatedSection>
           {/* <AnimatedSection variant="fade-up" delay={300}>
             <button className="flex items-center gap-2 px-8 h-12 bg-samosa-cream hover:bg-samosa-cream/90 text-primary font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-base">
@@ -210,7 +181,7 @@ export default function HowToPlayPage({ product }) {
               {/* <p className="text-muted-foreground font-semibold">
                 Video coming soon
               </p> */}
-              <YouTubeShort videoId="SMZFVboGWlI" />
+              <YouTubeShort videoId={data.youtube_video_id} />
             </div>
           </AnimatedSection>
         </div>
@@ -224,11 +195,13 @@ export default function HowToPlayPage({ product }) {
         <div className="container mx-auto px-4 lg:px-8 py-16 md:py-24">
           <AnimatedSection variant="fade-up" className="text-center mb-6">
             <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase mb-4 tracking-normal leading-[1.1]">
-              <span className="text-secondary">Aim </span>
-              <span className="text-samosa-cream">of the Game</span>
+              <span className="text-secondary">
+                {data.aim_title_highlight}{" "}
+              </span>
+              <span className="text-samosa-cream">{data.aim_title}</span>
             </h2>
             <p className="text-base md:text-xl text-samosa-cream/80 font-sans font-semibold">
-              Be the first team to get around the board from Start to Finish.
+              {data.aim_subtitle}
             </p>
           </AnimatedSection>
 
@@ -236,9 +209,8 @@ export default function HowToPlayPage({ product }) {
           <AnimatedSection variant="zoom-in" delay={100} className="mb-10">
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
               <div className="w-full h-[220px] md:h-[340px] lg:h-[420px] relative">
-                <Image
-                  src={boardLandscape}
-                  alt="SAMOSA game board"
+                <PrismicNextImage
+                  field={data.aim_image}
                   className="w-full h-full object-cover"
                   fill
                 />
@@ -248,7 +220,7 @@ export default function HowToPlayPage({ product }) {
 
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {steps.map((step, index) => (
+              {data.steps.map((step, index) => (
                 <AnimatedSection
                   key={index}
                   variant="zoom-in"
@@ -283,34 +255,32 @@ export default function HowToPlayPage({ product }) {
               className="text-center mt-12"
             >
               <h3 className="text-[28px]/[1] md:text-[36px]/[36px] font-bystander uppercase leading-[1.1] text-samosa-cream mb-3 flex items-center justify-center gap-3">
-                Land On A Samosa
+                {data.aim_text_line_1}
                 <div className="h-10 w-10 md:h-12 md:w-12 inline-block relative">
-                  <Image
-                    src={samosaIllust}
-                    alt="samosa"
+                  <PrismicNextImage
+                    field={data.aim_text_illustration}
                     className="h-full w-full object-cover"
                     fill
                   />
                 </div>
               </h3>
               <p className="text-base md:text-xl text-samosa-cream/80 font-sans font-semibold mb-2">
-                and everyone plays at once for the same point.
+                {data.aim_text_line_2}
               </p>
               <p className="text-sm md:text-lg text-samosa-cream/80 font-sans font-semibold mb-6">
-                - watch the SAMOSA chaos unfold 🔥 -
+                {data.aim_text_line_3}
               </p>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      <TryMeSection />
+      <TryMeSection data={homepage} />
 
       {/* Photo strip transition into Make It Your Own */}
       <div className="w-full h-[35vh] overflow-hidden relative">
-        <Image
-          src={friendsPlaying}
-          alt="Friends enjoying SAMOSA game night"
+        <PrismicNextImage
+          field={data.image_strip}
           className="w-full h-full object-cover"
           fill
         />
@@ -446,13 +416,13 @@ export default function HowToPlayPage({ product }) {
               <AnimatedSection variant="fade-right" className="relative">
                 <div className="relative flex justify-center">
                   <div className="absolute -top-4 -left-4 md:left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-float z-10">
-                    🔥 Bestseller
+                    {data.cta_badge_1}
                   </div>
                   <div className="absolute -bottom-2 -right-4 md:right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-float animation-delay-300 z-10">
-                    ⭐ 4.9 Rating
+                    {data.cta_badge_2}
                   </div>
                   <div className="absolute top-1/2 -right-8 md:-right-4 bg-background text-foreground px-3 py-2 rounded-full font-bold text-xs shadow-lg animate-float animation-delay-500 z-10 hidden md:block">
-                    1800+ Words
+                    {data.cta_badge_3}
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl scale-75" />
                   <div className="relative w-full aspect-[4/3] max-w-xs md:max-w-sm drop-shadow-2xl hover:rotate-[-3deg] hover:scale-105 transition-all duration-500">
@@ -470,12 +440,13 @@ export default function HowToPlayPage({ product }) {
               <AnimatedSection variant="fade-left" delay={200}>
                 <div className="text-center lg:text-left">
                   <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-normal mb-4">
-                    <span className="text-primary">Let&apos;s </span>
-                    <span className="text-secondary">Play.</span>
+                    <span className="text-primary">{data.cta_title} </span>
+                    <span className="text-secondary">
+                      {data.cta_title_highlight}
+                    </span>
                   </h2>
                   <p className="text-base md:text-lg text-muted-foreground font-sans font-semibold mb-8 max-w-md mx-auto lg:mx-0">
-                    Now that you know the rules, grab your copy and start the
-                    fun!
+                    {data.cta_subtitle}
                   </p>
 
                   <div className="bg-background rounded-2xl p-6 shadow-lg mb-6 max-w-sm mx-auto lg:mx-0">
@@ -489,12 +460,25 @@ export default function HowToPlayPage({ product }) {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-bold text-muted-foreground">
-                          Free UK & US
-                        </p>
-                        <p className="text-sm font-bold text-muted-foreground">
-                          Shipping
-                        </p>
+                        {data.minimum_shipping > 0 ? (
+                          <>
+                            <p className="text-sm text-muted-foreground">
+                              Shipping
+                            </p>
+                            <p className="text-sm font-bold text-accent">
+                              FREE over {formatPrice(data.minimum_shipping)}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="text-sm font-bold text-muted-foreground">
+                              Free UK & US
+                            </p>
+                            <p className="text-sm font-bold text-muted-foreground">
+                              Shipping
+                            </p>
+                          </>
+                        )}
                       </div>
                     </div>
                     <Button

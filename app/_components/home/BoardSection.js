@@ -1,12 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
 
 import decorativeStrip from "@/public/assets/decorative-strip.png";
 import gameBoard from "@/public/assets/photos/board-closeup.jpg";
+import { PrismicNextImage } from "@prismicio/next";
 
-export default function BoardSection() {
+export default function BoardSection({ data }) {
   return (
     <section className="relative overflow-hidden">
       {/* Decorative strip (flipped) */}
@@ -24,9 +23,8 @@ export default function BoardSection() {
       {/* Game board */}
       <AnimatedSection variant="zoom-in">
         <div className="relative w-full h-[25vh] md:h-[30vh] lg:h-[35vh]">
-          <Image
-            src={gameBoard}
-            alt="SAMOSA game board with colorful spinner and cards"
+          <PrismicNextImage
+            field={data.board_strip_image}
             fill
             className="object-cover"
             sizes="100vw"

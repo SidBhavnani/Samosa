@@ -11,119 +11,13 @@ import Image from "next/image";
 import { Button } from "../_components/ui/button";
 import { Download, ExternalLink, Music, Trophy } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/prismicio";
+import { PrismicNextImage } from "@prismicio/next";
 
-const playlists = [
-  {
-    title: "Bollywood Bangers",
-    vibe: "High Energy",
-    perfect: "Competitive groups, younger crowds, party vibes",
-    description: "Upbeat, dance-worthy, gets everyone hyped",
-    emoji: "🎉",
-  },
-  {
-    title: "Desi Classics",
-    vibe: "Feel-Good Nostalgia",
-    perfect: "Mixed generations, family game nights, chill vibes",
-    description: "Timeless hits everyone knows and loves",
-    emoji: "💛",
-  },
-  {
-    title: "Lo-fi Desi Beats",
-    vibe: "Laid-Back",
-    perfect: "Intimate gatherings, late-night sessions, cozy vibes",
-    description:
-      "Modern remixes and instrumentals that won't overpower conversation",
-    emoji: "🌙",
-  },
-];
+export default async function HostGameNightPage() {
+  const client = createClient();
+  const page = await client.getSingle("host_game_night");
 
-const noFussSnacks = [
-  "Namkeen mix (chevda, sev, peanuts)",
-  "Samosas (store-bought, air-fried or microwave – we won't judge)",
-  "Chakli & mathri from your local Indian shop",
-  "Bhujia with lime and chaat masala",
-  "Mango pickle & papad",
-  "Cut fruit with chaat masala (nostalgia in a bowl)",
-  "Chai (because obviously)",
-];
-
-const impressFriends = {
-  savory: [
-    "Pani puri station (fill-your-own keeps people entertained)",
-    "Chaat platter (samosa chaat, papdi chaat, dahi bhalla)",
-    "Pakora spread (onion, paneer, mix veg)",
-    "Kachori with chutneys",
-    "Vada pav sliders",
-  ],
-  sweet: [
-    "Jalebi (warm from the sweet shop = game changer)",
-    "Gulab jamun (store-bought is perfectly acceptable)",
-    "Kulfi popsicles (easy to grab between rounds)",
-  ],
-  drinks: [
-    "Masala chai bar (spices, milk, sugar ready for custom cups)",
-    "Mango lassi",
-    "Nimbu pani (fresh lime soda)",
-    "Thandai (if you're feeling fancy)",
-  ],
-};
-
-const eliteTier = {
-  menu: [
-    { course: "Starter", items: "Paneer tikka or tandoori chicken" },
-    {
-      course: "Mains",
-      items: "Butter chicken or paneer butter masala + dal makhani",
-    },
-    { course: "Sides", items: "Garlic naan, jeera rice, raita" },
-    { course: "Dessert", items: "Ras malai or kheer" },
-  ],
-  strategy: [
-    "Serve dinner first (6:30–7:30pm)",
-    "Clear the table together (builds team bonding 😉)",
-    "Bring out dessert + chai",
-    "Start SAMOSA while people are still at the table (7:45–8pm)",
-    "Keep snacks nearby for mid-game munchies",
-  ],
-};
-
-const adultDrinks = [
-  "Gin + tonic with curry leaves & chili",
-  "Kingfisher beer (classic)",
-  "Mango margaritas",
-  "Whiskey with nimbu",
-  "Wine (Riesling or Gewürztraminer pair beautifully with spice)",
-];
-
-const everyoneDrinks = [
-  "Masala chai (always)",
-  "Rooh Afza sharbat",
-  "Fresh coconut water",
-  "Jaljeera",
-  "Rose milk",
-];
-
-const badges = [
-  {
-    emoji: "🧡",
-    name: "Dil Se Desi",
-    desc: "In their element when playing the game",
-  },
-  { emoji: "🔥", name: "Bolly Boss", desc: "Dominates the Bollywood category" },
-  { emoji: "❓", name: "Guessing Guru", desc: "The most skilled guesser" },
-  { emoji: "👑", name: "Samosa Sultan", desc: "Pro at the SAMOSA round" },
-  { emoji: "🍋", name: "Kaccha Nimbu", desc: "Newbie to the game" },
-];
-
-const photoIdeas = [
-  "Flat lay: Game board + snacks + chai cups",
-  "Action shot: Someone mid-description (peak chaos)",
-  "Winner's podium moment with badges",
-  "The final leaderboard reveal",
-  "Team celebrations",
-];
-
-export default function HostGameNightPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -150,8 +44,7 @@ export default function HostGameNightPage() {
               </AnimatedSection>
               <AnimatedSection variant="fade-up" delay={200}>
                 <p className="text-base md:text-lg text-samosa-cream font-sans font-semibold max-w-xl mb-6">
-                  Your blueprint for the most legendary desi game night — the
-                  one your friends will replay in the group chat for weeks.
+                  {page.data.hero_subtitle}
                 </p>
               </AnimatedSection>
               <AnimatedSection variant="fade-up" delay={300}>
@@ -189,9 +82,8 @@ export default function HostGameNightPage() {
                   {/* Back card — tilted */}
                   <div className="absolute top-2 left-6 w-[58%] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-samosa-cream rotate-[-6deg]">
                     <div className="w-full h-full relative">
-                      <Image
-                        src={boxFlatlay}
-                        alt="SAMOSA box flatlay"
+                      <PrismicNextImage
+                        field={page.data.hero_back_card}
                         className="w-full h-full object-cover"
                         fill
                       />
@@ -200,9 +92,8 @@ export default function HostGameNightPage() {
                   {/* Front card — opposite tilt */}
                   <div className="absolute bottom-0 right-0 w-[60%] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-samosa-cream rotate-[5deg]">
                     <div className="w-full h-full relative">
-                      <Image
-                        src={gameNightGroup}
-                        alt="Friends at SAMOSA game night"
+                      <PrismicNextImage
+                        field={page.data.hero_front_card}
                         className="w-full h-full object-cover"
                         fill
                       />
@@ -240,16 +131,16 @@ export default function HostGameNightPage() {
                 <span className="h-px flex-1 max-w-[120px] bg-secondary" />
               </div>
               <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-3 text-primary">
-                Set the Vibe 🎵
+                {page.data.vibe_title}
               </h2>
               <p className="text-base md:text-lg text-foreground/80 font-sans max-w-2xl">
-                The right playlist changes everything. Pick your energy:
+                {page.data.vibe_subtitle}
               </p>
             </div>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {playlists.map((p, i) => (
+            {page.data.playlists.map((p, i) => (
               <AnimatedSection key={p.title} variant="fade-up" delay={i * 100}>
                 <div className="bg-white rounded-2xl p-6 md:p-8 h-full flex flex-col border-2 border-primary/10 hover:border-primary transition-colors">
                   <div className="flex items-center gap-2">
@@ -278,11 +169,7 @@ export default function HostGameNightPage() {
                     variant="outline"
                     className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                   >
-                    <a
-                      href="https://open.spotify.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={p.link} target="_blank" rel="noopener noreferrer">
                       <Music className="h-4 w-4 mr-2" />
                       Listen on Spotify
                     </a>
@@ -298,8 +185,7 @@ export default function HostGameNightPage() {
                 <span className="font-black text-primary uppercase">
                   Pro tip:
                 </span>{" "}
-                Start with lo-fi during setup, switch to classics during
-                gameplay, bring out the bangers when competition heats up!
+                {page.data.vibe_pro_tip}
               </p>
             </div>
           </AnimatedSection>
@@ -310,9 +196,8 @@ export default function HostGameNightPage() {
       <AnimatedSection variant="fade-up">
         <div className="w-full h-[200px] md:h-[280px] overflow-hidden">
           <div className="w-full h-full relative">
-            <Image
-              src={partyVibes}
-              alt="Desi fun and flavour stickers"
+            <PrismicNextImage
+              field={page.data.image_strip}
               className="w-full h-full object-cover"
               fill
             />
@@ -335,11 +220,15 @@ export default function HostGameNightPage() {
                 <span className="h-px flex-1 max-w-[120px] bg-secondary" />
               </div>
               <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-3">
-                <span className="text-secondary">Feed Your </span>
-                <span className="text-samosa-cream">People 🍽️</span>
+                <span className="text-secondary">
+                  {page.data.feed_title_highlight}{" "}
+                </span>
+                <span className="text-samosa-cream">
+                  {page.data.feed_title}
+                </span>
               </h2>
               <p className="text-base md:text-lg font-sans max-w-2xl text-samosa-cream/85">
-                Choose your effort level:
+                {page.data.feed_subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -348,24 +237,24 @@ export default function HostGameNightPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
             <AnimatedSection variant="fade-up">
               <div className="bg-samosa-cream text-foreground rounded-2xl p-6 md:p-8 h-full">
-                <div className="text-4xl mb-3">😌</div>
+                <div className="text-4xl mb-3">{page.data.level_1_emoji}</div>
                 <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  No-Fuss Snacks
+                  {page.data.level_1_title}
                 </h3>
                 <p className="text-secondary font-sans font-bold text-xs uppercase tracking-wider mb-5">
-                  Ready in 10 mins
+                  {page.data.level_1_subtitle}
                 </p>
                 <p className="text-sm font-sans text-foreground/70 mb-4 italic">
-                  For when you&apos;re keeping it simple:
+                  {page.data.level_1_text}
                 </p>
                 <ul className="space-y-2">
-                  {noFussSnacks.map((s) => (
+                  {page.data.level_1_snacks.map((s) => (
                     <li
                       key={s}
                       className="text-sm font-sans text-foreground/85 flex gap-2"
                     >
                       <span className="text-secondary">▸</span>
-                      <span>{s}</span>
+                      <span>{s.snack}</span>
                     </li>
                   ))}
                 </ul>
@@ -374,60 +263,92 @@ export default function HostGameNightPage() {
 
             <AnimatedSection variant="fade-up" delay={100}>
               <div className="bg-samosa-cream text-foreground rounded-2xl p-6 md:p-8 h-full">
-                <div className="text-4xl mb-3">👨‍🍳</div>
+                <div className="text-4xl mb-3">{page.data.level_2_emoji}</div>
                 <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  Impress Your Friends
+                  {page.data.level_2_title}
                 </h3>
                 <p className="text-secondary font-sans font-bold text-xs uppercase tracking-wider mb-5">
-                  30–45 mins prep
+                  {page.data.level_2_subtitle}
                 </p>
                 <p className="text-sm font-sans text-foreground/70 mb-4 italic">
-                  When you want to look like you have your life together:
+                  {page.data.level_2_text}
                 </p>
-                {["savory", "sweet", "drinks"].map((cat) => (
-                  <div key={cat} className="mb-4 last:mb-0">
-                    <p className="text-xs font-sans font-black uppercase tracking-wider text-primary mb-2">
-                      {cat}
-                    </p>
-                    <ul className="space-y-1.5">
-                      {impressFriends[cat].map((s) => (
-                        <li
-                          key={s}
-                          className="text-sm font-sans text-foreground/85 flex gap-2"
-                        >
-                          <span className="text-secondary">▸</span>
-                          <span>{s}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                <div className="mb-4 last:mb-0">
+                  <p className="text-xs font-sans font-black uppercase tracking-wider text-primary mb-2">
+                    Savory
+                  </p>
+                  <ul className="space-y-1.5">
+                    {page.data.level_2_savory.map((s) => (
+                      <li
+                        key={s.savory}
+                        className="text-sm font-sans text-foreground/85 flex gap-2"
+                      >
+                        <span className="text-secondary">▸</span>
+                        <span>{s.savory}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-4 last:mb-0">
+                  <p className="text-xs font-sans font-black uppercase tracking-wider text-primary mb-2">
+                    Sweet
+                  </p>
+                  <ul className="space-y-1.5">
+                    {page.data.level_2_sweets.map((s) => (
+                      <li
+                        key={s.sweet}
+                        className="text-sm font-sans text-foreground/85 flex gap-2"
+                      >
+                        <span className="text-secondary">▸</span>
+                        <span>{s.sweet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-4 last:mb-0">
+                  <p className="text-xs font-sans font-black uppercase tracking-wider text-primary mb-2">
+                    Drinks
+                  </p>
+                  <ul className="space-y-1.5">
+                    {page.data.level_2_drinks.map((d) => (
+                      <li
+                        key={d.drink}
+                        className="text-sm font-sans text-foreground/85 flex gap-2"
+                      >
+                        <span className="text-secondary">▸</span>
+                        <span>{d.drink}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection variant="fade-up" delay={200}>
               <div className="bg-secondary text-secondary-foreground rounded-2xl p-6 md:p-8 h-full">
-                <div className="text-4xl mb-3">🔥</div>
+                <div className="text-4xl mb-3">{page.data.level_3_emoji}</div>
                 <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  Elite Tier
+                  {page.data.level_3_title}
                 </h3>
                 <p className="text-primary font-sans font-bold text-xs uppercase tracking-wider mb-5">
-                  Full dinner + game night
+                  {page.data.level_3_subtitle}
                 </p>
                 <p className="text-sm font-sans text-secondary-foreground/80 mb-4 italic">
-                  When you&apos;re going ALL IN:
+                  {page.data.level_3_text}
                 </p>
                 <p className="text-xs font-sans font-black uppercase tracking-wider text-primary mb-2">
                   The Menu
                 </p>
                 <ul className="space-y-1.5 mb-4">
-                  {eliteTier.menu.map((m) => (
+                  {page.data.level_3_menu.map((m) => (
                     <li key={m.course} className="text-sm font-sans">
                       <span className="font-bold text-primary">
                         {m.course}:
                       </span>{" "}
                       <span className="text-secondary-foreground/85">
-                        {m.items}
+                        {m.item}
                       </span>
                     </li>
                   ))}
@@ -436,13 +357,13 @@ export default function HostGameNightPage() {
                   The Strategy
                 </p>
                 <ul className="space-y-1.5">
-                  {eliteTier.strategy.map((s) => (
+                  {page.data.level_3_strategy.map((s) => (
                     <li
-                      key={s}
+                      key={s.step}
                       className="text-sm font-sans flex gap-2 text-secondary-foreground/85"
                     >
                       <span className="text-primary">▸</span>
-                      <span>{s}</span>
+                      <span>{s.step}</span>
                     </li>
                   ))}
                 </ul>
@@ -456,91 +377,12 @@ export default function HostGameNightPage() {
                 <span className="font-black text-secondary uppercase">
                   Pro tip:
                 </span>{" "}
-                Order takeout and plate it nicely. Your secret&apos;s safe with
-                us 🤫
+                {page.data.feed_pro_tip}
               </p>
             </div>
           </AnimatedSection>
-
-          {/* Drinks */}
-          {/* <AnimatedSection variant="fade-up">
-            <div className="text-left mb-8">
-              <p className="text-secondary font-sans font-black text-sm uppercase tracking-[0.2em] mb-2">
-                Bonus
-              </p>
-              <h3 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-3 text-samosa-cream">
-                Drink Pairings 🍷
-              </h3>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <AnimatedSection variant="fade-up">
-              <div className="bg-samosa-cream/10 backdrop-blur rounded-2xl p-6 md:p-8 border border-samosa-cream/20">
-                <h4 className="text-xl font-bystander uppercase text-secondary mb-4 leading-[1.1]">
-                  For the Adults
-                </h4>
-                <ul className="space-y-2">
-                  {adultDrinks.map((d) => (
-                    <li
-                      key={d}
-                      className="text-sm md:text-base font-sans flex gap-2 text-samosa-cream/90"
-                    >
-                      <span className="text-secondary">▸</span>
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection variant="fade-up" delay={100}>
-              <div className="bg-samosa-cream/10 backdrop-blur rounded-2xl p-6 md:p-8 border border-samosa-cream/20">
-                <h4 className="text-xl font-bystander uppercase text-secondary mb-4 leading-[1.1]">
-                  For Everyone
-                </h4>
-                <ul className="space-y-2">
-                  {everyoneDrinks.map((d) => (
-                    <li
-                      key={d}
-                      className="text-sm md:text-base font-sans flex gap-2 text-samosa-cream/90"
-                    >
-                      <span className="text-secondary">▸</span>
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </AnimatedSection>
-          </div> */}
         </div>
       </section>
-
-      {/* "Remove SAMOSA LEADERBOARD and ACHIEVEMENT BADGES in Step 3 BRING THE COMPETITION 🏆
-
-
-
-Change Step 3 text to: 
-
-
-""A little friendly rivalry goes a long way.
-
-Choose your game night stakes:
-
-☕️ Chai Stakes
-
-Loser makes the next round of chai.
-
-🍨 Dessert Stakes
-
-Winner gets first pick of dessert.
-
-📱 Bragging Rights Stakes
-
-Winner gets to update the group chat name until the next game night.
-
-🎤 Speech Stakes
-
-Last place must give a 30-second acceptance speech explaining what went wrong.""" */}
 
       {/* STEP 3 - Bring the Competition */}
       <section
@@ -557,59 +399,28 @@ Last place must give a 30-second acceptance speech explaining what went wrong.""
                 <span className="h-px flex-1 max-w-[120px] bg-secondary" />
               </div>
               <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-3 text-primary">
-                Bring the Competition 🏆
+                {page.data.compete_title}
               </h2>
               <p className="text-base md:text-lg text-foreground/80 font-sans max-w-2xl">
-                A little friendly rivalry goes a long way. Choose your game
-                night stakes:
+                {page.data.compete_subtitle}
               </p>
             </div>
           </AnimatedSection>
 
           {/* Leaderboard */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            <AnimatedSection variant="fade-up">
-              <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  ☕️ Chai Stakes
-                </h3>
-                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
-                  Loser makes the next round of chai.
-                </p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection variant="fade-up">
-              <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  🍨 Dessert Stakes
-                </h3>
-                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
-                  Winner gets first pick of dessert.
-                </p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection variant="fade-up">
-              <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  📱 Bragging Rights Stakes
-                </h3>
-                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
-                  Winner gets to update the group chat name until the next game
-                  night.
-                </p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection variant="fade-up">
-              <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
-                  🎤 Speech Stakes
-                </h3>
-                <p className="text-sm md:text-base uppercase font-bystander text-secondary">
-                  Last place must give a 30-second acceptance speech explaining
-                  what went wrong.
-                </p>
-              </div>
-            </AnimatedSection>
+            {page.data.stakes.map((stake) => (
+              <AnimatedSection key={stake.title} variant="fade-up">
+                <div className="bg-samosa-cream/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 md:p-8 h-full flex flex-col">
+                  <h3 className="text-2xl md:text-3xl font-bystander uppercase text-primary leading-[1.1] mb-1">
+                    {stake.title}
+                  </h3>
+                  <p className="text-sm md:text-base uppercase font-bystander text-secondary">
+                    {stake.subtitle}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
 
           {/* Instagram-worthy */}
@@ -618,24 +429,30 @@ Last place must give a 30-second acceptance speech explaining what went wrong.""
               {/* Left: Title + CTA card */}
               <div className="lg:col-span-5 lg:sticky lg:top-32">
                 <h3 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase text-primary leading-[1.1] tracking-[0.03em] mb-4">
-                  Make It{" "}
-                  <span className="text-secondary">Instagram-Worthy</span> 📸
+                  {page.data.instagram_title}{" "}
+                  <span className="text-secondary">
+                    {page.data.instagram_title_highlight}
+                  </span>{" "}
+                  📸
                 </h3>
                 <p className="text-sm md:text-base font-sans text-foreground/70 mb-8 max-w-md">
-                  Five shots that will absolutely pop off in the group chat.
+                  {page.data.instagram_subtitle}
                 </p>
 
                 <div className="bg-primary text-primary-foreground p-6 md:p-8 rounded-sm">
                   <p className="font-bystander uppercase text-2xl md:text-3xl leading-[1.05] mb-5">
-                    Tag <span className="text-secondary">@playsamosa</span> —
-                    get featured on our feed 🧡
+                    Tag{" "}
+                    <span className="text-secondary">
+                      {page.data.instagram_account}
+                    </span>{" "}
+                    — get featured on our feed 🧡
                   </p>
                   <Button
                     asChild
                     className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-sans font-bold rounded-none"
                   >
                     <a
-                      href="https://instagram.com/playsamosa"
+                      href={page.data.instagram_link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -648,9 +465,9 @@ Last place must give a 30-second acceptance speech explaining what went wrong.""
 
               {/* Right: Editorial numbered list */}
               <ol className="lg:col-span-7 flex flex-col">
-                {photoIdeas.map((idea, i) => (
+                {page.data.photo_ideas.map((idea, i) => (
                   <li
-                    key={idea}
+                    key={idea.idea}
                     className="flex items-start gap-5 md:gap-7 py-5 md:py-6 border-t border-primary/15 last:border-b"
                   >
                     <span className="font-bystander text-5xl md:text-6xl leading-none text-secondary tabular-nums w-14 md:w-16 shrink-0">
@@ -658,10 +475,10 @@ Last place must give a 30-second acceptance speech explaining what went wrong.""
                     </span>
                     <div className="flex-1 pt-1">
                       <span className="text-2xl md:text-3xl mr-3 align-middle">
-                        {["📸", "🎬", "🏆", "📊", "🥳"][i % 5]}
+                        {idea.emoji}
                       </span>
                       <span className="font-sans text-base md:text-lg text-foreground/85 align-middle">
-                        {idea}
+                        {idea.idea}
                       </span>
                     </div>
                   </li>
@@ -676,9 +493,8 @@ Last place must give a 30-second acceptance speech explaining what went wrong.""
       <section className="relative min-h-[420px] md:min-h-[480px] flex items-center py-12 md:py-16 overflow-hidden">
         <div className="absolute inset-0">
           <div className="w-full h-full relative">
-            <Image
-              src={boardStrip}
-              alt="SAMOSA board game closeup"
+            <PrismicNextImage
+              field={page.data.cta_background_image}
               className="w-full h-full object-cover"
               fill
             />
@@ -688,12 +504,13 @@ Last place must give a 30-second acceptance speech explaining what went wrong.""
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
           <AnimatedSection variant="fade-up">
             <h2 className="text-[38px] md:text-[44px] lg:text-[53px] font-bystander uppercase leading-[1.1] tracking-[0.03em] mb-6">
-              <span className="text-samosa-cream">Ready to </span>
-              <span className="text-secondary">Host?</span>
+              <span className="text-samosa-cream">{page.data.cta_title} </span>
+              <span className="text-secondary">
+                {page.data.cta_title_highlight}
+              </span>
             </h2>
             <p className="text-base md:text-lg text-samosa-cream/90 font-sans max-w-2xl mx-auto mb-8">
-              Grab the game, follow the guide, and you&apos;re set for the most
-              legendary night your friends will talk about for weeks.
+              {page.data.cta_subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
