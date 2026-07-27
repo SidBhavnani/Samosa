@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
-import foundersPhoto from "@/public/assets/founder-photo.jpg";
 import { useParallax } from "@/app/_hooks/useParallax";
 import { PrismicNextImage } from "@prismicio/next";
 

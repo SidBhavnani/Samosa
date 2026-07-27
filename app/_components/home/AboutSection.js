@@ -1,10 +1,4 @@
-import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
-import partyVibesGif from "@/public/assets/photos/party-vibes.gif";
-import culturallyRich from "@/public/assets/about-icons/Culturally rich.png";
-import easyToLearn from "@/public/assets/about-icons/Easy to learn.png";
-import interactiveGameplay from "@/public/assets/about-icons/Interactive gameplay.png";
-import multiGenerational from "@/public/assets/about-icons/Multi-generational.png";
 import { PrismicNextImage } from "@prismicio/next";
 
 export default function AboutSection({ data }) {

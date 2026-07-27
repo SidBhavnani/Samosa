@@ -1,13 +1,4 @@
-import partyVibes from "@/public/assets/host-feed-banner.jpg";
-import boardSetup from "@/public/assets/photos/board-setup.jpg";
-import friendsPlaying from "@/public/assets/photos/friends-playing.jpg";
-import gameNightGroup from "@/public/assets/photos/game-night-group.jpg";
-import gameplayAction from "@/public/assets/photos/gameplay-action.gif";
-import boxFlatlay from "@/public/assets/photos/box-flatlay.jpg";
-import competitionBanner from "@/public/assets/host-competition-banner.png";
-import boardStrip from "@/public/assets/host-board-strip.png";
 import { AnimatedSection } from "../_components/AnimatedSection";
-import Image from "next/image";
 import { Button } from "../_components/ui/button";
 import { Download, ExternalLink, Music, Trophy } from "lucide-react";
 import Link from "next/link";
@@ -250,7 +241,7 @@ export default async function HostGameNightPage() {
                 <ul className="space-y-2">
                   {page.data.level_1_snacks.map((s) => (
                     <li
-                      key={s}
+                      key={s.snack}
                       className="text-sm font-sans text-foreground/85 flex gap-2"
                     >
                       <span className="text-secondary">▸</span>

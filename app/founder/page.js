@@ -12,12 +12,7 @@ import { Button } from "@/app/_components/ui/button";
 import { Input } from "@/app/_components/ui/input";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
 
-import samosaIllust from "@/public/assets/illustrations/samosa-illust.png";
-import swirlIllust from "@/public/assets/illustrations/swirl-illust.png";
-import jalebi from "@/public/assets/illustrations/jalebi.png";
-import cardStack from "@/public/assets/illustrations/card-stack.png";
 import { OurStorySection } from "@/app/_components/founder/OurStorySection";
-import desiIconsRow from "@/public/assets/illustrations/desi-icons-row.png";
 import HeroSection from "@/app/_components/founder/HeroSection";
 import SubscribeSection from "@/app/_components/founder/SubscribeSection";
 import { createClient } from "@/prismicio";
@@ -145,7 +140,7 @@ export default async function FounderPage() {
                 <AnimatedSection variant="fade-left" delay={200}>
                   <div className="space-y-4 text-lg text-muted-foreground leading-relaxed font-sans font-semibold">
                     {page.data.more_than_a_game_paragraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph.paragraph}</p>
+                      <p key={paragraph.paragraph}>{paragraph.paragraph}</p>
                     ))}
                   </div>
                 </AnimatedSection>

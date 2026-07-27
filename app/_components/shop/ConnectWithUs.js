@@ -1,12 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import galleryGameNight from "@/public/assets/product-gallery-game-night.jpg";
-import galleryBoxCloseup from "@/public/assets/product-gallery-box-closeup.jpg";
-import galleryPlaying from "@/public/assets/product-gallery-playing.jpg";
-import galleryFounder from "@/public/assets/product-gallery-founder.jpg";
-import galleryBoardSetup from "@/public/assets/product-gallery-board-setup.jpg";
-import galleryBoardOverhead from "@/public/assets/product-gallery-board-overhead.jpg";
 import { PrismicNextImage } from "@prismicio/next";
 
 import { AnimatedSection } from "../AnimatedSection";

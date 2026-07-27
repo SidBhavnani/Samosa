@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 import { cn } from "@/app/_hooks/utils";
 import { AnimatedSection } from "../AnimatedSection";

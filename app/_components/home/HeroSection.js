@@ -9,7 +9,6 @@ import { ParallaxIllustrations } from "@/app/_components/ParallaxIllustrations";
 import { Button } from "@/app/_components/ui/button";
 import { ShoppingCart, Play } from "lucide-react";
 
-import gameBox from "@/public/assets/game-box.png";
 import samosaIllust from "@/public/assets/illustrations/samosa-illust.png";
 import heroCardsStack from "@/public/assets/hero-cards-stack.png";
 import { useCart } from "@/app/_contexts/CartContext";

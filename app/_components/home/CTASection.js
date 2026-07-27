@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
 
-import gameBox from "@/public/assets/game-box.png";
 import { useEffect, useRef, useState } from "react";
 import { getProduct } from "@/app/_lib/shopify";
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import pinkStrip from "@/public/assets/pink-strip.png";
 import playSectionBg from "@/public/assets/play-section-bg.png";
 import tableCircle from "@/public/assets/table-circle.png";
 import samosaCard from "@/public/assets/samosa-card.png";

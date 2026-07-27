@@ -3,8 +3,6 @@
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { AnimatedSection } from "../AnimatedSection";
-import Image from "next/image";
-import founderPhoto from "@/public/assets/photos/board-setup.jpg";
 import {
   Instagram,
   Twitter,

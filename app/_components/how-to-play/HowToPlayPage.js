@@ -1,17 +1,5 @@
 "use client";
 
-import gameNight from "@/public/assets/game-night.png";
-import samosaCard from "@/public/assets/samosa-card.png";
-import tableCircle from "@/public/assets/table-circle.png";
-
-import playSectionBg from "@/public/assets/play-section-bg.png";
-import boardCloseup from "@/public/assets/photos/board-closeup.jpg";
-import boardLandscape from "@/public/assets/photos/board-landscape.jpg";
-import samosaIllust from "@/public/assets/illustrations/samosa-illust.png";
-import gameplayAction from "@/public/assets/photos/gameplay-action.gif";
-import friendsPlaying from "@/public/assets/photos/friends-playing.jpg";
-import heroIcons from "@/public/assets/illustrations/hero-icons.png";
-import howToPlayHeroBg from "@/public/assets/how-to-play-hero-bg.png";
 import { useParallax } from "@/app/_hooks/useParallax";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
 import Image from "next/image";

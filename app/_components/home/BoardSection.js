@@ -1,8 +1,5 @@
-import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
 
-import decorativeStrip from "@/public/assets/decorative-strip.png";
-import gameBoard from "@/public/assets/photos/board-closeup.jpg";
 import { PrismicNextImage } from "@prismicio/next";
 
 export default function BoardSection({ data }) {

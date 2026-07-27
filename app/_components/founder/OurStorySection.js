@@ -1,10 +1,5 @@
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
 
-import articulateGame from "@/public/assets/articulate-game.jpg";
-import playtestingPhoto from "@/public/assets/playtesting-photo.png";
-import prototypePhoto from "@/public/assets/prototype-board.jpg";
-import founderPhoto from "@/public/assets/founder-photo.jpg";
-import Image from "next/image";
 import { PrismicNextImage } from "@prismicio/next";
 
 export function OurStorySection({ data }) {

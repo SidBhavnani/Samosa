@@ -2,7 +2,6 @@ import Link from "next/link";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { Play } from "lucide-react";
-import { cn } from "@/app/_hooks/utils";
 
 export default function HowToPlay({ data }) {
   return (

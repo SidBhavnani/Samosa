@@ -4,44 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatedSection } from "../AnimatedSection";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
-const reviews = [
-  {
-    name: "Shivani J",
-    location: "London, UK",
-    initial: "S",
-    rating: 5,
-    text: '"Absolutely loved the game. A must-have for a family social gathering and desi gang game nights!"',
-  },
-  {
-    name: "Mihar V",
-    location: "Amsterdam, NL",
-    initial: "M",
-    rating: 5,
-    text: "\"Now this is a game I didn't know we needed!! Samosa is so much fun to play, can't wait for the release!\"",
-  },
-  {
-    name: "Sakshi A",
-    location: "New York, US",
-    initial: "S",
-    rating: 5,
-    text: '"It\'s rare that I can play a game with my whole family - Samosa was such a hit with them!!"',
-  },
-  {
-    name: "Rahul P",
-    location: "Toronto, CA",
-    initial: "R",
-    rating: 5,
-    text: '"We played this at a Diwali party and it was the highlight of the night. Everyone was in tears laughing!"',
-  },
-  {
-    name: "Priya M",
-    location: "Dubai, UAE",
-    initial: "P",
-    rating: 5,
-    text: '"Finally a game that actually represents our culture! The whole family loved it - from my kids to my grandma."',
-  },
-];
-
 export default function ReviewsCarousel({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(
@@ -54,7 +16,7 @@ export default function ReviewsCarousel({ data }) {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const maxIndex = Math.max(0, reviews.length - visibleCount);
+  const maxIndex = Math.max(0, data.reviews_carousel.length - visibleCount);
 
   const next = useCallback(
     () => setCurrentIndex((i) => Math.min(i + 1, maxIndex)),
