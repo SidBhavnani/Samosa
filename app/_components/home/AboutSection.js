@@ -3,7 +3,7 @@ import { PrismicNextImage } from "@prismicio/next";
 
 export default function AboutSection({ data }) {
   return (
-    <section className="py-16 md:py-20 lg:py-24 bg-background">
+    <section className="py-10 md:py-20 lg:py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left - GIF */}

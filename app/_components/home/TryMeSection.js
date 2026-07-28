@@ -171,7 +171,7 @@ export default function TryMeSection({ data }) {
   return (
     <section
       id="try-cards"
-      className="pt-16 md:pt-[4.5rem] pb-12 md:pb-14 bg-background relative overflow-hidden"
+      className="pt-12 md:pt-[4.5rem] pb-12 md:pb-14 bg-background relative overflow-hidden"
     >
       {/* Pink strip - top */}
       {/* <Image
@@ -208,7 +208,7 @@ export default function TryMeSection({ data }) {
             />
           </div>
           <AnimatedSection variant="fade-up" delay={150}>
-            <h2 className="relative z-10 mb-6 md:mb-8 text-[36px] md:text-[42px] lg:text-[50px] font-bystander uppercase leading-[1.1] tracking-normal whitespace-nowrap -translate-y-3 md:-translate-y-4">
+            <h2 className="relative z-10 mb-0 md:mb-8 text-[36px] md:text-[42px] lg:text-[50px] font-bystander uppercase leading-[1.1] tracking-normal whitespace-nowrap -translate-y-3 md:-translate-y-4">
               <span className="text-primary">Get a taste</span>
               <br />
               <span className="text-accent">of playing Samosa</span>
