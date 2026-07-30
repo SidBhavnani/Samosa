@@ -5,7 +5,7 @@ export default function AboutSection({ data }) {
   return (
     <section className="py-10 md:py-20 lg:py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-20 items-stretch">
           {/* Left - GIF */}
           <AnimatedSection variant="zoom-in" className="h-full lg:self-stretch">
             <div className="relative rounded-2xl overflow-hidden shadow-xl h-[440px] lg:h-full lg:min-h-0">

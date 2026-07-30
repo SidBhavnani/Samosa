@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { CartProvider } from "./_contexts/CartContext";
@@ -10,15 +10,15 @@ import { getProduct } from "./_lib/shopify";
 import ProductProvider from "./_components/ProductProvider";
 import { createClient } from "@/prismicio";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 const proximaNova = localFont({
   variable: "--font-proxima-nova",
