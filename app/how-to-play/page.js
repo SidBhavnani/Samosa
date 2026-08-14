@@ -27,6 +27,14 @@ export default async function HowToPlay() {
       product={product}
       data={page.data}
       homepage={homepage.data}
+      steps={homepage.data.how_to_play_steps}
+      cta={{
+        cta_badge_1: homepage.data.cta_badge_1,
+        cta_badge_2: homepage.data.cta_badge_2,
+        cta_badge_3: homepage.data.cta_badge_3,
+        cta_game_box_image: homepage.data.cta_game_box_image,
+        minimum_shipping: homepage.data.minimum_shipping,
+      }}
     />
   );
 }

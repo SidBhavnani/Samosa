@@ -15,6 +15,7 @@ export default async function Shop() {
   const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("shop");
+  const globalNav = await client.getSingle("global_nav");
   // console.log(JSON.stringify(product, null, 2));
   // console.log(product.description);
 
@@ -46,7 +47,7 @@ export default async function Shop() {
       <WhatsInsideSection data={page.data} />
       <ReviewsCarousel data={page.data} />
       <ReviewForm />
-      <ConnectWithUs data={page.data} />
+      <ConnectWithUs data={page.data} globalNav={globalNav.data} />
     </div>
   );
 }

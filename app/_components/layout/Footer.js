@@ -27,6 +27,7 @@ const footerLinks = {
 };
 
 export function Footer({ data }) {
+  // console.log(data.social_links);
   return (
     <footer className="bg-magenta-glow-soft text-primary-foreground">
       <div className="container mx-auto px-4 py-12 md:py-16">
@@ -45,17 +46,19 @@ export function Footer({ data }) {
               {data.footer_text}
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               {data.social_links.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-foreground/70 hover:text-secondary transition-colors"
+                  // className="text-primary-foreground/70 hover:text-secondary transition-colors"
+                  className="w-10 h-10 bg-primary-foreground/20 hover:bg-primary-foreground/80 hover:text-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                   aria-label={social.name}
                 >
-                  <DynamicIcon name={social.icon} className="h-5 w-5" />
+                  {/* <DynamicIcon name={social.icon_name} className="h-5 w-5" /> */}
+                  <PrismicNextImage field={social.icon} className="h-5 w-5" />
                 </a>
               ))}
             </div>

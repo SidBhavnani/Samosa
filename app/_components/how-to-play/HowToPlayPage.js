@@ -91,7 +91,7 @@ const variations = [
   },
 ];
 
-export default function HowToPlayPage({ product, data, homepage }) {
+export default function HowToPlayPage({ product, data, homepage, steps, cta }) {
   const heroImageParallax = useParallax(0.15);
 
   const { addItem, adding } = useCart();
@@ -208,7 +208,7 @@ export default function HowToPlayPage({ product, data, homepage }) {
 
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {data.steps.map((step, index) => (
+              {steps.map((step, index) => (
                 <AnimatedSection
                   key={index}
                   variant="zoom-in"
@@ -217,7 +217,7 @@ export default function HowToPlayPage({ product, data, homepage }) {
                   <div className="flex flex-col items-center h-full">
                     {/* Step badge */}
                     <div className="px-6 py-2 rounded-full bg-secondary text-primary-foreground font-bold text-sm mb-4 shadow-md">
-                      Step {step.number}
+                      Step {step.step}
                     </div>
                     {/* Card */}
                     <div className="bg-card rounded-2xl p-6 shadow-sm w-full text-center flex flex-col items-center flex-1 justify-center">
@@ -404,13 +404,13 @@ export default function HowToPlayPage({ product, data, homepage }) {
               <AnimatedSection variant="fade-right" className="relative">
                 <div className="relative flex justify-center">
                   <div className="absolute -top-4 -left-4 md:left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-float z-10">
-                    {data.cta_badge_1}
+                    {cta.cta_badge_1}
                   </div>
                   <div className="absolute -bottom-2 -right-4 md:right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-float animation-delay-300 z-10">
-                    {data.cta_badge_2}
+                    {cta.cta_badge_2}
                   </div>
                   <div className="absolute top-1/2 -right-8 md:-right-4 bg-background text-foreground px-3 py-2 rounded-full font-bold text-xs shadow-lg animate-float animation-delay-500 z-10 hidden md:block">
-                    {data.cta_badge_3}
+                    {cta.cta_badge_3}
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl scale-75" />
                   <div className="relative w-full aspect-[4/3] max-w-xs md:max-w-sm drop-shadow-2xl hover:rotate-[-3deg] hover:scale-105 transition-all duration-500">
@@ -448,13 +448,13 @@ export default function HowToPlayPage({ product, data, homepage }) {
                         </p>
                       </div>
                       <div className="text-right">
-                        {data.minimum_shipping > 0 ? (
+                        {cta.minimum_shipping > 0 ? (
                           <>
                             <p className="text-sm text-muted-foreground">
                               Shipping
                             </p>
                             <p className="text-sm font-bold text-accent">
-                              FREE over {formatPrice(data.minimum_shipping)}
+                              FREE over {formatPrice(cta.minimum_shipping)}
                             </p>
                           </>
                         ) : (

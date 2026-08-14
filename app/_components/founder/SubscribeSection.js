@@ -26,7 +26,7 @@ const socialLinks = [
   { name: "YouTube", icon: Youtube, url: "https://youtube.com/@samosagame" },
 ];
 
-export default function SubscribeSection({ data }) {
+export default function SubscribeSection({ data, globalNav }) {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -67,7 +67,7 @@ export default function SubscribeSection({ data }) {
 
                 {/* Social Links */}
                 <div className="flex gap-3 mb-8">
-                  {data.social_links.map((social) => (
+                  {globalNav.social_links.map((social) => (
                     <a
                       key={social.name}
                       href={social.url}
@@ -76,7 +76,14 @@ export default function SubscribeSection({ data }) {
                       className="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all duration-300 hover:scale-110"
                       aria-label={social.name}
                     >
-                      <DynamicIcon name={social.icon} className="h-5 w-5" />
+                      {/* <DynamicIcon
+                        name={social.icon_name}
+                        className="h-5 w-5"
+                      /> */}
+                      <PrismicNextImage
+                        field={social.icon}
+                        className="h-5 w-5"
+                      />
                     </a>
                   ))}
                 </div>

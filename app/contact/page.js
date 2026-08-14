@@ -20,6 +20,7 @@ import { PrismicNextImage } from "@prismicio/next";
 export default async function ContactPage() {
   const client = createClient();
   const page = await client.getSingle("contact");
+  const globalNav = await client.getSingle("global_nav");
 
   return (
     <div className="min-h-screen">
@@ -107,7 +108,7 @@ export default async function ContactPage() {
                     Follow Us
                   </h3>
                   <div className="flex gap-3">
-                    {page.data.social_links.map((social) => (
+                    {globalNav.data.social_links.map((social) => (
                       <a
                         key={social.name}
                         href={social.url}

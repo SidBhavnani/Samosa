@@ -6,7 +6,7 @@ import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { DynamicIcon } from "lucide-react/dynamic";
 
-export default function ConnectWithUs({ data }) {
+export default function ConnectWithUs({ data, globalNav }) {
   return (
     <>
       {/* Connect on Instagram */}
@@ -94,7 +94,7 @@ export default function ConnectWithUs({ data }) {
 
             {/* Social Icons */}
             <div className="flex gap-4 mb-8 justify-center">
-              {data.social_links.map((social) => (
+              {globalNav.social_links.map((social) => (
                 <a
                   key={social.label}
                   href={social.url}
@@ -103,7 +103,8 @@ export default function ConnectWithUs({ data }) {
                   className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors"
                   aria-label={social.label}
                 >
-                  <DynamicIcon name={social.icon} className="w-6 h-6" />
+                  {/* <DynamicIcon name={social.icon} className="w-6 h-6" /> */}
+                  <PrismicNextImage field={social.icon} className="h-5 w-5" />
                 </a>
               ))}
             </div>

@@ -86,6 +86,7 @@ const values = [
 export default async function FounderPage() {
   const client = createClient();
   const page = await client.getSingle("our_story");
+  const globalNav = await client.getSingle("global_nav");
 
   return (
     <div className="min-h-screen">
@@ -183,7 +184,7 @@ export default async function FounderPage() {
         </section> */}
 
         {/* Founder Portrait + Community CTA */}
-        <SubscribeSection data={page.data} />
+        <SubscribeSection data={page.data} globalNav={globalNav.data} />
       </div>
     </div>
   );
