@@ -5,6 +5,16 @@ import Link from "next/link";
 import { createClient } from "@/prismicio";
 import { PrismicNextImage } from "@prismicio/next";
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.host_title,
+    description: metadata?.data.host_description,
+  };
+}
+
 export default async function HostGameNightPage() {
   const client = createClient();
   const page = await client.getSingle("host_game_night");

@@ -8,6 +8,16 @@ import ConnectWithUs from "../_components/shop/ConnectWithUs";
 import ReviewForm from "../_components/shop/ReviewForm";
 import { createClient } from "@/prismicio";
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.shop_title,
+    description: metadata?.data.shop_description,
+  };
+}
+
 export default async function Shop() {
   //   console.log("Domain:", process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN);
   //   console.log("Token:", process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN);

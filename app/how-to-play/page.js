@@ -3,6 +3,16 @@ import HowToPlayPage from "../_components/how-to-play/HowToPlayPage";
 import { getProduct } from "../_lib/shopify";
 import { createClient } from "@/prismicio";
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.how_to_play_title,
+    description: metadata?.data.how_to_play_description,
+  };
+}
+
 export default async function HowToPlay() {
   const product = await getProduct("samosa", "GB");
   const client = createClient();

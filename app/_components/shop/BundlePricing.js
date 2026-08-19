@@ -131,7 +131,7 @@ export default function BundlePricing({ handleAddToCart, adding, data }) {
           disabled={adding}
           className="w-full mt-5 py-7 text-base font-sans font-black uppercase tracking-[0.15em] rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg hover:shadow-xl transition-all text-lg"
         >
-          ADD TO BAG
+          ADD TO CART
         </Button>
       </div>
     </section>

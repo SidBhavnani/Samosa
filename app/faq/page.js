@@ -13,6 +13,16 @@ import { AnimatedSection } from "@/app/_components/AnimatedSection";
 import { createClient } from "@/prismicio";
 import { PrismicNextImage } from "@prismicio/next";
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.faq_title,
+    description: metadata?.data.faq_description,
+  };
+}
+
 export default async function FAQPage() {
   const client = createClient();
   const page = await client.getSingle("faq");
@@ -136,7 +146,7 @@ export default async function FAQPage() {
             </h2>
 
             <p className="text-primary-foreground/80 mb-8 text-lg">
-              Our team typically responds within 24 hours.
+              {page.data.cta_text}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -147,7 +157,9 @@ export default async function FAQPage() {
 
               {/* Mail link stays anchor */}
               <Button asChild size="lg" className="rounded-full px-8">
-                <a href="mailto:hello@samosagame.com">hello@samosagame.com</a>
+                <a href={`mailto:${page.data.cta_email}`}>
+                  {page.data.cta_email}
+                </a>
               </Button>
             </div>
           </AnimatedSection>

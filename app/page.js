@@ -10,6 +10,16 @@ import StickyCartButton from "./_components/home/StickyCartButton";
 import TryMeSection from "./_components/home/TryMeSection";
 import { createClient } from "@/prismicio";
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.home_title,
+    description: metadata?.data.home_description,
+  };
+}
+
 export default async function Home() {
   // const [showStickyCart, setShowStickyCart] = useState(false);
   // const ctaSectionRef = useRef(null);

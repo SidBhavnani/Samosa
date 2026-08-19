@@ -83,6 +83,16 @@ const values = [
 //   );
 // }
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.our_story_title,
+    description: metadata?.data.our_story_description,
+  };
+}
+
 export default async function FounderPage() {
   const client = createClient();
   const page = await client.getSingle("our_story");

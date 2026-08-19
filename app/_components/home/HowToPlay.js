@@ -69,7 +69,7 @@ export default function HowToPlay({ data }) {
               >
                 <Link href="/how-to-play#how-to-play-video">
                   <Play className="mr-2 h-4 w-4" />
-                  Watch The Full Video
+                  Watch The Full Tutorial
                 </Link>
               </Button>
             </div>

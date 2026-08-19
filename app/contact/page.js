@@ -17,6 +17,16 @@ import ContactForm from "../_components/ContactForm";
 import { createClient } from "@/prismicio";
 import { PrismicNextImage } from "@prismicio/next";
 
+export async function generateMetadata() {
+  const client = createClient();
+  const metadata = await client.getSingle("metadata");
+
+  return {
+    title: metadata?.data.contact_title,
+    description: metadata?.data.contact_description,
+  };
+}
+
 export default async function ContactPage() {
   const client = createClient();
   const page = await client.getSingle("contact");
