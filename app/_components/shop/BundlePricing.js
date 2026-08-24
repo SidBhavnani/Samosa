@@ -47,10 +47,10 @@ export default function BundlePricing({ handleAddToCart, adding, data }) {
     save: plan.save,
     popular: plan.most_popular,
   }));
-  const [selected, setSelected] = useState(plans.find((plan) => plan.popular));
+  const [selected, setSelected] = useState(plans[0]);
 
   return (
-    <section className="w-full max-w-lg text-foreground">
+    <section className="w-full max-w-lg text-foreground mb-2">
       <div className="mx-auto max-w-lg">
         {/* Heading */}
         <h2 className="mb-5 text-sm sm:text-base tracking-[0.2em] uppercase text-primary">
@@ -133,6 +133,18 @@ export default function BundlePricing({ handleAddToCart, adding, data }) {
         >
           ADD TO CART
         </Button>
+
+        {/* Trust */}
+        <div className="flex flex-wrap justify-center gap-4 mt-2 text-sm text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 bg-green-500 rounded-full" />
+            In Stock
+          </span>
+
+          <span className="flex items-center gap-1.5">📦 Ships in 24h</span>
+
+          <span className="flex items-center gap-1.5">🔒 Secure checkout</span>
+        </div>
       </div>
     </section>
   );

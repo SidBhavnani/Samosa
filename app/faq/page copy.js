@@ -1,7 +1,13 @@
 import Link from "next/link";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 import { Button } from "@/app/_components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/_components/ui/accordion";
 import { AnimatedSection } from "@/app/_components/AnimatedSection";
 
 import { createClient } from "@/prismicio";
@@ -90,23 +96,25 @@ export default async function FAQPage() {
                     {category.title}
                   </p>
 
-                  {category.questions.map((item, index) => (
-                    <details
-                      key={index}
-                      id={item.id}
-                      className="group border-b border-border"
-                    >
-                      <summary className="flex cursor-pointer items-center justify-between py-4 text-left font-semibold text-sm list-none">
-                        {item.question}
-
-                        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-180" />
-                      </summary>
-
-                      <div className="pb-4 text-muted-foreground text-sm">
-                        <p dangerouslySetInnerHTML={{ __html: item.answer }} />
-                      </div>
-                    </details>
-                  ))}
+                  <Accordion type="single" collapsible>
+                    {category.questions.map((item, index) => (
+                      <AccordionItem
+                        key={index}
+                        value={`${category.title}-${index}`}
+                        id={item.id}
+                        className="border-b border-border"
+                      >
+                        <AccordionTrigger className="text-left font-semibold text-sm">
+                          {item.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground text-sm">
+                          <p
+                            dangerouslySetInnerHTML={{ __html: item.answer }}
+                          />
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
               </AnimatedSection>
             ))}

@@ -25,6 +25,7 @@ export default async function Shop() {
   const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("shop");
+  const homepage = await client.getSingle("homepage");
   const globalNav = await client.getSingle("global_nav");
   // console.log(JSON.stringify(product, null, 2));
   // console.log(product.description);
@@ -48,7 +49,7 @@ export default async function Shop() {
       <section className="bg-samosa-cream min-h-screen pt-28 pb-16 lg:pt-44 lg:pb-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
-            <Gallery images={product.images.edges} />
+            <Gallery images={product.images.edges} data={homepage.data} />
             <ProductInfo product={product} data={page.data} />
           </div>
         </div>

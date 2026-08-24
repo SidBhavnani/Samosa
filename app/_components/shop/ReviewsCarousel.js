@@ -57,7 +57,8 @@ export default function ReviewsCarousel({ data }) {
               <div
                 className="flex gap-4 transition-transform duration-500 ease-out"
                 style={{
-                  transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
+                  // transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
+                  transform: `translateX(calc(-${currentIndex * (100 / visibleCount)}% - ${visibleCount === 1 ? currentIndex * 16 : 0}px))`,
                 }}
               >
                 {data?.reviews_carousel?.map((review, index) => (

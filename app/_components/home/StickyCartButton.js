@@ -23,17 +23,38 @@ export default function StickyCartButton() {
   useEffect(() => {
     let ticking = false;
 
+    // const handleScroll = () => {
+    //   if (!ticking) {
+    //     requestAnimationFrame(() => {
+    //       setShowStickyCart(window.scrollY > 600);
+    //       ticking = false;
+    //     });
+    //     ticking = true;
+    //   }
+    // };
+
+    // window.addEventListener("scroll", handleScroll, { passive: true });
+    // return () => window.removeEventListener("scroll", handleScroll);
+
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          setShowStickyCart(window.scrollY > 600);
+          const scrollPosition = window.scrollY + window.innerHeight;
+          const pageHeight = document.documentElement.scrollHeight;
+
+          const isNearBottom = scrollPosition >= pageHeight - 100;
+
+          setShowStickyCart(window.scrollY > 600 && !isNearBottom);
+
           ticking = false;
         });
+
         ticking = true;
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -60,18 +81,18 @@ export default function StickyCartButton() {
         )}
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-3">
-          <p className="font-bold text-sm md:text-base text-foreground leading-tight line-clamp-2">
+          <p className="font-bold text-base md:text-lg text-foreground leading-tight line-clamp-2">
             {product?.title}
           </p>
           <div className="flex flex-col items-center gap-1 shrink-0">
-            <p className="text-primary font-bold text-base leading-none">
+            <p className="text-primary font-bold text-lg leading-none">
               {formatPrice(
                 product?.variants.edges[0].node.price.amount,
                 product?.variants.edges[0].node.price.currencyCode,
               )}
             </p>
             <Button
-              className="bg-primary hover:bg-primary/90 font-bold px-4 h-9 rounded-full shadow-lg"
+              className="bg-primary hover:bg-primary/90 font-bold text-lg px-4 h-9 rounded-full shadow-lg"
               // className="bg-primary hover:bg-primary/90 font-bold px-8 h-12 rounded-full shadow-lg"
               size="sm"
               onClick={handleAddToCart}

@@ -135,7 +135,7 @@ export default function HeroSection({ data }) {
 
         {/* Stacked SAMOSA cards — bottom right, overlapping box corner */}
         <div
-          className="absolute right-[8%] md:right-[20%] xl:right-[22%] 2xl:right-[26%] bottom-[-6%] md:bottom-[-8%] w-[28%] md:w-[18%] max-w-[260px] drop-shadow-2xl animate-hero-bob pointer-events-none z-40"
+          className="absolute right-[12%] md:right-[20%] xl:right-[22%] 2xl:right-[26%] bottom-[-6%] md:bottom-[-8%] w-[28%] md:w-[18%] max-w-[260px] drop-shadow-2xl animate-hero-bob pointer-events-none z-40"
           style={{ ["--bob-rot"]: "0deg", animationDuration: "6s" }}
         >
           <Image
@@ -143,6 +143,13 @@ export default function HeroSection({ data }) {
             alt=""
             className="w-full h-full object-cover"
           />
+        </div>
+
+        <div
+          className="absolute bottom-[10%] md:bottom-[12%] left-[30%] md:left-[32%] xl:left-[38%] bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-xs md:text-sm shadow-lg animate-hero-bob z-40"
+          style={{ ["--bob-rot"]: "6deg", animationDuration: "4s" }}
+        >
+          {data.cta_badge_2}
         </div>
       </div>
 
@@ -168,6 +175,17 @@ export default function HeroSection({ data }) {
             How to play
           </Link>
         </Button>
+      </div>
+      <div className="text-center mx-auto">
+        {data.minimum_shipping > 0 ? (
+          <p className="text-sm text-primary-foreground/80">
+            Shipping FREE over {formatPrice(data.minimum_shipping)}
+          </p>
+        ) : (
+          <p className="text-sm text-primary-foreground/80 font-bold">
+            Free UK & US Shipping
+          </p>
+        )}
       </div>
     </section>
   );

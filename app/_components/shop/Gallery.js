@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function Gallery({ images }) {
+export default function Gallery({ images, data }) {
   const [selectedImage, setSelectedImage] = useState(0);
   //   console.log(images);
   return (
@@ -40,9 +40,12 @@ export default function Gallery({ images }) {
       {/* Main Image - large with thick white border */}
       <div className="relative w-full lg:flex-1 max-w-[420px] md:max-w-[460px] lg:max-w-[520px] shrink-0 mt-4 lg:mt-0 mx-auto">
         {/* Floating Badge */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20">
-          <span className="bg-secondary text-secondary-foreground font-sans font-black text-xs md:text-sm uppercase tracking-[0.12em] px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg whitespace-nowrap">
+        <div className="flex gap-2 absolute top-3 left-1/2 -translate-x-1/2 z-20">
+          <span className="bg-secondary text-secondary-foreground font-sans font-black text-[10px] md:text-xs uppercase tracking-[0.12em] px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg whitespace-nowrap">
             Bestseller
+          </span>
+          <span className="bg-primary text-secondary-foreground font-sans font-black text-[10px] md:text-xs uppercase tracking-[0.12em] px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg whitespace-nowrap">
+            {data.cta_badge_2}
           </span>
         </div>
         {/* Image with thick white frame */}
