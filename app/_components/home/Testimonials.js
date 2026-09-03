@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 export default function Testimonials({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(
-    typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3,
+    typeof window !== "undefined" && window.innerWidth >= 768 ? 3 : 1,
   );
 
   useEffect(() => {
@@ -28,11 +28,6 @@ export default function Testimonials({ data }) {
     [],
   );
 
-  const testimonials = [
-    data.review_1.data,
-    data.review_2.data,
-    data.review_3.data,
-  ];
   // console.log(data.reviews);
 
   return (
