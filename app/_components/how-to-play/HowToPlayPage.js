@@ -226,7 +226,7 @@ export default function HowToPlayPage({ product, data, homepage, steps, cta }) {
                       </span> */}
                       <div className="relative w-18 h-18 mb-4">
                         <PrismicNextImage
-                          field={item.emoji}
+                          field={step.emoji}
                           fill
                           className="object-cover"
                         />
