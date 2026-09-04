@@ -108,7 +108,7 @@ export function Header({ data }) {
               <ShoppingCart className="h-6 w-6 scale-140" />
 
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs font-bold rounded-full h-7 w-7 flex items-center justify-center animate-bounce-in">
+                <span className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center animate-bounce-in">
                   {totalItems}
                 </span>
               )}

@@ -53,7 +53,7 @@ export default function AboutSection({ data }) {
                     <p className="font-bold text-primary text-base mb-1">
                       {feature.title}
                     </p>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-sm hidden md:block">
                       {feature.description}
                     </p>
                   </div>

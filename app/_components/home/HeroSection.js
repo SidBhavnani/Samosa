@@ -146,7 +146,7 @@ export default function HeroSection({ data }) {
         </div>
 
         <div
-          className="absolute bottom-[10%] md:bottom-[12%] left-[30%] md:left-[32%] xl:left-[38%] bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-xs md:text-sm shadow-lg animate-hero-bob z-40"
+          className="absolute bottom-[2%] md:bottom-[12%] left-[30%] md:left-[32%] xl:left-[38%] bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-xs md:text-sm shadow-lg animate-hero-bob z-40"
           style={{ ["--bob-rot"]: "6deg", animationDuration: "4s" }}
         >
           {data.cta_badge_2}

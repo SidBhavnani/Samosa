@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { Play } from "lucide-react";
+import { PrismicNextImage } from "@prismicio/next";
 
 export default function HowToPlay({ data }) {
   return (
@@ -36,9 +37,16 @@ export default function HowToPlay({ data }) {
                   </div>
                   {/* Card */}
                   <div className="bg-card rounded-2xl p-6 shadow-sm w-full text-center flex flex-col items-center flex-1 justify-center">
-                    <span className="text-4xl md:text-5xl mb-4">
+                    {/* <span className="text-4xl md:text-5xl mb-4">
                       {item.emoji}
-                    </span>
+                    </span> */}
+                    <div className="relative w-18 h-18 mb-4">
+                      <PrismicNextImage
+                        field={item.emoji}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                     <h3 className="text-base md:text-lg font-bold text-foreground text-center mb-2">
                       {item.title}
                     </h3>
@@ -69,7 +77,7 @@ export default function HowToPlay({ data }) {
               >
                 <Link href="/how-to-play#how-to-play-video">
                   <Play className="mr-2 h-4 w-4" />
-                  Watch The Full Tutorial
+                  Watch Full Tutorial
                 </Link>
               </Button>
             </div>

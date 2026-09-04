@@ -81,7 +81,7 @@ export default function StickyCartButton() {
         )}
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-3">
-          <p className="font-bold text-base md:text-lg text-foreground leading-tight line-clamp-2">
+          <p className="font-bold text-xl font-bystander md:text-2xl text-foreground leading-tight line-clamp-2">
             {product?.title}
           </p>
           <div className="flex flex-col items-center gap-1 shrink-0">

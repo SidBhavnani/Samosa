@@ -3,11 +3,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatedSection } from "../AnimatedSection";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { PrismicNextImage } from "@prismicio/next";
 
 export default function ReviewsCarousel({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(
-    typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3,
+    typeof window !== "undefined" && window.innerWidth >= 768 ? 3 : 1,
   );
 
   useEffect(() => {
@@ -90,9 +91,26 @@ export default function ReviewsCarousel({ data }) {
                         </div>
                       </div>
                     </div>
-                    <p className="text-primary-foreground/80 font-sans text-sm leading-relaxed">
+                    <p className="text-primary-foreground/80 font-sans text-sm mb-4 leading-relaxed">
                       {review.review.data.review}
                     </p>
+
+                    {review.review.data.images?.length > 0 && (
+                      <div className={`grid gap-2 grid-cols-2`}>
+                        {review.review.data.images.map((image, i) => (
+                          <div
+                            key={i}
+                            className="relative aspect-[4/3] overflow-hidden rounded-lg"
+                          >
+                            <PrismicNextImage
+                              field={image.image}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
