@@ -221,9 +221,16 @@ export default function HowToPlayPage({ product, data, homepage, steps, cta }) {
                     </div>
                     {/* Card */}
                     <div className="bg-card rounded-2xl p-6 shadow-sm w-full text-center flex flex-col items-center flex-1 justify-center">
-                      <span className="text-4xl md:text-5xl mb-4">
+                      {/* <span className="text-4xl md:text-5xl mb-4">
                         {step.emoji}
-                      </span>
+                      </span> */}
+                      <div className="relative w-18 h-18 mb-4">
+                        <PrismicNextImage
+                          field={item.emoji}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                       <h3 className="text-base md:text-lg font-bold text-foreground text-center mb-2">
                         {step.title}
                       </h3>
