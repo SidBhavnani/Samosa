@@ -53,88 +53,69 @@ export default function ReviewsCarousel({ data }) {
         </AnimatedSection>
 
         <AnimatedSection variant="fade-up" delay={200}>
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex gap-4 transition-transform duration-500 ease-out"
-                style={{
-                  // transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-                  transform: `translateX(calc(-${currentIndex * (100 / visibleCount)}% - ${visibleCount === 1 ? currentIndex * 16 : 0}px))`,
-                }}
-              >
-                {data?.reviews_carousel?.map((review, index) => (
-                  <div
-                    key={index}
-                    className="bg-primary-foreground/10 rounded-2xl p-6 backdrop-blur-sm border border-primary-foreground/10 shrink-0"
-                    style={{
-                      width: `calc(${100 / visibleCount}% - ${((visibleCount - 1) * 16) / visibleCount}px)`,
-                    }}
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center text-primary-foreground font-sans font-bold text-sm">
-                        {review.review.data.name.charAt(0).toUpperCase()}
-                      </div>
-                      <div>
-                        <p className="text-primary-foreground font-sans font-bold text-sm">
-                          {review.review.data.name} (
-                          {review.review.data.location})
-                        </p>
-                        <div className="flex gap-0.5">
-                          {Array.from({
-                            length: review.review.data.rating,
-                          }).map((_, i) => (
-                            <Star
-                              key={i}
-                              className="h-3 w-3 fill-samosa-gold text-samosa-gold"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-primary-foreground/80 font-sans text-sm mb-4 leading-relaxed">
-                      {review.review.data.review}
-                    </p>
+          <div className="relative overflow-hidden">
+            <div className="flex w-max animate-reviews">
+              {/* First set */}
 
-                    {review.review.data.images?.length > 0 && (
-                      <div className={`grid gap-2 grid-cols-2`}>
-                        {review.review.data.images.map((image, i) => (
-                          <div
-                            key={i}
-                            className="relative aspect-[4/3] overflow-hidden rounded-lg"
-                          >
-                            <PrismicNextImage
-                              field={image.image}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
+              {data.reviews_carousel.map((review) => (
+                <ReviewCard key={`a-${review.review.uid}`} review={review} />
+              ))}
 
-            <div className="flex justify-center gap-2 mt-6">
-              <button
-                onClick={prev}
-                disabled={currentIndex === 0}
-                className="w-10 h-10 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center disabled:opacity-30 hover:bg-secondary/80 transition-all"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={next}
-                disabled={currentIndex >= maxIndex}
-                className="w-10 h-10 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center disabled:opacity-30 hover:bg-secondary/80 transition-all"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
+              {/* Duplicate set */}
+              {data.reviews_carousel.map((review) => (
+                <ReviewCard key={`b-${review.review.uid}`} review={review} />
+              ))}
             </div>
           </div>
         </AnimatedSection>
       </div>
     </section>
+  );
+}
+
+function ReviewCard({ review }) {
+  return (
+    <div className="bg-primary-foreground/10 rounded-2xl p-6 backdrop-blur-sm border border-primary-foreground/10 shrink-0 w-[clamp(360px,30vw,480px)] mr-6">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center text-primary-foreground font-sans font-bold text-sm">
+          {review.review.data.name.charAt(0).toUpperCase()}
+        </div>
+        <div>
+          <p className="text-primary-foreground font-sans font-bold text-sm">
+            {review.review.data.name} ({review.review.data.location})
+          </p>
+          <div className="flex gap-0.5">
+            {Array.from({
+              length: review.review.data.rating,
+            }).map((_, i) => (
+              <Star
+                key={i}
+                className="h-3 w-3 fill-samosa-gold text-samosa-gold"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      <p className="text-primary-foreground/80 font-sans text-sm mb-4 leading-relaxed">
+        {review.review.data.review}
+      </p>
+
+      {review.review.data.images?.length > 0 && (
+        <div className={`grid gap-2 grid-cols-2`}>
+          {review.review.data.images.map((image, i) => (
+            <div
+              key={i}
+              className="relative aspect-[4/3] overflow-hidden rounded-lg"
+            >
+              <PrismicNextImage
+                field={image.image}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

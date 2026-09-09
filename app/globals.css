@@ -408,6 +408,14 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+.animate-reviews {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-reviews:hover {
+  animation-play-state: paused;
+}
+
 .animate-sticker-float {
   animation: sticker-float 4s ease-in-out infinite;
 }

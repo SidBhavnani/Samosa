@@ -21,6 +21,11 @@ export default function HeroSection({ data }) {
     addItem();
   };
 
+  const shippingText =
+    data.minimum_shipping > 0
+      ? `Shipping FREE over ${formatPrice(data.minimum_shipping)}`
+      : "Free UK & US Shipping";
+
   return (
     <section className="relative overflow-hidden bg-magenta-glow pt-32 md:pt-40 pb-4 md:pb-6">
       {/* Headline — both lines sized to bleed edges equally */}
@@ -145,12 +150,12 @@ export default function HeroSection({ data }) {
           />
         </div>
 
-        <div
+        {/* <div
           className="absolute bottom-[2%] md:bottom-[12%] left-[30%] md:left-[32%] xl:left-[38%] bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-xs md:text-sm shadow-lg animate-hero-bob z-40"
           style={{ ["--bob-rot"]: "6deg", animationDuration: "4s" }}
         >
           {data.cta_badge_2}
-        </div>
+        </div> */}
       </div>
 
       {/* CTAs — centered at bottom of hero */}
@@ -176,16 +181,14 @@ export default function HeroSection({ data }) {
           </Link>
         </Button>
       </div>
-      <div className="text-center mx-auto">
-        {data.minimum_shipping > 0 ? (
-          <p className="text-sm text-primary-foreground/80">
-            Shipping FREE over {formatPrice(data.minimum_shipping)}
-          </p>
-        ) : (
-          <p className="text-sm text-primary-foreground/80 font-bold">
-            Free UK & US Shipping
-          </p>
-        )}
+      <div className="text-center mx-auto flex justify-center items-center gap-2 md:gap-3">
+        <p className="text-sm text-primary-foreground/80 font-bold">
+          {data.cta_badge_2}
+        </p>
+        <p className="text-xl text-primary-foreground/80 font-bold">|</p>
+        <p className="text-sm text-primary-foreground/80 font-bold">
+          {shippingText}
+        </p>
       </div>
     </section>
   );
