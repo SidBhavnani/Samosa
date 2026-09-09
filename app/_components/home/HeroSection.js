@@ -87,7 +87,7 @@ export default function HeroSection({ data }) {
               <span className="block">
                 Chaos{" "}
                 <span aria-hidden="true" className="emoji">
-                  💃
+                  💃🏽
                 </span>
               </span>
               <span className="block">Included</span>
@@ -130,7 +130,7 @@ export default function HeroSection({ data }) {
             >
               Try Me{" "}
               <span aria-hidden="true" className="emoji">
-                👆
+                👈🏽
               </span>
             </div>
             {/* Speech bubble tail */}
