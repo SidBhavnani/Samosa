@@ -9,6 +9,7 @@ import Providers from "./_components/Providers";
 import { getProduct } from "./_lib/shopify";
 import ProductProvider from "./_components/ProductProvider";
 import { createClient } from "@/prismicio";
+import { headers } from "next/headers";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -61,10 +62,13 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
   // const country = request.headers.get("x-vercel-ip-country") || "GB";
+  const headersList = await headers();
+  const country = headersList.get("x-vercel-ip-country")?.toUpperCase() || "GB";
+
   const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("global_nav");
-  // console.log(country);
+  console.log(country);
 
   return (
     <html lang="en" className={`${proximaNova.variable} h-full antialiased`}>
