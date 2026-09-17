@@ -60,10 +60,11 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }) {
+  // const country = request.headers.get("x-vercel-ip-country") || "GB";
   const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("global_nav");
-  // console.log(product);
+  // console.log(country);
 
   return (
     <html lang="en" className={`${proximaNova.variable} h-full antialiased`}>

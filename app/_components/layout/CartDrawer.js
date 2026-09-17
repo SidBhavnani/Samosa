@@ -165,12 +165,21 @@ export function CartDrawer() {
                 className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
                 onClick={() => {
                   alert(
-                    "Checkout functionality coming soon! For now, contact us to place an order.",
+                    "Checkout functionality coming soon, check back tomorrow! For now, contact us on hello@playsamosa.com to place an order.",
                   );
                 }}
               >
                 Checkout
               </Button>
+
+              {/* <Button
+                className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
+                disabled={!cart?.checkoutUrl}
+              >
+                <a className="w-full" href={cart?.checkoutUrl}>
+                  Checkout
+                </a>
+              </Button> */}
 
               <Button variant="ghost" className="w-full" onClick={closeCart}>
                 Continue Shopping

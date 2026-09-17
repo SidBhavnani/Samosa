@@ -29,6 +29,9 @@ export function getShopifyClient(buyerCountryCode = null) {
  * @param {string} handle  - Shopify product handle (slug)
  * @param {string} country - ISO 3166-1 alpha-2 country code, e.g. 'IN', 'US', 'GB'
  */
+
+// US and CA handle = "samosa-the-ultimate-desi-party-game-copy"
+
 export async function getProduct(handle, country = "GB") {
   const client = getShopifyClient(country);
   const data = await client.request(GET_PRODUCT_QUERY, {
