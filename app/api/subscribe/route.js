@@ -11,8 +11,8 @@ export async function POST(req) {
 
     const data = await resend.emails.send({
       from: "hello@playsamosa.com",
-      // to: "hello@playsamosa.com",
-      to: "siddhibhavnani@gmail.com",
+      to: "hello@playsamosa.com",
+      // to: "siddhibhavnani@gmail.com",
       subject: `Samosa Email Subscription`,
       replyTo: email,
       text: `
