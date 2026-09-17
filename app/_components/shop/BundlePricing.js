@@ -36,17 +36,57 @@ import { Button } from "../ui/button";
 //   },
 // ];
 
-export default function BundlePricing({ handleAddToCart, adding, data }) {
-  const plans = data.bundle_plans.map((plan) => ({
-    id: plan.quantity,
-    title: `${plan.quantity} game${plan.quantity > 1 ? "s" : ""}`,
-    price: plan.price,
-    subtitle: "per game",
-    discount: plan.discount || null,
-    total: plan.total,
-    save: plan.save,
-    popular: plan.most_popular,
-  }));
+export default function BundlePricing({
+  handleAddToCart,
+  adding,
+  product,
+  bundleAmounts,
+  data,
+}) {
+  const formatPrice = (price, currencyCode = "GBP") =>
+    new Intl.NumberFormat("en-GB", {
+      style: "currency",
+      currency: currencyCode,
+    }).format(price);
+
+  const plans = data.bundle_plans.map((plan) => {
+    const bundleAmount = bundleAmounts.find(
+      (b) => b.quantity === plan.quantity,
+    );
+
+    const price = bundleAmount.bundlePrice / plan.quantity;
+    const totalPrice = bundleAmount.bundlePrice;
+    const saveAmount = bundleAmount.save;
+    // let price = +product.variants.edges[0].node.price.amount;
+    // if (plan.discount) price = price * (1 - +plan.discount.slice(0, 2) / 100);
+    // const totalPrice = price * plan.quantity;
+    // const saveAmount =
+    //   +product.variants.edges[0].node.price.amount * plan.quantity - totalPrice;
+
+    const currency = product.variants.edges[0].node.price.currencyCode;
+    // console.log(`SAVE: ${saveAmount.toFixed(2)}`);
+    // console.log(`DISCOUNT: ${plan?.discount?.slice(0, 2)}`);
+    // console.log(
+    //   `QUANTITY: ${plan.quantity} - PRICE: ${formatPrice(price.toFixed(2), currency)} - TOTAL: ${formatPrice(totalPrice.toFixed(2), currency)}`,
+    // );
+
+    return {
+      id: plan.quantity,
+      title: `${plan.quantity} game${plan.quantity > 1 ? "s" : ""}`,
+      price: formatPrice(price.toFixed(2), currency),
+      subtitle: "per game",
+      discount:
+        bundleAmount.discount && bundleAmount.discount > 0
+          ? `${bundleAmount.discount}% off`
+          : null,
+      total: `${formatPrice(totalPrice.toFixed(2), currency)} total`,
+      save:
+        saveAmount && saveAmount > 0
+          ? `Save ${formatPrice(saveAmount, currency)}`
+          : "",
+      popular: plan.most_popular,
+    };
+  });
   const [selected, setSelected] = useState(plans[0]);
 
   return (

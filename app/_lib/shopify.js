@@ -35,7 +35,7 @@ export function getShopifyClient(buyerCountryCode = null) {
 export async function getProduct(handle, country = "GB") {
   const client = getShopifyClient(country);
   const data = await client.request(GET_PRODUCT_QUERY, {
-    handle: "samosa",
+    handle,
     countryCode: country,
   });
   // console.log("Raw response:", JSON.stringify(data, null, 2));

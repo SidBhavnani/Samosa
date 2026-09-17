@@ -7,6 +7,18 @@ import { Textarea } from "./ui/textarea";
 import { Input } from "./ui/input";
 import { AnimatedSection } from "./AnimatedSection";
 import { Label } from "./ui/label";
+import z from "zod";
+import { Turnstile } from "@marsidev/react-turnstile";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Please enter a valid email address").max(255),
+  subject: z.string().min(5, "Subject must be at least 5 characters").max(200),
+  message: z
+    .string()
+    .min(10, "Message must be at least 10 characters")
+    .max(2000),
+});
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,12 +26,14 @@ export default function ContactForm() {
     email: "",
     subject: "",
     message: "",
+    turnstileToken: "",
   });
 
-  //   const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +43,32 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.turnstileToken) {
+      alert("Please complete the verification.");
+      return;
+    }
+
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    // console.log(data);
+
+    if (data.success) {
+      setSubmittedSuccess(true);
+    } else {
+      setSubmittedSuccess(false);
+    }
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 
     setIsSubmitting(false);
     setIsSubmitted(true);
@@ -52,17 +89,20 @@ export default function ContactForm() {
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Send className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+            <h3 className="text-xl font-bold mb-2">
+              {submittedSuccess ? "Message Sent!" : "Error!"}
+            </h3>
             <p className="text-muted-foreground mb-6">
-              Thanks for reaching out. We&apos;ll get back to you within 24
-              hours.
+              {submittedSuccess
+                ? "Thanks for reaching out. We'll get back to you within 24 hours."
+                : "Something went wrong. Please try again."}
             </p>
             <Button
               onClick={() => setIsSubmitted(false)}
               variant="outline"
               className="rounded-full"
             >
-              Send Another Message
+              {submittedSuccess ? "Send Another Message" : "Try Again"}
             </Button>
           </div>
         ) : (
@@ -118,6 +158,14 @@ export default function ContactForm() {
                 className={"rounded-lg"}
               />
             </div>
+
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+              onSuccess={(token) =>
+                setFormData((prev) => ({ ...prev, turnstileToken: token }))
+              }
+            />
+
             <Button
               type="submit"
               className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 h-11 font-semibold rounded-full shadow-lg"

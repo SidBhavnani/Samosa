@@ -20,7 +20,9 @@ export function CartProvider({ children, country = "GB" }) {
   const addItem = useCallback(
     // async (variantId, quantity = 1) => {
     async (
-      variantId = "gid://shopify/ProductVariant/56686365376896",
+      variantId = country === "US" || country === "CA"
+        ? "gid://shopify/ProductVariant/56810100687232"
+        : "gid://shopify/ProductVariant/56686365376896",
       quantity = 1,
     ) => {
       setAdding(true);

@@ -6,17 +6,17 @@ import { Button } from "../ui/button";
 import { useCart } from "@/app/_contexts/CartContext";
 import BundlePricing from "./BundlePricing";
 
-export default function ProductInfo({ product, data }) {
+export default function ProductInfo({ product, bundleAmounts, data }) {
   const { cart, addItem, adding } = useCart();
 
   const handleAddToCart = (quantity = 1) => {
     addItem(product.variants.edges[0].node.id, quantity);
   };
 
-  const formatPrice = (price) =>
+  const formatPrice = (price, currencyCode = "GBP") =>
     new Intl.NumberFormat("en-GB", {
       style: "currency",
-      currency: "GBP",
+      currency: currencyCode,
     }).format(price);
 
   return (
@@ -30,7 +30,10 @@ export default function ProductInfo({ product, data }) {
 
       {/* Price */}
       <p className="text-[32px] md:text-[38px] font-sans font-bold text-primary leading-none">
-        {formatPrice(product.variants.edges[0].node.price.amount)}
+        {formatPrice(
+          product.variants.edges[0].node.price.amount,
+          product.variants.edges[0].node.price.currencyCode,
+        )}
       </p>
 
       {/* Bundle Pricing */}
@@ -75,6 +78,8 @@ export default function ProductInfo({ product, data }) {
       <BundlePricing
         handleAddToCart={handleAddToCart}
         adding={adding}
+        product={product}
+        bundleAmounts={bundleAmounts}
         data={data}
       />
 

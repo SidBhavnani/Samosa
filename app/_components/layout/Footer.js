@@ -8,10 +8,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { DynamicIcon } from "lucide-react/dynamic";
 
 const footerLinks = {
-  shop: [
-    { name: "Products", path: "/shop" },
-    { name: "SAMOSA Game", path: "/product" },
-  ],
+  shop: [{ name: "Products", path: "/shop" }],
   support: [
     { name: "FAQ", path: "/faq" },
     { name: "Contact Us", path: "/contact" },

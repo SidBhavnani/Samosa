@@ -5,8 +5,43 @@ import { PrismicNextImage } from "@prismicio/next";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { DynamicIcon } from "lucide-react/dynamic";
+import { Mail } from "lucide-react";
+import { useState } from "react";
 
 export default function ConnectWithUs({ data, globalNav }) {
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(true);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const response = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+
+    // console.log(data);
+
+    if (data.success) {
+      setSubmittedSuccess(true);
+    } else {
+      setSubmittedSuccess(false);
+    }
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    setIsSubmitting(false);
+    setIsSubscribed(true);
+  };
+
   return (
     <>
       {/* Connect on Instagram */}
@@ -96,12 +131,12 @@ export default function ConnectWithUs({ data, globalNav }) {
             <div className="flex gap-4 mb-8 justify-center">
               {globalNav.social_links.map((social) => (
                 <a
-                  key={social.label}
+                  key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors"
-                  aria-label={social.label}
+                  aria-label={social.name}
                 >
                   {/* <DynamicIcon name={social.icon} className="w-6 h-6" /> */}
                   <PrismicNextImage field={social.icon} className="h-5 w-5" />
@@ -110,16 +145,42 @@ export default function ConnectWithUs({ data, globalNav }) {
             </div>
 
             {/* Email Subscribe */}
-            <div className="flex gap-3 mb-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-3 rounded-full bg-samosa-cream text-foreground font-sans text-sm border-none outline-none shadow-sm"
-              />
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 font-sans font-bold">
-                Subscribe
-              </Button>
-            </div>
+            {isSubscribed ? (
+              <div className="bg-primary/10 rounded-xl mb-3 p-6">
+                <Mail className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <p className="text-foreground font-semibold">
+                  {submittedSuccess
+                    ? "Thanks for subscribing!"
+                    : "Oops, something went wrong."}
+                </p>
+                <p className="text-muted-foreground text-sm font-sans">
+                  {submittedSuccess
+                    ? "Check your inbox for a welcome surprise 🎉"
+                    : "Please try again later!"}
+                </p>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubscribe}
+                className="flex gap-3 mb-3 max-w-md mx-auto"
+              >
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 px-5 py-3 rounded-full bg-samosa-cream text-foreground font-sans text-sm border-none outline-none shadow-sm"
+                />
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 font-sans font-bold"
+                >
+                  Subscribe
+                </Button>
+              </form>
+            )}
             <p className="text-primary/50 font-sans text-xs font-semibold">
               {data.subscribe_text}
             </p>

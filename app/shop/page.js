@@ -1,4 +1,4 @@
-import { getProduct } from "@/app/_lib/shopify";
+import { createCart, getProduct } from "@/app/_lib/shopify";
 import Link from "next/link";
 import Gallery from "../_components/shop/Gallery";
 import ProductInfo from "../_components/shop/ProductInfo";
@@ -7,6 +7,7 @@ import ReviewsCarousel from "../_components/shop/ReviewsCarousel";
 import ConnectWithUs from "../_components/shop/ConnectWithUs";
 import ReviewForm from "../_components/shop/ReviewForm";
 import { createClient } from "@/prismicio";
+import { headers } from "next/headers";
 
 export async function generateMetadata() {
   const client = createClient();
@@ -22,13 +23,38 @@ export default async function Shop() {
   //   console.log("Domain:", process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN);
   //   console.log("Token:", process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN);
 
-  const product = await getProduct("samosa", "GB");
+  const headersList = await headers();
+  const country = headersList.get("x-vercel-ip-country")?.toUpperCase() || "GB";
+
+  const US_CANADA_COUNTRIES = ["US", "CA"];
+
+  const productHandle = US_CANADA_COUNTRIES.includes(country)
+    ? "samosa-the-ultimate-desi-party-game-copy"
+    : "samosa";
+
+  const product = await getProduct(productHandle, country);
+
+  // const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("shop");
   const homepage = await client.getSingle("homepage");
   const globalNav = await client.getSingle("global_nav");
   // console.log(JSON.stringify(product, null, 2));
-  // console.log(product.description);
+  // console.log(`PRICE: ${product.variants.edges[0].node.price.amount}`);
+  // console.log(`CURRENCY: ${product.variants.edges[0].node.price.currencyCode}`);
+
+  const bundleAmounts = await Promise.all(
+    page.data.bundle_plans.map(async (plan) => {
+      const amount = await getBundlePrice(
+        product.variants.edges[0].node.id,
+        plan.quantity,
+        country,
+      );
+      return amount;
+    }),
+  );
+
+  // console.log(bundleAmounts[2]);
 
   if (!product) {
     return (
@@ -50,7 +76,11 @@ export default async function Shop() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
             <Gallery images={product.images.edges} data={homepage.data} />
-            <ProductInfo product={product} data={page.data} />
+            <ProductInfo
+              product={product}
+              bundleAmounts={bundleAmounts}
+              data={page.data}
+            />
           </div>
         </div>
       </section>
@@ -61,6 +91,34 @@ export default async function Shop() {
       <ConnectWithUs data={page.data} globalNav={globalNav.data} />
     </div>
   );
+}
+
+async function getBundlePrice(variantId, quantity, country) {
+  const cart = await createCart(
+    [
+      {
+        merchandiseId: variantId,
+        quantity,
+      },
+    ],
+    country,
+  );
+
+  // const line = cart.lines.nodes[0];
+
+  const subtotal = Number(cart.cost.subtotalAmount.amount);
+  const total = Number(cart.cost.totalAmount.amount);
+
+  const discountPercentage = ((subtotal - total) / subtotal) * 100;
+
+  return {
+    quantity,
+    originalPrice: subtotal,
+    bundlePrice: total,
+    currency: cart.cost.totalAmount.currencyCode,
+    discount: discountPercentage.toFixed(0),
+    save: (subtotal - total).toFixed(2),
+  };
 }
 
 // {

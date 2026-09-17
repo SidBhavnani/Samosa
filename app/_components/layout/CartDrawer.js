@@ -161,7 +161,7 @@ export function CartDrawer() {
                 Shipping and taxes calculated at checkout
               </p>
 
-              <Button
+              {/* <Button
                 className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
                 onClick={() => {
                   alert(
@@ -170,16 +170,16 @@ export function CartDrawer() {
                 }}
               >
                 Checkout
-              </Button>
+              </Button> */}
 
-              {/* <Button
+              <Button
                 className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
                 disabled={!cart?.checkoutUrl}
               >
                 <a className="w-full" href={cart?.checkoutUrl}>
                   Checkout
                 </a>
-              </Button> */}
+              </Button>
 
               <Button variant="ghost" className="w-full" onClick={closeCart}>
                 Continue Shopping

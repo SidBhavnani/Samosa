@@ -19,6 +19,7 @@ import { Button } from "../ui/button";
 import YouTubeShort from "./YouTubeShort";
 import { useCart } from "@/app/_contexts/CartContext";
 import { PrismicNextImage } from "@prismicio/next";
+import { useProduct } from "../ProductProvider";
 
 // Card categories with answers for the interactive demo (same as homepage)
 const cardCategories = [
@@ -91,8 +92,9 @@ const variations = [
   },
 ];
 
-export default function HowToPlayPage({ product, data, homepage, steps, cta }) {
+export default function HowToPlayPage({ data, homepage, steps, cta }) {
   const heroImageParallax = useParallax(0.15);
+  const product = useProduct();
 
   const { addItem, adding } = useCart();
 
@@ -100,10 +102,10 @@ export default function HowToPlayPage({ product, data, homepage, steps, cta }) {
     addItem(product.variants.edges[0].node.id, 1);
   };
 
-  const formatPrice = (price) =>
+  const formatPrice = (price, currencyCode = "GBP") =>
     new Intl.NumberFormat("en-GB", {
       style: "currency",
-      currency: "GBP",
+      currency: currencyCode,
     }).format(price);
 
   return (
@@ -451,6 +453,7 @@ export default function HowToPlayPage({ product, data, homepage, steps, cta }) {
                         <p className="text-3xl font-bold text-foreground">
                           {formatPrice(
                             product.variants.edges[0].node.price.amount,
+                            product.variants.edges[0].node.price.currencyCode,
                           )}
                         </p>
                       </div>

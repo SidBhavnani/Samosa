@@ -4,6 +4,7 @@ import { Send, Star } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function ReviewForm() {
   const [name, setName] = useState("");
@@ -12,37 +13,49 @@ export default function ReviewForm() {
   const [hoverRating, setHoverRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setIsSubmitted] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(true);
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !rating || !reviewText.trim()) return;
 
+    if (!turnstileToken) {
+      alert("Please complete the verification.");
+      return;
+    }
+
     setIsSubmitting(true);
-    // const { error } = await supabase.from("reviews").insert({
-    //   name: name.trim(),
-    //   location: location.trim() || null,
-    //   rating,
-    //   review_text: reviewText.trim(),
-    // });
+
+    const response = await fetch("/api/review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        location,
+        rating,
+        review: reviewText,
+        turnstileToken,
+      }),
+    });
+
+    const data = await response.json();
+
+    // console.log(data);
+
+    if (data.success) {
+      setSubmittedSuccess(true);
+    } else {
+      setSubmittedSuccess(false);
+    }
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 
     setIsSubmitting(false);
-
-    // if (error) {
-    //   toast({
-    //     title: "Oops!",
-    //     description:
-    //       "Something went wrong submitting your review. Please try again.",
-    //     variant: "destructive",
-    //   });
-    //   return;
-    // }
-
-    setSubmitted(true);
-    // toast({
-    //   title: "Thank you!",
-    //   description: "Your review has been submitted.",
-    // });
+    setIsSubmitted(true);
   };
 
   if (submitted) {
@@ -53,13 +66,15 @@ export default function ReviewForm() {
             <div className="text-center max-w-xl mx-auto">
               <div className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground font-sans font-black text-xs uppercase tracking-[0.12em] px-4 py-2 rounded-full mb-6">
                 <Send className="h-3.5 w-3.5" />
-                Submitted
+                {submittedSuccess ? "Submitted" : "Error"}
               </div>
               <h3 className="text-[28px] md:text-[36px] font-bystander uppercase leading-[1.1] tracking-normal text-primary mb-3">
-                THANK YOU!
+                {submittedSuccess ? "THANK YOU!" : "Something went wrong!"}
               </h3>
               <p className="text-primary/70 font-sans font-semibold text-base">
-                Your review means the world to us. Keep the chaos going!
+                {submittedSuccess
+                  ? "Your review means the world to us. Keep the chaos going!"
+                  : "Please try again."}
               </p>
             </div>
           </AnimatedSection>
@@ -154,6 +169,11 @@ export default function ReviewForm() {
                   className="w-full px-5 py-4 rounded-xl bg-white border-2 border-primary/20 text-primary font-sans text-sm placeholder:text-primary/40 outline-none focus:border-primary/40 transition-colors resize-none shadow-sm"
                 />
               </div>
+
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                onSuccess={(token) => setTurnstileToken(token)}
+              />
 
               {/* Submit */}
               <Button

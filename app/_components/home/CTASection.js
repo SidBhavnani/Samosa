@@ -6,12 +6,13 @@ import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
 
-import { useEffect, useRef, useState } from "react";
-import { getProduct } from "@/app/_lib/shopify";
+import { useRef } from "react";
+import { useProduct } from "../ProductProvider";
 
 export default function CTASection({ data }) {
   const { addItem, adding } = useCart();
-  const [product, setProduct] = useState(null);
+  // const [product, setProduct] = useState(null);
+  const product = useProduct();
 
   const ctaSectionRef = useRef(null);
 
@@ -19,20 +20,22 @@ export default function CTASection({ data }) {
     addItem(product.variants.edges[0].node.id, 1);
   };
 
-  const formatPrice = (price) =>
+  console.log(product.variants.edges[0].node.id);
+
+  const formatPrice = (price, currencyCode = "GBP") =>
     new Intl.NumberFormat("en-GB", {
       style: "currency",
-      currency: "GBP",
+      currency: currencyCode,
     }).format(price);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const p = await getProduct("samosa", "GB");
-      setProduct(p);
-    };
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const p = await getProduct("samosa", "GB");
+  //     setProduct(p);
+  //   };
 
-    fetchProduct();
-  }, []);
+  //   fetchProduct();
+  // }, []);
 
   if (!product) return null;
 
@@ -95,6 +98,7 @@ export default function CTASection({ data }) {
                       <p className="text-3xl font-bold">
                         {formatPrice(
                           product.variants.edges[0].node.price.amount,
+                          product.variants.edges[0].node.price.currencyCode,
                         )}
                       </p>
                     </div>

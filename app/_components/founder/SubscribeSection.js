@@ -29,9 +29,34 @@ const socialLinks = [
 export default function SubscribeSection({ data, globalNav }) {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(true);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    const response = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+
+    // console.log(data);
+
+    if (data.success) {
+      setSubmittedSuccess(true);
+    } else {
+      setSubmittedSuccess(false);
+    }
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    setIsSubmitting(false);
     setIsSubscribed(true);
   };
 
@@ -94,10 +119,14 @@ export default function SubscribeSection({ data, globalNav }) {
                     <div className="bg-primary/10 rounded-xl p-6">
                       <Mail className="h-8 w-8 text-primary mb-2" />
                       <p className="text-foreground font-semibold">
-                        Thanks for subscribing!
+                        {submittedSuccess
+                          ? "Thanks for subscribing!"
+                          : "Oops, something went wrong."}
                       </p>
                       <p className="text-muted-foreground text-sm font-sans">
-                        Check your inbox for a welcome surprise 🎉
+                        {submittedSuccess
+                          ? "Check your inbox for a welcome surprise 🎉"
+                          : "Please try again later!"}
                       </p>
                     </div>
                   ) : (
@@ -112,6 +141,7 @@ export default function SubscribeSection({ data, globalNav }) {
                       />
                       <Button
                         type="submit"
+                        disabled={isSubmitting}
                         className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6"
                       >
                         Subscribe

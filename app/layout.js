@@ -65,15 +65,23 @@ export default async function RootLayout({ children }) {
   const headersList = await headers();
   const country = headersList.get("x-vercel-ip-country")?.toUpperCase() || "GB";
 
-  const product = await getProduct("samosa", "GB");
+  const US_CANADA_COUNTRIES = ["US", "CA"];
+
+  const productHandle = US_CANADA_COUNTRIES.includes(country)
+    ? "samosa-the-ultimate-desi-party-game-copy"
+    : "samosa";
+
+  const product = await getProduct(productHandle, country);
+
+  // const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("global_nav");
-  console.log(country);
+  // console.log(country);
 
   return (
     <html lang="en" className={`${proximaNova.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Providers country="GB">
+        <Providers country={country}>
           <ProductProvider product={product}>
             <div className="min-h-screen flex flex-col">
               <Header data={page.data} />
