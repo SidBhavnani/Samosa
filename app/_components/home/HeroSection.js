@@ -56,7 +56,7 @@ export default function HeroSection({ data }) {
       {/* Stage — product box + decor sit lower so DESI PARTY GAME stays visible */}
       <div className="relative -mt-[2vw] md:-mt-[1vw] h-[48vw] md:h-[32vw] lg:h-[28vw] max-h-[440px]">
         {/* Game box — centered, lowered so headline below stays visible */}
-        <div className="absolute inset-x-0 top-[4%] flex justify-center z-20">
+        <div className="absolute inset-x-0 top-[10%] md:top-[4%] flex justify-center z-20">
           <div
             className="w-[48%] md:w-[40%] lg:w-[36%] max-w-[480px] drop-shadow-2xl animate-hero-bob"
             style={{ ["--bob-rot"]: "0deg", animationDuration: "5s" }}
@@ -99,7 +99,7 @@ export default function HeroSection({ data }) {
 
         {/* Samosa triangle — left side, below the chaos bubble */}
         <div
-          className="absolute left-[12%] md:left-[22%] top-[55%] md:top-[42%] w-[16%] md:w-[10%] max-w-[140px] drop-shadow-2xl animate-hero-bob pointer-events-none z-30"
+          className="absolute left-[15%] md:left-[22%] top-[65%] md:top-[42%] w-[13%] md:w-[10%] max-w-[140px] drop-shadow-2xl animate-hero-bob pointer-events-none z-30"
           style={{ ["--bob-rot"]: "-14deg", animationDuration: "4.5s" }}
         >
           <Image
@@ -140,7 +140,7 @@ export default function HeroSection({ data }) {
 
         {/* Stacked SAMOSA cards — bottom right, overlapping box corner */}
         <div
-          className="absolute right-[12%] md:right-[20%] xl:right-[22%] 2xl:right-[26%] bottom-[-6%] md:bottom-[-8%] w-[28%] md:w-[18%] max-w-[260px] drop-shadow-2xl animate-hero-bob pointer-events-none z-40"
+          className="absolute right-[14%] md:right-[20%] xl:right-[22%] 2xl:right-[26%] bottom-[0%] md:bottom-[-8%] w-[24%] md:w-[18%] max-w-[260px] drop-shadow-2xl animate-hero-bob pointer-events-none z-40"
           style={{ ["--bob-rot"]: "0deg", animationDuration: "6s" }}
         >
           <Image
