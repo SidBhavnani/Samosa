@@ -10,6 +10,7 @@ import { getProduct } from "./_lib/shopify";
 import ProductProvider from "./_components/ProductProvider";
 import { createClient } from "@/prismicio";
 import { headers } from "next/headers";
+import EmailModal from "./_components/layout/EmailModal";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -88,6 +89,7 @@ export default async function RootLayout({ children }) {
               <main className="flex-1">{children}</main>
               <Footer data={page.data} />
               <CartDrawer />
+              <EmailModal data={page.data} />
             </div>
           </ProductProvider>
         </Providers>
