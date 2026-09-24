@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { useProduct } from "../ProductProvider";
 
 // const plans = [
 //   {
@@ -40,9 +41,17 @@ export default function BundlePricing({
   handleAddToCart,
   adding,
   product,
-  bundleAmounts,
+  bundleAmounts: defaultBundleAmounts,
   data,
 }) {
+  const { selectedProduct } = useProduct();
+
+  const bundleAmounts = selectedProduct
+    ? defaultBundleAmounts.find((b) => b.id === selectedProduct.id).amounts
+    : defaultBundleAmounts;
+
+  // console.log(bundleAmounts);
+
   const formatPrice = (price, currencyCode = "GBP") =>
     new Intl.NumberFormat("en-GB", {
       style: "currency",

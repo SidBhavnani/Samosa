@@ -1,4 +1,4 @@
-import { createCart, getProduct } from "@/app/_lib/shopify";
+import { createCart, getAllProducts, getProduct } from "@/app/_lib/shopify";
 import Link from "next/link";
 import Gallery from "../_components/shop/Gallery";
 import ProductInfo from "../_components/shop/ProductInfo";
@@ -8,6 +8,7 @@ import ConnectWithUs from "../_components/shop/ConnectWithUs";
 import ReviewForm from "../_components/shop/ReviewForm";
 import { createClient } from "@/prismicio";
 import { headers } from "next/headers";
+import ProductSelector from "../_components/shop/ProductSelector";
 
 export async function generateMetadata() {
   const client = createClient();
@@ -33,17 +34,35 @@ export default async function Shop() {
     : "samosa";
 
   const product = await getProduct(productHandle, country);
+  // console.log(product);
 
-  // const product = await getProduct("samosa", "GB");
+  const allProductEdges = await getAllProducts(country);
+  const allProducts = allProductEdges.edges;
+
+  // const productCopy = {
+  //   ...allProductEdges?.edges[0].node,
+  //   id: allProductEdges?.edges[0].node.id + "-copy",
+  //   title: "(Copy) " + allProductEdges?.edges[0].node.title,
+  // };
+  // const productCopy2 = {
+  //   ...allProductEdges?.edges[0].node,
+  //   id: allProductEdges?.edges[0].node.id + "-copy2",
+  //   title: "(Copy 2) " + allProductEdges?.edges[0].node.title,
+  // };
+  // const allProducts = [
+  //   allProductEdges?.edges[0],
+  //   { ...allProductEdges?.edges[0], node: productCopy },
+  //   { ...allProductEdges?.edges[0], node: productCopy2 },
+  // ];
+
+  // console.log(allProductEdges.edges[0].node);
+
   const client = createClient();
   const page = await client.getSingle("shop");
   const homepage = await client.getSingle("homepage");
   const globalNav = await client.getSingle("global_nav");
-  // console.log(JSON.stringify(product, null, 2));
-  // console.log(`PRICE: ${product.variants.edges[0].node.price.amount}`);
-  // console.log(`CURRENCY: ${product.variants.edges[0].node.price.currencyCode}`);
 
-  const bundleAmounts = await Promise.all(
+  let bundleAmounts = await Promise.all(
     page.data.bundle_plans.map(async (plan) => {
       const amount = await getBundlePrice(
         product.variants.edges[0].node.id,
@@ -54,7 +73,25 @@ export default async function Shop() {
     }),
   );
 
-  // console.log(bundleAmounts[2]);
+  if (allProducts.length > 1) {
+    bundleAmounts = await Promise.all(
+      allProducts.map(async (p) => {
+        const amounts = await Promise.all(
+          page.data.bundle_plans.map(async (plan) => {
+            const amount = await getBundlePrice(
+              p.node.variants.edges[0].node.id,
+              plan.quantity,
+              country,
+            );
+            return amount;
+          }),
+        );
+        return { amounts, id: p.node.id };
+      }),
+    );
+  }
+
+  // console.log(bundleAmounts);
 
   if (!product) {
     return (
@@ -74,6 +111,7 @@ export default async function Shop() {
       {/* Main Product Section */}
       <section className="bg-samosa-cream min-h-screen pt-28 pb-16 lg:pt-44 lg:pb-20">
         <div className="container mx-auto px-4 lg:px-8">
+          <ProductSelector allProducts={allProducts} />
           <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
             <Gallery images={product.images.edges} data={homepage.data} />
             <ProductInfo

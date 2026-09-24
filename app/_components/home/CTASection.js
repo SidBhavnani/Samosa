@@ -12,7 +12,7 @@ import { useProduct } from "../ProductProvider";
 export default function CTASection({ data }) {
   const { addItem, adding } = useCart();
   // const [product, setProduct] = useState(null);
-  const product = useProduct();
+  const { product } = useProduct();
 
   const ctaSectionRef = useRef(null);
 
@@ -20,7 +20,7 @@ export default function CTASection({ data }) {
     addItem(product.variants.edges[0].node.id, 1);
   };
 
-  console.log(product.variants.edges[0].node.id);
+  // console.log(product.variants.edges[0].node.id);
 
   const formatPrice = (price, currencyCode = "GBP") =>
     new Intl.NumberFormat("en-GB", {

@@ -5,9 +5,17 @@ import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
 import { useCart } from "@/app/_contexts/CartContext";
 import BundlePricing from "./BundlePricing";
+import { useProduct } from "../ProductProvider";
 
-export default function ProductInfo({ product, bundleAmounts, data }) {
+export default function ProductInfo({
+  product: defaultProduct,
+  bundleAmounts,
+  data,
+}) {
   const { cart, addItem, adding } = useCart();
+  const { selectedProduct } = useProduct();
+
+  const product = selectedProduct || defaultProduct;
 
   const handleAddToCart = (quantity = 1) => {
     addItem(product.variants.edges[0].node.id, quantity);

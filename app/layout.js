@@ -6,7 +6,7 @@ import { Header } from "./_components/layout/Header";
 import { Footer } from "./_components/layout/Footer";
 import { CartDrawer } from "./_components/layout/CartDrawer";
 import Providers from "./_components/Providers";
-import { getProduct } from "./_lib/shopify";
+import { getAllProducts, getProduct } from "./_lib/shopify";
 import ProductProvider from "./_components/ProductProvider";
 import { createClient } from "@/prismicio";
 import { headers } from "next/headers";
@@ -74,6 +74,27 @@ export default async function RootLayout({ children }) {
 
   const product = await getProduct(productHandle, country);
 
+  const allProductEdges = await getAllProducts(country);
+  const allProducts = allProductEdges.edges;
+
+  // const productCopy = {
+  //   ...allProductEdges?.edges[0].node,
+  //   id: allProductEdges?.edges[0].node.id + "-copy",
+  //   title: "(Copy) " + allProductEdges?.edges[0].node.title,
+  // };
+  // const productCopy2 = {
+  //   ...allProductEdges?.edges[0].node,
+  //   id: allProductEdges?.edges[0].node.id + "-copy2",
+  //   title: "(Copy 2) " + allProductEdges?.edges[0].node.title,
+  // };
+  // const allProducts = [
+  //   allProductEdges?.edges[0],
+  //   { ...allProductEdges?.edges[0], node: productCopy },
+  //   { ...allProductEdges?.edges[0], node: productCopy2 },
+  // ];
+
+  // console.log(allProductEdges.edges[0].node);
+
   // const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("global_nav");
@@ -83,7 +104,7 @@ export default async function RootLayout({ children }) {
     <html lang="en" className={`${proximaNova.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Providers country={country}>
-          <ProductProvider product={product}>
+          <ProductProvider product={product} allProducts={allProducts}>
             <div className="min-h-screen flex flex-col">
               <Header data={page.data} />
               <main className="flex-1">{children}</main>

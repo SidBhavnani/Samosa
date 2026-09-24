@@ -94,7 +94,7 @@ const variations = [
 
 export default function HowToPlayPage({ data, homepage, steps, cta }) {
   const heroImageParallax = useParallax(0.15);
-  const product = useProduct();
+  const { product } = useProduct();
 
   const { addItem, adding } = useCart();
 

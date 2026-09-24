@@ -1,5 +1,5 @@
 import { GraphQLClient } from "graphql-request";
-import { GET_PRODUCT_QUERY } from "./queries/product";
+import { GET_ALL_PRODUCTS_QUERY, GET_PRODUCT_QUERY } from "./queries/product";
 
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
 const token = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN;
@@ -40,6 +40,17 @@ export async function getProduct(handle, country = "GB") {
   });
   // console.log("Raw response:", JSON.stringify(data, null, 2));
   return data.product;
+}
+
+export async function getAllProducts(country = "GB") {
+  const client = getShopifyClient(country);
+
+  // const data = await client.request(GET_ALL_PRODUCTS_QUERY);
+  const data = await client.request(GET_ALL_PRODUCTS_QUERY, {
+    countryCode: country,
+  });
+  // console.log("Raw response:", JSON.stringify(data, null, 2));
+  return data.products;
 }
 
 import {

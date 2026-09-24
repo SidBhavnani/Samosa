@@ -3,9 +3,13 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { useProduct } from "../ProductProvider";
 
-export default function Gallery({ images, data }) {
+export default function Gallery({ images: defaultImages, data }) {
+  const { selectedProduct } = useProduct();
   const [selectedImage, setSelectedImage] = useState(0);
+
+  const images = selectedProduct ? selectedProduct.images.edges : defaultImages;
   //   console.log(images);
   return (
     <>

@@ -18,7 +18,7 @@ const SAMOSA_PRODUCT = {
 export default function StickyCartButton() {
   const [showStickyCart, setShowStickyCart] = useState(false);
   const { addItem, adding } = useCart();
-  const product = useProduct();
+  const { product } = useProduct();
 
   useEffect(() => {
     let ticking = false;
