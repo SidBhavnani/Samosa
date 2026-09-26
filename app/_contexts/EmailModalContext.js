@@ -13,9 +13,14 @@ const EmailModalContext = createContext(null);
 export function EmailModalProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [opened, setOpened] = useState(false);
+  const [tabClosed, setTabClosed] = useState(false);
 
-  const openEmailModal = useCallback(() => setIsOpen(true), []);
+  const openEmailModal = useCallback(() => {
+    setIsOpen(true);
+    setOpened(true);
+  }, []);
   const closeEmailModal = useCallback(() => setIsOpen(false), []);
+  const closeTab = useCallback(() => setTabClosed(true), []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,6 +38,8 @@ export function EmailModalProvider({ children }) {
         isOpen,
         openEmailModal,
         closeEmailModal,
+        tabClosed,
+        closeTab,
       }}
     >
       {children}
