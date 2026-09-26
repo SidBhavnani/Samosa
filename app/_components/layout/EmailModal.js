@@ -144,7 +144,10 @@ export default function EmailModal({ data }) {
             )}
           </button>
         </div>
-        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 font-sans font-bold">
+        <Button
+          onClick={closeEmailModal}
+          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 font-sans font-bold"
+        >
           <Link href="/shop" className="w-full">
             {data.email_subscribed_button_text}
           </Link>
