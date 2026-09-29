@@ -138,7 +138,9 @@ export default function BundlePricing({
                   </p>
 
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                    <h3
+                      className={`${plan.price.length < 8 ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"} font-bold tracking-tight`}
+                    >
                       {plan.price}
                     </h3>
 

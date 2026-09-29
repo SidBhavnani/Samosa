@@ -178,10 +178,10 @@ export default function EmailModal({ data }) {
         </div>
       </div>
 
-      <div
+      {/* <div
         className={`${isOpen || tabClosed ? "hidden " : ""}fixed top-[45%] transform -translate-y-1/2 right-0 z-55`}
       >
-        {/* Close button */}
+        
         <button
           type="button"
           className="absolute left-1 top-1 cursor-pointer z-10 flex h-5 w-5 -translate-1/2 items-center justify-center rounded-full bg-white text-samosa-magenta shadow-md"
@@ -198,7 +198,7 @@ export default function EmailModal({ data }) {
             Get 10% off! ✨
           </span>
         </button>
-      </div>
+      </div> */}
     </>
   );
 }

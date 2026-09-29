@@ -10,6 +10,8 @@ import {
   Youtube,
   Mail,
   Quote,
+  Check,
+  Copy,
 } from "lucide-react";
 import { useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
@@ -31,6 +33,23 @@ export default function SubscribeSection({ data, globalNav }) {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        globalNav.email_subscribed_coupon_code,
+      );
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy coupon code:", error);
+    }
+  };
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -59,6 +78,59 @@ export default function SubscribeSection({ data, globalNav }) {
     setIsSubmitting(false);
     setIsSubscribed(true);
   };
+
+  const submitted = !submittedSuccess ? (
+    <>
+      <Mail className="h-12 w-12 text-primary mb-2 md:mb-4 mx-auto" />
+      <p className="text-foreground font-semibold text-xl text-center mx-auto">
+        {submittedSuccess
+          ? "Thanks for subscribing!"
+          : "Oops, something went wrong."}
+      </p>
+      <p className="text-muted-foreground text-lg font-sans text-center mb-2 md:mb-4 mx-auto">
+        {submittedSuccess
+          ? "Check your inbox for a welcome surprise 🎉"
+          : "Please try again later!"}
+      </p>
+    </>
+  ) : (
+    <>
+      <p className="font-bystander text-xl md:text-2xl text-center w-full px-2 mb-2 text-samosa-magenta">
+        {globalNav.email_subscribed_heading}
+      </p>
+      <p className="text-sm md:text-base text-center w-full px-2 mb-2 md:mb-4 text-samosa-magenta">
+        {globalNav.email_subscribed_text_line_1}
+        <br />
+        {globalNav.email_subscribed_text_line_2}
+      </p>
+
+      <div className="mb-2 md:mb-4 w-9/10 md:w-4/5 mx-auto">
+        <div className="flex w-full mb-2 md:mb-4 rounded-full items-center bg-samosa-cream px-5 shadow-sm">
+          {/* Coupon code */}
+          <input
+            type="text"
+            value={globalNav.email_subscribed_coupon_code}
+            readOnly
+            className="min-w-0 flex-1 py-3 bg-transparent text-foreground font-bystander outline-none"
+          />
+
+          {/* Copy button */}
+          <button
+            type="button"
+            onClick={handleCopy}
+            aria-label={copied ? "Coupon copied" : "Copy coupon code"}
+            className="flex h-5 w-5 flex-shrink-0 items-center justify-center text-foreground transition-colors cursor-pointer"
+          >
+            {copied ? (
+              <Check size={20} strokeWidth={2.5} />
+            ) : (
+              <Copy size={20} strokeWidth={2.5} />
+            )}
+          </button>
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <section className="py-20 md:py-28 bg-samosa-yellow-green">
@@ -116,41 +188,41 @@ export default function SubscribeSection({ data, globalNav }) {
                 {/* Newsletter */}
                 <div className="max-w-sm">
                   {isSubscribed ? (
-                    <div className="bg-primary/10 rounded-xl p-6">
-                      <Mail className="h-8 w-8 text-primary mb-2" />
-                      <p className="text-foreground font-semibold">
-                        {submittedSuccess
-                          ? "Thanks for subscribing!"
-                          : "Oops, something went wrong."}
-                      </p>
-                      <p className="text-muted-foreground text-sm font-sans">
-                        {submittedSuccess
-                          ? "Check your inbox for a welcome surprise 🎉"
-                          : "Please try again later!"}
-                      </p>
+                    <div className="bg-primary/10 rounded-xl p-2">
+                      {submitted}
                     </div>
                   ) : (
-                    <form onSubmit={handleSubscribe} className="flex gap-2">
-                      <Input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="rounded-full"
-                      />
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6"
-                      >
-                        Subscribe
-                      </Button>
-                    </form>
+                    <>
+                      <div className="w-full">
+                        <p className="font-extrabold md:text-lg text-samosa-magenta">
+                          {globalNav.email_pop_up_heading}
+                        </p>
+                        <p className="text-sm mb-2 text-samosa-magenta">
+                          {globalNav.email_pop_up_subheading}
+                        </p>
+                      </div>
+                      <form onSubmit={handleSubscribe} className="flex gap-2">
+                        <Input
+                          type="email"
+                          placeholder="Enter your email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          className="rounded-full"
+                        />
+                        <Button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6"
+                        >
+                          Subscribe
+                        </Button>
+                      </form>
+                      <p className="text-muted-foreground text-xs mt-3 font-sans">
+                        {data.subscribe_text}
+                      </p>
+                    </>
                   )}
-                  <p className="text-muted-foreground text-xs mt-3 font-sans">
-                    {data.subscribe_text}
-                  </p>
                 </div>
               </div>
             </AnimatedSection>

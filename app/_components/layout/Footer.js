@@ -51,7 +51,7 @@ export function Footer({ data }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   // className="text-primary-foreground/70 hover:text-secondary transition-colors"
-                  className="w-10 h-10 bg-primary-foreground/20 hover:bg-primary-foreground/80 hover:text-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 bg-samosa-yellow-light/60 hover:bg-primary-foreground/80 hover:text-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                   aria-label={social.name}
                 >
                   {/* <DynamicIcon name={social.icon_name} className="h-5 w-5" /> */}
