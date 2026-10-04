@@ -43,6 +43,7 @@ export default async function Home() {
 
   const client = createClient();
   const page = await client.getSingle("homepage");
+  const globalNav = await client.getSingle("global_nav");
 
   return (
     <>
@@ -56,7 +57,7 @@ export default async function Home() {
         <TryMeSection data={page.data} />
         <Testimonials data={page.data} />
         <GameNightGallery data={page.data} />
-        <CTASection data={page.data} />
+        <CTASection data={page.data} globalNav={globalNav.data} />
         {/* <CTASection ctaSectionRef={ctaSectionRef} /> */}
         <StickyCartButton data={page.data} />
         {/* <StickyCartButton showStickyCart={showStickyCart} /> */}

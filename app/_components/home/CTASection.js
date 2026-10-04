@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
 import { Button } from "../ui/button";
-import { ShoppingCart } from "lucide-react";
+import { Check, Copy, ShoppingCart, Mail } from "lucide-react";
 import { useCart } from "@/app/_contexts/CartContext";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useProduct } from "../ProductProvider";
 
-export default function CTASection({ data }) {
+export default function CTASection({ data, globalNav }) {
   const { addItem, adding } = useCart();
   // const [product, setProduct] = useState(null);
   const { product } = useProduct();
@@ -19,6 +19,109 @@ export default function CTASection({ data }) {
   const handleAddToCart = () => {
     addItem(product.variants.edges[0].node.id, 1);
   };
+
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        globalNav.email_subscribed_coupon_code,
+      );
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy coupon code:", error);
+    }
+  };
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const response = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+
+    // console.log(data);
+
+    if (data.success) {
+      setSubmittedSuccess(true);
+    } else {
+      setSubmittedSuccess(false);
+    }
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    setIsSubmitting(false);
+    setIsSubscribed(true);
+  };
+
+  const submitted = !submittedSuccess ? (
+    <>
+      <Mail className="h-12 w-12 text-primary mb-2 md:mb-4 mx-auto" />
+      <p className="text-foreground font-semibold text-xl text-center mx-auto">
+        {submittedSuccess
+          ? "Thanks for subscribing!"
+          : "Oops, something went wrong."}
+      </p>
+      <p className="text-muted-foreground text-lg font-sans text-center mb-2 md:mb-4 mx-auto">
+        {submittedSuccess
+          ? "Check your inbox for a welcome surprise 🎉"
+          : "Please try again later!"}
+      </p>
+    </>
+  ) : (
+    <>
+      <p className="text-center font-bystander text-xl md:text-3xl w-4/5 md:w-3/4 mx-auto md:mb-4 text-samosa-magenta">
+        {globalNav.email_subscribed_heading}
+      </p>
+      <p className="text-center text-sm md:text-lg w-full px-2 mx-auto mb-2 md:mb-4 text-samosa-magenta">
+        {globalNav.email_subscribed_text_line_1}
+        <br />
+        {globalNav.email_subscribed_text_line_2}
+      </p>
+
+      <div className="mb-2 md:mb-4 w-9/10 md:w-4/5 mx-auto">
+        <div className="flex w-full mb-2 md:mb-4 rounded-full items-center bg-samosa-cream px-5 shadow-sm">
+          {/* Coupon code */}
+          <input
+            type="text"
+            value={globalNav.email_subscribed_coupon_code}
+            readOnly
+            className="min-w-0 flex-1 py-3 bg-transparent text-foreground font-bystander outline-none"
+          />
+
+          {/* Copy button */}
+          <button
+            type="button"
+            onClick={handleCopy}
+            aria-label={copied ? "Coupon copied" : "Copy coupon code"}
+            className="flex h-5 w-5 flex-shrink-0 items-center justify-center text-foreground transition-colors cursor-pointer"
+          >
+            {copied ? (
+              <Check size={20} strokeWidth={2.5} />
+            ) : (
+              <Copy size={20} strokeWidth={2.5} />
+            )}
+          </button>
+        </div>
+      </div>
+    </>
+  );
 
   // console.log(product.variants.edges[0].node.id);
 
@@ -155,6 +258,46 @@ export default function CTASection({ data }) {
               </div>
             </AnimatedSection>
           </div>
+          {/* Email Subscribe */}
+          {isSubscribed ? (
+            <div className="bg-primary/10 rounded-xl mt-12 max-w-3xl mx-auto p-6">
+              {submitted}
+            </div>
+          ) : (
+            <>
+              <div className="w-full flex flex-col justify-center items-center mt-12">
+                <p className="text-center font-extrabold text-lg md:text-xl w-4/5 md:w-3/4 mx-auto text-samosa-magenta">
+                  {globalNav.email_pop_up_heading}
+                </p>
+                <p className="text-center text-sm md:text-lg w-9/10 md:w-4/5 mx-auto mb-2 text-samosa-magenta">
+                  {globalNav.email_pop_up_subheading}
+                </p>
+              </div>
+              <form
+                onSubmit={handleSubscribe}
+                className="flex gap-3 mb-3 max-w-md mx-auto"
+              >
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 px-5 py-3 rounded-full bg-samosa-cream text-foreground font-sans text-sm border-none outline-none shadow-sm"
+                />
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 font-sans font-bold"
+                >
+                  Subscribe
+                </Button>
+              </form>
+              <p className="text-primary/50 font-sans text-xs mx-auto text-center font-semibold">
+                {globalNav.email_pop_up_footer}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Minus, Plus, X, ShoppingBag } from "lucide-react";
+import { Minus, Plus, X, ShoppingBag, Tag } from "lucide-react";
 
 import { Button } from "@/app/_components/ui/button";
 import {
@@ -12,7 +12,6 @@ import {
 } from "@/app/_components/ui/sheet";
 
 import { useCart } from "@/app/_contexts/CartContext";
-import { cn } from "@/app/_hooks/utils";
 
 export function CartDrawer() {
   const { cart, updateQuantity, updating, totalItems, isOpen, closeCart } =
@@ -24,6 +23,15 @@ export function CartDrawer() {
       currency: currencyCode,
     }).format(price);
   };
+
+  // Get applicable discount codes
+  const appliedDiscounts =
+    cart?.discountCodes?.filter((discount) => discount.applicable) || [];
+
+  // Calculate total savings
+  const subtotal = Number(cart?.cost?.subtotalAmount?.amount || 0);
+  const total = Number(cart?.cost?.totalAmount?.amount || 0);
+  const discountAmount = subtotal - total;
 
   return (
     <Sheet open={isOpen} onOpenChange={closeCart}>
@@ -38,10 +46,13 @@ export function CartDrawer() {
         {!cart || cart?.lines.edges.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
             <ShoppingBag className="h-16 w-16 text-muted-foreground/50 mb-4" />
+
             <h3 className="text-lg font-semibold mb-2">Your cart is empty</h3>
+
             <p className="text-muted-foreground text-sm mb-6">
               Add some fun to your game night!
             </p>
+
             <Button onClick={closeCart} className="bg-gradient-primary">
               Continue Shopping
             </Button>
@@ -129,8 +140,46 @@ export function CartDrawer() {
 
             {/* Footer */}
             <div className="border-t pt-4 space-y-4">
+              {/* Applied discounts */}
+              {appliedDiscounts.length > 0 && (
+                <div className="rounded-lg border border-green-200 bg-green-50 p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Tag className="h-4 w-4 text-green-600" />
+
+                    <span className="text-sm font-semibold text-green-800">
+                      Discount applied
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    {appliedDiscounts.map((discount) => (
+                      <div
+                        key={discount.code}
+                        className="flex items-center justify-between"
+                      >
+                        <span className="rounded-md bg-white border border-green-200 px-2 py-1 text-sm font-semibold text-green-700">
+                          {discount.code}
+                        </span>
+
+                        {discountAmount > 0 && (
+                          <span className="text-sm font-medium text-green-700">
+                            -
+                            {formatPrice(
+                              discountAmount,
+                              cart.cost.totalAmount.currencyCode,
+                            )}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Total */}
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Total</span>
+
                 {cart?.cost.totalAmount.amount ===
                 cart?.cost.subtotalAmount.amount ? (
                   <span className="text-xl font-bold">
@@ -147,6 +196,7 @@ export function CartDrawer() {
                         cart?.cost.subtotalAmount.currencyCode,
                       )}
                     </span>
+
                     <span className="text-xl font-bold">
                       {formatPrice(
                         cart?.cost.totalAmount.amount,
@@ -161,17 +211,7 @@ export function CartDrawer() {
                 Shipping and taxes calculated at checkout
               </p>
 
-              {/* <Button
-                className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
-                onClick={() => {
-                  alert(
-                    "Checkout functionality coming soon, check back tomorrow! For now, contact us on hello@playsamosa.com to place an order.",
-                  );
-                }}
-              >
-                Checkout
-              </Button> */}
-
+              {/* Checkout */}
               <Button
                 className="w-full bg-samosa-magenta text-primary-foreground hover:opacity-90 h-12 text-lg font-semibold"
                 disabled={!cart?.checkoutUrl}
