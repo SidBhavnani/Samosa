@@ -145,7 +145,7 @@ export default function CTASection({ data, globalNav }) {
   return (
     <section
       ref={ctaSectionRef}
-      className="py-20 md:py-28 bg-muted relative overflow-hidden"
+      className="py-20 bg-muted relative overflow-hidden"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -264,8 +264,8 @@ export default function CTASection({ data, globalNav }) {
               {submitted}
             </div>
           ) : (
-            <>
-              <div className="w-full flex flex-col justify-center items-center mt-12">
+            <div className="bg-primary/10 rounded-xl mt-12 max-w-3xl mx-auto p-8">
+              <div className="w-full flex flex-col justify-center items-center">
                 <p className="text-center font-extrabold text-lg md:text-xl w-4/5 md:w-3/4 mx-auto text-samosa-magenta">
                   {globalNav.email_pop_up_heading}
                 </p>
@@ -296,7 +296,7 @@ export default function CTASection({ data, globalNav }) {
               <p className="text-primary/50 font-sans text-xs mx-auto text-center font-semibold">
                 {globalNav.email_pop_up_footer}
               </p>
-            </>
+            </div>
           )}
         </div>
       </div>

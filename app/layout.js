@@ -11,6 +11,7 @@ import ProductProvider from "./_components/ProductProvider";
 import { createClient } from "@/prismicio";
 import { headers } from "next/headers";
 import EmailModal from "./_components/layout/EmailModal";
+import CookieConsent from "./_components/layout/CookieConsent";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -114,6 +115,7 @@ export default async function RootLayout({ children }) {
             </div>
           </ProductProvider>
         </Providers>
+        <CookieConsent />
       </body>
     </html>
   );
