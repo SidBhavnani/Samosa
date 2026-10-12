@@ -170,8 +170,6 @@ export default function CookieConsent() {
     try {
       const privacy = await loadShopifyPrivacyApi();
 
-      // console.log(privacy);
-
       // await new Promise((resolve) => {
       //   privacy.setTrackingConsent(
       //     {
