@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore, useState } from "react";
+import { useSyncExternalStore, useState, useEffect } from "react";
 
 const CONSENT_KEY = "cookie-consent-v2";
 const SHOPIFY_SCRIPT =
@@ -276,6 +276,16 @@ export default function CookieConsent() {
       setPending(false);
     }
   }
+
+  useEffect(() => {
+    loadShopifyPrivacyApi()
+      .then(() => {
+        window.dispatchEvent(new Event("shopify-privacy-api-ready"));
+      })
+      .catch((error) => {
+        console.error("Failed to initialize Shopify privacy API:", error);
+      });
+  }, []);
 
   if (consent && consent !== "unknown") {
     return null;
