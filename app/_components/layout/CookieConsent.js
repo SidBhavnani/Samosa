@@ -127,31 +127,47 @@ function loadShopifyPrivacyApi() {
   if (!privacyApiPromise) {
     privacyApiPromise = new Promise((resolve, reject) => {
       enableBackendConsentMode();
+
       const initialize = () => {
-        if (typeof window.Shopify?.loadFeatures !== "function") {
-          reject(new Error("Shopify Customer Privacy API did not load"));
+        const privacy = window.Shopify?.customerPrivacy;
+
+        if (privacy?.setTrackingConsent) {
+          resolve(privacy);
           return;
         }
 
-        window.Shopify.loadFeatures(
-          [{ name: "consent-tracking-api", version: "0.1" }],
-          (error) => {
-            if (error) {
-              reject(error);
-              return;
-            }
-
-            const privacy = window.Shopify?.customerPrivacy;
-
-            if (!privacy?.setTrackingConsent) {
-              reject(new Error("Shopify consent API is unavailable"));
-              return;
-            }
-
-            resolve(privacy);
-          },
+        reject(
+          new Error(
+            "Shopify Customer Privacy API script loaded, but customerPrivacy is unavailable.",
+          ),
         );
       };
+
+      // const initialize = () => {
+      //   if (typeof window.Shopify?.loadFeatures !== "function") {
+      //     reject(new Error("Shopify Customer Privacy API did not load"));
+      //     return;
+      //   }
+
+      //   window.Shopify.loadFeatures(
+      //     [{ name: "consent-tracking-api", version: "0.1" }],
+      //     (error) => {
+      //       if (error) {
+      //         reject(error);
+      //         return;
+      //       }
+
+      //       const privacy = window.Shopify?.customerPrivacy;
+
+      //       if (!privacy?.setTrackingConsent) {
+      //         reject(new Error("Shopify consent API is unavailable"));
+      //         return;
+      //       }
+
+      //       resolve(privacy);
+      //     },
+      //   );
+      // };
 
       // enableShopifyBackendConsentMode();
 
