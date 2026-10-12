@@ -68,6 +68,53 @@ function enableShopifyBackendConsentMode() {
   });
 }
 
+function enableBackendConsentMode() {
+  let backendConsentStub = null;
+  let fullCustomerPrivacy = null;
+  let customShopify = window.Shopify || undefined;
+
+  Object.defineProperty(window, "Shopify", {
+    configurable: true,
+
+    get() {
+      return customShopify;
+    },
+
+    set(value) {
+      // Shopify's CDN resets window.Shopify to {} before
+      // assigning the full Customer Privacy API.
+      if (
+        typeof value === "object" &&
+        value !== null &&
+        Object.keys(value).length === 0
+      ) {
+        customShopify = value;
+        backendConsentStub = { backendConsentEnabled: true };
+
+        Object.defineProperty(window.Shopify, "customerPrivacy", {
+          configurable: true,
+
+          get() {
+            return fullCustomerPrivacy ?? backendConsentStub;
+          },
+
+          set(api) {
+            if (
+              typeof api === "object" &&
+              api !== null &&
+              "setTrackingConsent" in api
+            ) {
+              fullCustomerPrivacy = api;
+            }
+          },
+        });
+      } else {
+        customShopify = value;
+      }
+    },
+  });
+}
+
 function loadShopifyPrivacyApi() {
   if (typeof window === "undefined") {
     return Promise.reject(new Error("Browser environment required"));
@@ -79,6 +126,7 @@ function loadShopifyPrivacyApi() {
 
   if (!privacyApiPromise) {
     privacyApiPromise = new Promise((resolve, reject) => {
+      enableBackendConsentMode();
       const initialize = () => {
         if (typeof window.Shopify?.loadFeatures !== "function") {
           reject(new Error("Shopify Customer Privacy API did not load"));
@@ -105,7 +153,7 @@ function loadShopifyPrivacyApi() {
         );
       };
 
-      enableShopifyBackendConsentMode();
+      // enableShopifyBackendConsentMode();
 
       let script = document.querySelector(
         'script[data-shopify-privacy-api="true"]',
@@ -195,8 +243,8 @@ export default function CookieConsent() {
             headlessStorefront: true,
             // storefrontRootDomain: "playsamosa.com",
             // checkoutRootDomain: "checkout.playsamosa.com",
-            checkoutRootDomain: window.location.host,
             storefrontRootDomain: ".playsamosa.com",
+            checkoutRootDomain: window.location.host,
             storefrontAccessToken:
               process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,
           },
