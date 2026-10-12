@@ -78,22 +78,6 @@ export default async function RootLayout({ children }) {
   const allProductEdges = await getAllProducts(country);
   const allProducts = allProductEdges.edges;
 
-  // const productCopy = {
-  //   ...allProductEdges?.edges[0].node,
-  //   id: allProductEdges?.edges[0].node.id + "-copy",
-  //   title: "(Copy) " + allProductEdges?.edges[0].node.title,
-  // };
-  // const productCopy2 = {
-  //   ...allProductEdges?.edges[0].node,
-  //   id: allProductEdges?.edges[0].node.id + "-copy2",
-  //   title: "(Copy 2) " + allProductEdges?.edges[0].node.title,
-  // };
-  // const allProducts = [
-  //   allProductEdges?.edges[0],
-  //   { ...allProductEdges?.edges[0], node: productCopy },
-  //   { ...allProductEdges?.edges[0], node: productCopy2 },
-  // ];
-
   // console.log(allProductEdges.edges[0].node);
 
   // const product = await getProduct("samosa", "GB");
