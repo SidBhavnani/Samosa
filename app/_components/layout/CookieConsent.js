@@ -128,7 +128,23 @@ export default function CookieConsent() {
 
       // console.log(privacy);
 
-      await new Promise((resolve) => {
+      // await new Promise((resolve) => {
+      //   privacy.setTrackingConsent(
+      //     {
+      //       analytics: accepted,
+      //       marketing: accepted,
+      //       preferences: accepted,
+      //       headlessStorefront: true,
+      //       storefrontRootDomain: "playsamosa.com",
+      //       checkoutRootDomain: "checkout.playsamosa.com",
+      //       storefrontAccessToken:
+      //         process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,
+      //     },
+      //     resolve,
+      //   );
+      // });
+
+      const result = await new Promise((resolve, reject) => {
         privacy.setTrackingConsent(
           {
             analytics: accepted,
@@ -140,9 +156,23 @@ export default function CookieConsent() {
             storefrontAccessToken:
               process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,
           },
-          resolve,
+          (result) => {
+            if (result?.error) {
+              reject(
+                new Error(
+                  `Shopify rejected consent: ${JSON.stringify(result.error)}`,
+                ),
+              );
+              return;
+            }
+
+            resolve(result);
+          },
         );
       });
+
+      console.log("Shopify consent result:", result);
+      console.log("Shopify visitor consent:", privacy.currentVisitorConsent());
 
       localStorage.setItem(CONSENT_KEY, accepted ? "accepted" : "rejected");
 
