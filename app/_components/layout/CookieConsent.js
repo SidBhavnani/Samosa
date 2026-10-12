@@ -26,6 +26,48 @@ function getServerSnapshot() {
   return "unknown";
 }
 
+function enableShopifyBackendConsentMode() {
+  let shopify = window.Shopify;
+
+  const backendConsentStub = {
+    backendConsentEnabled: true,
+  };
+
+  Object.defineProperty(window, "Shopify", {
+    configurable: true,
+
+    get() {
+      return shopify;
+    },
+
+    set(value) {
+      shopify = value;
+
+      // Shopify's CDN resets window.Shopify to an empty object
+      // before installing the full Customer Privacy API.
+      if (
+        value &&
+        typeof value === "object" &&
+        Object.keys(value).length === 0
+      ) {
+        let customerPrivacy;
+
+        Object.defineProperty(value, "customerPrivacy", {
+          configurable: true,
+
+          get() {
+            return customerPrivacy ?? backendConsentStub;
+          },
+
+          set(api) {
+            customerPrivacy = api;
+          },
+        });
+      }
+    },
+  });
+}
+
 function loadShopifyPrivacyApi() {
   if (typeof window === "undefined") {
     return Promise.reject(new Error("Browser environment required"));
@@ -62,6 +104,8 @@ function loadShopifyPrivacyApi() {
           },
         );
       };
+
+      enableShopifyBackendConsentMode();
 
       let script = document.querySelector(
         'script[data-shopify-privacy-api="true"]',
@@ -151,8 +195,10 @@ export default function CookieConsent() {
             marketing: accepted,
             preferences: accepted,
             headlessStorefront: true,
-            storefrontRootDomain: "playsamosa.com",
-            checkoutRootDomain: "checkout.playsamosa.com",
+            // storefrontRootDomain: "playsamosa.com",
+            // checkoutRootDomain: "checkout.playsamosa.com",
+            checkoutRootDomain: window.location.host,
+            storefrontRootDomain: ".playsamosa.com",
             storefrontAccessToken:
               process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,
           },
