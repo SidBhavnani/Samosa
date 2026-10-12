@@ -1,5 +1,6 @@
 const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
-const API_PATH = "/api/2026-04/graphql.json";
+// const API_PATH = "/api/2026-04/graphql.json";
+const API_PATH = "/api/unstable/graphql.json";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
