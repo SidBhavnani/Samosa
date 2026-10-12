@@ -4,7 +4,7 @@ import { useSyncExternalStore, useState } from "react";
 
 const CONSENT_KEY = "cookie-consent-v2";
 const SHOPIFY_SCRIPT =
-  "https://cdn.shopify.com/shopifycloud/consent-tracking-api/v0.1/consent-tracking-api.js";
+  "https://cdn.shopify.com/shopifycloud/consent-tracking-api/v0.2/consent-tracking-api.js";
 
 let privacyApiPromise;
 
