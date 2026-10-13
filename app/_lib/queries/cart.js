@@ -33,11 +33,13 @@ export const CART_FRAGMENT = gql`
             ... on ProductVariant {
               id
               title
+              sku
               price {
                 amount
                 currencyCode
               }
               product {
+                id
                 title
                 images(first: 10) {
                   edges {
