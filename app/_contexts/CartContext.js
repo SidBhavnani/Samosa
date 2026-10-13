@@ -69,27 +69,23 @@ async function trackAddToCart(cart, addedLines) {
       0,
     );
 
-    await sendShopifyAnalytics(
-      {
-        eventName: AnalyticsEventName.ADD_TO_CART,
-        payload: {
-          ...getClientBrowserParameters(),
-          shopId: "gid://shopify/Shop/94901895552",
-          shopifySalesChannel: "headless",
-          cartId: cart.id,
-          products,
-          currency,
-          acceptedLanguage:
-            document.documentElement.lang?.split("-")[0] || "en",
-          totalValue,
-          hasUserConsent: analyticsAllowed,
-          analyticsAllowed,
-          marketingAllowed,
-          saleOfDataAllowed,
-        },
+    await sendShopifyAnalytics({
+      eventName: AnalyticsEventName.ADD_TO_CART,
+      payload: {
+        ...getClientBrowserParameters(),
+        shopId: "gid://shopify/Shop/94901895552",
+        shopifySalesChannel: "headless",
+        cartId: cart.id,
+        products,
+        currency,
+        acceptedLanguage: document.documentElement.lang?.split("-")[0] || "en",
+        totalValue,
+        hasUserConsent: analyticsAllowed,
+        analyticsAllowed,
+        marketingAllowed,
+        saleOfDataAllowed,
       },
-      "www.playsamosa.com",
-    );
+    });
 
     console.info("Shopify add-to-cart event sent.");
   } catch (error) {
