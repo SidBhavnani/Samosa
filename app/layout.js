@@ -104,7 +104,9 @@ export default async function RootLayout({ children }) {
           </ProductProvider>
         </Providers>
 
-        <ShopifyAnalyticsInit />
+        <ShopifyAnalyticsInit
+          currency={product.variants.edges[0].node.price.currencyCode}
+        />
         <CookieConsent />
       </body>
     </html>

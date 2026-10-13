@@ -52,7 +52,7 @@ import {
   AnalyticsEventName,
 } from "@shopify/hydrogen-react";
 
-function TrackingInitializer() {
+function TrackingInitializer({ currency }) {
   const pathname = usePathname();
 
   const cookiesReady = useShopifyCookies({
@@ -86,7 +86,7 @@ function TrackingInitializer() {
       shopifySalesChannel: "headless",
 
       // Match these to the market currently displayed.
-      currency: "GBP",
+      currency: currency || "GBP",
       acceptedLanguage: document.documentElement.lang?.split("-")[0] || "en",
 
       hasUserConsent: analyticsAllowed,
@@ -97,7 +97,7 @@ function TrackingInitializer() {
       pageType:
         pathname === "/"
           ? "index"
-          : pathname.startsWith("/products/")
+          : pathname.startsWith("/shop")
             ? "product"
             : pathname.startsWith("/collections/")
               ? "collection"
@@ -123,7 +123,7 @@ function TrackingInitializer() {
   return null;
 }
 
-export default function ShopifyAnalyticsInit() {
+export default function ShopifyAnalyticsInit({ currency }) {
   const [privacyReady, setPrivacyReady] = useState(false);
 
   useEffect(() => {
@@ -143,5 +143,5 @@ export default function ShopifyAnalyticsInit() {
 
   if (!privacyReady) return null;
 
-  return <TrackingInitializer />;
+  return <TrackingInitializer currency={currency} />;
 }
