@@ -102,3 +102,18 @@ export async function applyDiscount(cartId, discountCodes, country = "GB") {
   });
   return data.cartDiscountCodesUpdate.cart;
 }
+
+export async function getShopId() {
+  const client = getShopifyClient();
+
+  const query = `
+    query GetShopId {
+      shop {
+        id
+        name
+      }
+    }
+  `;
+
+  return client.request(query);
+}

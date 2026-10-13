@@ -6,7 +6,7 @@ import { Header } from "./_components/layout/Header";
 import { Footer } from "./_components/layout/Footer";
 import { CartDrawer } from "./_components/layout/CartDrawer";
 import Providers from "./_components/Providers";
-import { getAllProducts, getProduct } from "./_lib/shopify";
+import { getAllProducts, getProduct, getShopId } from "./_lib/shopify";
 import ProductProvider from "./_components/ProductProvider";
 import { createClient } from "@/prismicio";
 import { headers } from "next/headers";
@@ -75,6 +75,9 @@ export default async function RootLayout({ children }) {
     : "samosa";
 
   const product = await getProduct(productHandle, country);
+
+  // const shop = await getShopId();
+  // console.log(shop.shop);
 
   const allProductEdges = await getAllProducts(country);
   const allProducts = allProductEdges.edges;
