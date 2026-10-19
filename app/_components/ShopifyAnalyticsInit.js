@@ -118,7 +118,7 @@ function TrackingInitializer({ currency }) {
       .catch((error) => {
         console.error("Shopify analytics error:", error);
       });
-  }, [cookiesReady, pathname]);
+  }, [cookiesReady, pathname, currency]);
 
   return null;
 }
