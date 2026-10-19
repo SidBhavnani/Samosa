@@ -21,7 +21,7 @@ export default function ProductSelector({ allProducts }) {
   // }
 
   return (
-    <section className="w-full px-4 pb-5 md:px-8 md:pb-6">
+    <section className="w-full px-4 pb-5 mt-6 md:mt-0 md:px-8 md:pb-6">
       <div className="mx-auto max-w-[1400px]">
         {/* Heading */}
         <div className="mb-3 flex items-center justify-between">
