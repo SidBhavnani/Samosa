@@ -2,9 +2,19 @@
 
 import Image from "next/image";
 import { useProduct } from "../ProductProvider";
+import { useEffect, useRef } from "react";
 
-export default function ProductSelector({ allProducts }) {
+export default function ProductSelector({ allProducts, defaultProduct }) {
   const { selectedProduct, setSelectedProduct } = useProduct();
+
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (defaultProduct && !initialized.current) {
+      setSelectedProduct(defaultProduct.node);
+      initialized.current = true;
+    }
+  }, [defaultProduct, setSelectedProduct]);
 
   const formatPrice = (price, currencyCode = "GBP") =>
     new Intl.NumberFormat("en-GB", {
@@ -21,21 +31,20 @@ export default function ProductSelector({ allProducts }) {
   // }
 
   return (
-    <section className="w-full px-4 pb-5 mt-6 md:mt-0 md:px-8 md:pb-6">
+    <section className="w-full px-4 pb-5 mt-6 md:mt-12 lg:mt-0 md:px-8 md:pb-6">
       <div className="mx-auto max-w-[1400px]">
         {/* Heading */}
-        <div className="mb-3 flex items-center justify-between">
+        {/* <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm text-center mx-auto font-semibold uppercase tracking-[0.15em] text-[#a7194b] md:text-base">
             Choose your game
           </h2>
 
-          {/* Optional mobile hint */}
-          {allProducts.length > 3 && (
+           {allProducts.length > 3 && (
             <span className="text-xs text-[#6f3048] md:hidden">
               Swipe to see more
             </span>
           )}
-        </div>
+        </div> */}
 
         {/* Product list */}
         <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none md:justify-center">

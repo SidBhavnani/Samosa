@@ -20,9 +20,10 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Shop() {
+export default async function Shop({ searchParams }) {
   //   console.log("Domain:", process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN);
   //   console.log("Token:", process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN);
+  const { product: productParam } = await searchParams;
 
   const headersList = await headers();
   const country = headersList.get("x-vercel-ip-country")?.toUpperCase() || "GB";
@@ -38,6 +39,10 @@ export default async function Shop() {
 
   const allProductEdges = await getAllProducts(country);
   const allProducts = allProductEdges.edges;
+
+  const defaultProduct = allProducts.find(
+    (product) => product.node.handle === productParam,
+  );
 
   // const productCopy = {
   //   ...allProductEdges?.edges[0].node,
@@ -111,7 +116,10 @@ export default async function Shop() {
       {/* Main Product Section */}
       <section className="bg-samosa-cream min-h-screen pt-28 pb-16 lg:pt-44 lg:pb-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <ProductSelector allProducts={allProducts} />
+          <ProductSelector
+            allProducts={allProducts}
+            defaultProduct={defaultProduct}
+          />
           <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
             <Gallery images={product.images.edges} data={homepage.data} />
             <ProductInfo
