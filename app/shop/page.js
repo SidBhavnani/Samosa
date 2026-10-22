@@ -121,7 +121,11 @@ export default async function Shop({ searchParams }) {
             defaultProduct={defaultProduct}
           />
           <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
-            <Gallery images={product.images.edges} data={homepage.data} />
+            <Gallery
+              images={product.images.edges}
+              productId={product.id}
+              data={homepage.data}
+            />
             <ProductInfo
               product={product}
               bundleAmounts={bundleAmounts}

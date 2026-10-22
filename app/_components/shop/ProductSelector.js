@@ -30,6 +30,8 @@ export default function ProductSelector({ allProducts, defaultProduct }) {
   //   setSelectedProduct(allProducts[0].node);
   // }
 
+  if (defaultProduct) return null;
+
   return (
     <section className="w-full px-4 pb-5 mt-6 md:mt-12 lg:mt-0 md:px-8 md:pb-6">
       <div className="mx-auto max-w-[1400px]">
