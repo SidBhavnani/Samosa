@@ -31,7 +31,7 @@ export default function ReviewsCarousel({ data }) {
   // console.log(data.reviews_carousel[0]);
 
   return (
-    <section className="py-16 md:py-20 bg-primary overflow-hidden">
+    <section id="reviews" className="py-16 md:py-20 bg-primary overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <AnimatedSection variant="fade-up">
           <div className="text-center mb-12">

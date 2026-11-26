@@ -13,6 +13,7 @@ export default function Testimonials({ data }) {
               Reviews
             </h2>
           </div>
+          <p className="px-1 text-primary">{`${data.reviews.length} reviews`}</p>
         </AnimatedSection>
 
         <AnimatedSection variant="fade-up" delay={200}>

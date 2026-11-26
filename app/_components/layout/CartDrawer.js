@@ -13,7 +13,7 @@ import {
 
 import { useCart } from "@/app/_contexts/CartContext";
 
-export function CartDrawer() {
+export function CartDrawer({ data }) {
   const { cart, updateQuantity, updating, totalItems, isOpen, closeCart } =
     useCart();
 
@@ -137,6 +137,10 @@ export function CartDrawer() {
                 </div>
               ))}
             </div>
+
+            {data.cart_text && (
+              <p className="text-muted-foreground">{data.cart_text}</p>
+            )}
 
             {/* Footer */}
             <div className="border-t pt-4 space-y-4">

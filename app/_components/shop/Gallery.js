@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { useProduct } from "../ProductProvider";
+import Link from "next/link";
 
 export default function Gallery({ images: defaultImages, productId, data }) {
   const { selectedProduct } = useProduct();
@@ -50,9 +51,12 @@ export default function Gallery({ images: defaultImages, productId, data }) {
             <span className="bg-secondary text-secondary-foreground font-sans font-black text-[10px] md:text-xs uppercase tracking-[0.12em] px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg whitespace-nowrap">
               Bestseller
             </span>
-            <span className="bg-primary text-secondary-foreground font-sans font-black text-[10px] md:text-xs uppercase tracking-[0.12em] px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg whitespace-nowrap">
-              {data.cta_badge_2}
-            </span>
+            <Link
+              className="bg-primary text-secondary-foreground font-sans font-black text-[10px] md:text-xs uppercase tracking-[0.12em] px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg whitespace-nowrap"
+              href="/shop#reviews"
+            >
+              <span>{data.cta_badge_2}</span>
+            </Link>
           </div>
         )}
         {/* Image with thick white frame */}

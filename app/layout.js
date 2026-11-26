@@ -13,6 +13,7 @@ import { headers } from "next/headers";
 import EmailModal from "./_components/layout/EmailModal";
 import CookieConsent from "./_components/layout/CookieConsent";
 import ShopifyAnalyticsInit from "./_components/ShopifyAnalyticsInit";
+import EventModal from "./_components/layout/EventModal";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -87,6 +88,7 @@ export default async function RootLayout({ children }) {
   // const product = await getProduct("samosa", "GB");
   const client = createClient();
   const page = await client.getSingle("global_nav");
+  const eventPopUp = await client.getSingle("event_pop_up");
   // console.log(country);
 
   return (
@@ -98,8 +100,12 @@ export default async function RootLayout({ children }) {
               <Header data={page.data} />
               <main className="flex-1">{children}</main>
               <Footer data={page.data} />
-              <CartDrawer />
-              <EmailModal data={page.data} />
+              <CartDrawer data={page.data} />
+              {eventPopUp && eventPopUp.data.active ? (
+                <EventModal data={eventPopUp.data} />
+              ) : (
+                <EmailModal data={page.data} />
+              )}
             </div>
           </ProductProvider>
         </Providers>

@@ -57,16 +57,17 @@ export default function HeroSection({ data }) {
       <div className="relative -mt-[2vw] md:-mt-[1vw] h-[48vw] md:h-[32vw] lg:h-[28vw] max-h-[440px]">
         {/* Game box — centered, lowered so headline below stays visible */}
         <div className="absolute inset-x-0 top-[10%] md:top-[4%] flex justify-center z-20">
-          <div
-            className="w-[48%] md:w-[40%] lg:w-[36%] max-w-[480px] drop-shadow-2xl animate-hero-bob"
+          <Link
+            className="w-[48%] md:w-[40%] lg:w-[36%] max-w-[480px] hover:scale-105 transition-all drop-shadow-2xl animate-hero-bob"
             style={{ ["--bob-rot"]: "0deg", animationDuration: "5s" }}
+            href="/shop"
           >
             <PrismicNextImage
               field={data.hero_game_box_image}
               className="w-full h-full object-contain"
               preload
             />
-          </div>
+          </Link>
         </div>
 
         {/* Absolute Chaos Included — short blue pill with speech-bubble tail */}
