@@ -14,7 +14,7 @@ import heroCardsStack from "@/public/assets/hero-cards-stack.png";
 import { useCart } from "@/app/_contexts/CartContext";
 import { PrismicNextImage } from "@prismicio/next";
 
-export default function HeroSection({ data }) {
+export default function HeroSection({ data, reviews }) {
   const { addItem, adding } = useCart();
 
   const handleAddToCart = () => {
@@ -183,9 +183,11 @@ export default function HeroSection({ data }) {
         </Button>
       </div>
       <div className="text-center mx-auto flex justify-center items-center gap-2 md:gap-3">
-        <p className="text-sm text-primary-foreground/80 font-bold">
-          {data.cta_badge_2}
-        </p>
+        <Link href="/#reviews">
+          <p className="text-sm text-primary-foreground/80 font-bold">
+            {data.cta_badge_2} ({reviews.length} reviews)
+          </p>
+        </Link>
         <p className="text-xl text-primary-foreground/80 font-bold">|</p>
         <p className="text-sm text-primary-foreground/80 font-bold">
           {shippingText}

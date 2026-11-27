@@ -4,7 +4,10 @@ import { PrismicNextImage } from "@prismicio/next";
 
 export default function Testimonials({ data }) {
   return (
-    <section className="py-16 md:py-24 bg-samosa-yellow-green overflow-hidden">
+    <section
+      id="reviews"
+      className="py-16 md:py-24 bg-samosa-yellow-green overflow-hidden"
+    >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <AnimatedSection variant="fade-up" className="mb-10">
@@ -13,7 +16,7 @@ export default function Testimonials({ data }) {
               Reviews
             </h2>
           </div>
-          <p className="px-1 text-primary">{`${data.reviews.length} reviews`}</p>
+          {/* <p className="px-1 text-primary">{`${data.reviews.length} reviews`}</p> */}
         </AnimatedSection>
 
         <AnimatedSection variant="fade-up" delay={200}>

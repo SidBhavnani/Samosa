@@ -44,10 +44,13 @@ export default async function Home() {
   const client = createClient();
   const page = await client.getSingle("homepage");
   const globalNav = await client.getSingle("global_nav");
+  const reviews = await client.getAllByType("reviews");
+
+  // console.log(reviews.length);
 
   return (
     <>
-      <HeroSection data={page.data} />
+      <HeroSection data={page.data} reviews={reviews} />
       <StatsSection data={page.data} />
       {/* All sections after stats bar wrapped for parallax layering */}
       <div className="relative" style={{ zIndex: 20 }}>
